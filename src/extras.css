@@ -21,35 +21,42 @@
 
 .annual-motto{display:inline-flex;align-items:center;margin:16px 0 4px;padding:9px 13px;border:1px solid #b5d9a1;border-radius:999px;background:linear-gradient(100deg,#eff8db,#e8f6ef);color:#145d3f;font:800 11px/1.4 Manrope,Arial,sans-serif;letter-spacing:.055em}.poster-footer{background:#14794f;color:#fff;font-size:10px;letter-spacing:.06em}@media(max-width:650px){.annual-motto{max-width:100%;border-radius:12px;font-size:9px}}
 
-/* Herramientas de Gestión de Seguridad y Respuesta ante Emergencias (PAS + Cartillas por sede) */
-.security-tools-panel,.emergency-panel{grid-column:1/-1;display:grid;gap:16px;padding:4px}
+/* Herramientas de Gestión de Seguridad, Emergencias PAS, COLPA, Residuos y Químicos/MSDS */
+.security-tools-panel,.emergency-panel,.colpa-panel,.residuos-panel,.chemicals-panel,.preop-panel{grid-column:1/-1;display:grid;gap:16px;padding:4px}
 .security-tools-intro{padding:13px 16px;border:1px solid #d7e8dc;border-radius:11px;background:linear-gradient(105deg,#eff8f2,#fff)}
 .security-tools-intro p{margin:0;color:#2c5446;font-size:12px;line-height:1.6}
 .security-tabs,.pas-tabs{display:flex;flex-wrap:wrap;gap:8px}
-.security-tab,.pas-tab{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border:1px solid #d5e5dc;border-radius:999px;background:#fff;color:#274f41;font:700 12px Manrope,sans-serif;transition:.2s}
+.security-tab,.pas-tab{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border:1px solid #d5e5dc;border-radius:10px;background:#fff;color:#274f41;font:700 12px Manrope,sans-serif;white-space:nowrap;transition:.2s}
 .security-tab:hover,.pas-tab:hover{border-color:#0b756c;color:#0b756c;background:#f4fbf7}
 .security-tab.is-active,.pas-tab.is-active{background:#0b756c;border-color:#0b756c;color:#fff;box-shadow:0 6px 16px #0b756c26}
-.security-tab span{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:#e8f4ed;color:#176b39;font-size:10px;font-weight:800}
+.security-tab span{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;border-radius:7px;background:#e8f4ed;color:#176b39;font-size:10px;font-weight:800;font-variant-numeric:tabular-nums}
 .security-tab.is-active span{background:#ffffff29;color:#fff}
-.security-tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.tool-summary-card{display:flex;flex-direction:column;gap:12px;padding:18px;border:1px solid #dbe8e0;border-radius:14px;background:#fff;box-shadow:0 8px 22px #143f300a}
-.tool-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.tool-badge{display:inline-flex;align-items:center;padding:5px 10px;border-radius:7px;font:800 10px Manrope,sans-serif;letter-spacing:.06em;text-transform:uppercase;background:#e7f4ec;color:#146b45}
-.tool-badge-iperc{background:#e6f4f6;color:#0b6d7c}
-.tool-badge-procedimientos{background:#eaf6eb;color:#176b39}
-.tool-badge-estandares{background:#eef4e4;color:#4f6f16}
-.tool-badge-reglamentos{background:#eef1f8;color:#354d8a}
-.tool-badge-emergencia{background:#fdecea;color:#b22b20}
-.tool-format-pill{padding:4px 9px;border:1px solid #d8e6de;border-radius:999px;background:#f7fbf8;color:#4f685e;font:700 10px Manrope,sans-serif}
-.tool-summary-card h3{margin:0;color:#174739;font:800 16px/1.35 Manrope,sans-serif}
-.tool-purpose{margin:0;padding:10px 12px;border-radius:10px;background:#f6faf7;color:#3f5b51;font-size:12px;line-height:1.55}
+
+.security-tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tool-summary-card{display:flex;flex-direction:column;border:1px solid #dbe8e0;border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 8px 22px #143f300a}
+.tool-visual-banner{position:relative;aspect-ratio:16/7.4;background:linear-gradient(125deg,#124f3c,#0b756c);overflow:hidden}
+.tool-card-estandares .tool-visual-banner{background:linear-gradient(125deg,#176b39,#2b884b)}
+.tool-card-procedimientos .tool-visual-banner{background:linear-gradient(125deg,#0b756c,#15806d)}
+.tool-card-reglamentos .tool-visual-banner{background:linear-gradient(125deg,#1f4f82,#146b45)}
+.tool-card-iperc .tool-visual-banner{background:linear-gradient(125deg,#0c6473,#176b39)}
+.tool-visual-banner img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.tool-summary-card:hover .tool-visual-banner img{transform:scale(1.03)}
+.tool-visual-scrim{position:absolute;inset:0;background:linear-gradient(180deg,#08282015 15%,#082820d9 95%)}
+.tool-visual-meta{position:absolute;left:14px;right:14px;bottom:11px;display:grid;gap:2px;color:#fff}
+.tool-meta-text{font:800 10.5px Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#d8f6aa}
+.tool-visual-caption{font:600 11.5px Manrope,sans-serif;color:#f3faf5}
+.emergency-meta{color:#b22b20}
+
+.tool-card-content{display:flex;flex-direction:column;gap:11px;padding:16px 18px 18px;flex:1}
+.tool-summary-card h3{margin:0;color:#174739;font:800 16px/1.3 Manrope,sans-serif;text-wrap:balance}
+.tool-purpose{margin:0;padding:10px 12px;border-radius:10px;background:#f4faf6;border:1px solid #e2efe7;color:#35564a;font-size:12px;line-height:1.5}
 .tool-purpose b{color:#0b756c}
-.tool-highlights{display:grid;gap:8px}
-.tool-highlight-item{display:flex;align-items:flex-start;gap:10px;padding:10px 11px;border:1px solid #e4efe8;border-radius:10px;background:#fbfdfb}
-.tool-highlight-item>span{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:7px;background:#dff1e5;color:#146b45;font:800 10px Manrope,sans-serif}
+.tool-highlights{display:grid;gap:7px}
+.tool-highlight-item{display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border:1px solid #e4efe8;border-radius:10px;background:#fbfdfb}
+.tool-highlight-item>span{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:7px;background:#dff1e5;color:#146b45;font:800 10px Manrope,sans-serif;font-variant-numeric:tabular-nums}
 .tool-highlight-item b{display:block;color:#174739;font-size:11.5px;margin-bottom:2px}
-.tool-highlight-item p{margin:0;color:#546c63;font-size:11px;line-height:1.5}
-.tool-golden-rule{padding:10px 12px;border-left:3px solid #d4941e;border-radius:0 9px 9px 0;background:#fff9eb;color:#6d4c10;font-size:11.5px;line-height:1.55}
+.tool-highlight-item p{margin:0;color:#546c63;font-size:11px;line-height:1.45}
+.tool-golden-rule{padding:10px 12px;border:1px solid #f0ddb3;border-radius:10px;background:#fff9eb;color:#6d4c10;font-size:11.5px;line-height:1.5}
 .tool-golden-rule strong{color:#8f5d08}
 .tool-gate{margin-top:auto;display:grid;gap:9px;padding:12px;border:1px solid #dce9e2;border-radius:11px;background:#f4f9f6}
 .tool-quiz{display:grid;gap:6px}
@@ -62,6 +69,7 @@
 .empty-folder-card p{margin:0;font-size:12px;line-height:1.6;color:#526b62}
 .empty-folder-card code{padding:2px 6px;border-radius:5px;background:#e4f2e9;color:#145d3f;font-size:11px}
 
+/* Emergencias PAS */
 .emergency-doc-card{border-color:#f2d1cd;background:linear-gradient(120deg,#fff9f8,#fff)}
 .emergency-doc-card .day-badge{background:#fdecea;color:#b82c21}
 .emergency-folder .library-folder-summary{background:linear-gradient(100deg,#fff4f2,#fff)}
@@ -69,6 +77,7 @@
 .emergency-icon{background:#fde6e3!important;color:#b82c21!important}
 .emergency-hero{background:linear-gradient(120deg,#8c1f19,#b83b24 58%,#0b756c);margin-bottom:0}
 .emergency-hero .learning-kicker{color:#ffe69b}
+.pas-section-kicker{display:block;font:800 10px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#0b756c}
 .pas-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .pas-card{display:flex;flex-direction:column;border:1px solid #dce8e1;border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 8px 22px #143f300c}
 .pas-img-wrap{position:relative;aspect-ratio:4/3;background:#eef5f0;overflow:hidden}
@@ -84,8 +93,8 @@
 .pas-card-body ul{margin:4px 0 0;padding-left:18px;color:#4f665d;font-size:11.5px;line-height:1.58;display:grid;gap:5px}
 .pas-practice{padding:16px 18px;border:1px solid #dce9e2;border-radius:14px;background:#fff;display:grid;gap:13px}
 .pas-practice-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.pas-practice-head h4{margin:6px 0 0;color:#174739;font:800 16px Manrope,sans-serif}
-.pas-score{padding:6px 12px;border-radius:999px;background:#eaf6ee;color:#0b756c;font:800 12px Manrope,sans-serif}
+.pas-practice-head h4{margin:4px 0 0;color:#174739;font:800 16px Manrope,sans-serif}
+.pas-score{font:800 12px Manrope,sans-serif;color:#0b756c;font-variant-numeric:tabular-nums}
 .pas-quiz-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .pas-quiz-item{display:flex;flex-direction:column;gap:9px;padding:13px;border:1px solid #e1ece5;border-radius:11px;background:#f9fcfa}
 .pas-quiz-item p{margin:0;color:#174739;font:700 12px/1.5 Manrope,sans-serif}
@@ -95,6 +104,7 @@
 .pas-opt-btn.is-correct{border-color:#176b39;background:#e8f6ec;color:#12542c;font-weight:700}
 .pas-opt-btn.is-wrong{border-color:#d98b6c;background:#fff4ef;color:#9c3d1e}
 .pas-opt-feedback{min-height:16px;font-size:11px;font-weight:700;line-height:1.45}
+
 .emergency-cards-section{padding:16px 18px;border:1px solid #dce9e2;border-radius:14px;background:#fff;display:grid;gap:14px}
 .emergency-cards-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .emergency-cards-head h4{margin:0 0 4px;color:#174739;font:800 16px Manrope,sans-serif}
@@ -104,23 +114,142 @@
 .emergency-sede-card{display:flex;flex-direction:column;gap:10px;padding:16px;border:1px solid #efd5d1;border-radius:12px;background:linear-gradient(145deg,#fffaf9,#fff)}
 .emergency-sede-card h5{margin:0;color:#174739;font:800 15px/1.35 Manrope,sans-serif}
 .emergency-sede-card p{margin:0;color:#556b63;font-size:12px;line-height:1.55}
-.emergency-sede-card .btn{margin-top:auto;align-self:flex-start}
-.emergency-alert-script{padding:13px 15px;border:1px solid #d5e4ee;border-left:4px solid #0d4b75;border-radius:10px;background:#f3f8fc;color:#1b3b54;font-size:12px}
+.emergency-alert-script{padding:13px 15px;border:1px solid #c9dfef;border-radius:10px;background:#f3f8fc;color:#1b3b54;font-size:12px}
 .emergency-alert-script strong{display:block;font:800 12.5px Manrope,sans-serif;margin-bottom:7px;color:#0d4b75}
 .emergency-alert-script ul{margin:0;padding-left:18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;font-size:11.5px;line-height:1.5;color:#2c4d66}
-.cartilla-thumb-btn{position:relative;display:block;width:100%;padding:0;border:1px solid #dce6e0;border-radius:10px;overflow:hidden;background:#f5faf7;cursor:zoom-in}
+.cartilla-thumb-btn,.poster-zoom-frame{position:relative;display:block;width:100%;padding:0;border:1px solid #dce6e0;border-radius:10px;overflow:hidden;background:#f5faf7;cursor:zoom-in}
 .cartilla-thumb-btn img{display:block;width:100%;height:190px;object-fit:cover;object-position:top center;transition:transform .25s ease}
-.cartilla-thumb-btn:hover img{transform:scale(1.03)}
-.cartilla-thumb-btn span{position:absolute;right:8px;bottom:8px;padding:5px 9px;border-radius:999px;background:#103f38e6;color:#fff;font:700 10px Manrope,sans-serif}
+.poster-zoom-frame img{display:block;width:100%;max-height:420px;object-fit:contain;background:#fff;transition:transform .25s ease}
+.cartilla-thumb-btn:hover img,.poster-zoom-frame:hover img{transform:scale(1.02)}
+.cartilla-thumb-btn span,.poster-zoom-frame span{position:absolute;right:10px;bottom:10px;padding:6px 10px;border-radius:8px;background:#103f38e6;color:#fff;font:700 10.5px Manrope,sans-serif}
 .cartilla-contacts{display:grid;gap:6px;padding:10px 11px;border:1px solid #f0dedb;border-radius:9px;background:#fff;font-size:11px;line-height:1.48;color:#475f57}
 .cartilla-contacts b{color:#8c1f19}
 .cartilla-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+
+/* COLPA */
+.colpa-doc-card{border-color:#ebd8b0;background:linear-gradient(120deg,#fffbf2,#fff)}
+.colpa-doc-card .day-badge,.colpa-icon{background:#f7ebd0!important;color:#99610b!important}
+.colpa-folder .library-folder-summary{background:linear-gradient(100deg,#fff9ec,#fff)}
+.colpa-folder .library-folder-summary:hover{background:#fdf2d8}
+.colpa-hero{background:linear-gradient(120deg,#8c5c0c,#b87c14 55%,#176b39);margin-bottom:0}
+.colpa-hero .learning-kicker{color:#fff0b8}
+.colpa-split,.residuos-split{display:grid;grid-template-columns:1.35fr .85fr;gap:16px;align-items:start}
+.colpa-stages-grid{display:grid;gap:12px}
+.colpa-stage-card{display:grid;gap:10px;padding:15px 16px;border:1px solid #e4e9e4;border-top:4px solid var(--stage-color,#b87c14);border-radius:12px;background:#fff;box-shadow:0 6px 18px #143f3008}
+.colpa-stage-head{display:flex;align-items:center;gap:12px}
+.colpa-letter-tile{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--stage-color,#b87c14);color:#fff;font:900 20px Manrope,sans-serif}
+.colpa-stage-index{display:block;font:800 10px Manrope,sans-serif;letter-spacing:.1em;color:var(--stage-color,#b87c14)}
+.colpa-stage-head h4{margin:2px 0 0;font:800 16px Manrope,sans-serif;color:#174739}
+.colpa-block{padding:9px 11px;border:1px solid #e6eee9;border-radius:9px;background:#fafcfa}
+.colpa-block-practice{background:#f2faf5;border-color:#d5ebd9}
+.colpa-block b{display:block;font-size:11px;color:#174739;margin-bottom:3px}
+.colpa-block p,.colpa-clave{margin:0;font-size:11.5px;line-height:1.5;color:#476057}
+.colpa-clave strong{color:#8c5c0c}
+
+.poster-spotlight-card{display:flex;flex-direction:column;gap:12px;padding:16px;border:1px solid #dce8e0;border-radius:14px;background:#fff;box-shadow:0 8px 22px #143f300a}
+.poster-spotlight-head h4{margin:4px 0 0;font:800 15px/1.3 Manrope,sans-serif;color:#174739}
+.poster-spotlight-card .tool-meta-text{color:#0b756c}
+.poster-spotlight-card p{margin:0;font-size:12px;line-height:1.55;color:#526b62}
+
+/* Segregación y Disposición de Residuos */
+.residuos-doc-card{border-color:#cde5d5;background:linear-gradient(120deg,#f5fbf7,#fff)}
+.residuos-doc-card .day-badge,.residuos-icon{background:#dff3e6!important;color:#146b45!important}
+.residuos-hero{background:linear-gradient(120deg,#125c39,#0b756c);margin-bottom:0}
+.notion-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.notion-card{display:grid;gap:7px;align-content:start;padding:15px 16px;border:1px solid #dbe8e0;border-top:4px solid var(--notion-accent,#0b756c);border-radius:12px;background:#fff}
+.notion-num{font:800 11px Manrope,sans-serif;letter-spacing:.08em;color:var(--notion-accent,#0b756c)}
+.notion-card h4{margin:0;font:800 15px Manrope,sans-serif;color:#174739}
+.notion-card p{margin:0;font-size:12px;line-height:1.55;color:#50685f}
+.residuos-drums-area{display:grid;gap:12px}
+.residuos-drums-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.residuos-drums-head h4{margin:0 0 3px;font:800 15px Manrope,sans-serif;color:#174739}
+.residuos-drums-head p{margin:0;font-size:12px;color:#526b62}
+.drums-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.drum-card{border:1px solid #dce8e0;border-radius:12px;overflow:hidden;background:#fff}
+.drum-color-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:var(--drum-color,#0b756c);color:#fff;font:800 11px Manrope,sans-serif}
+.drum-color-bar span{font-weight:600;font-size:10px;opacity:.92}
+.drum-card-body{padding:11px 12px}
+.drum-card-body h5{margin:0 0 4px;font:800 13.5px Manrope,sans-serif;color:#174739}
+.drum-card-body p{margin:0;font-size:11.5px;line-height:1.5;color:#526b62}
+
+/* Productos Químicos, Pesticidas y Buscador MSDS */
+.chem-doc-card{border-color:#cde0eb;background:linear-gradient(120deg,#f4f9fc,#fff)}
+.chem-doc-card .day-badge,.chem-icon{background:#e1f0f7!important;color:#0d5b78!important}
+.chem-hero{background:linear-gradient(120deg,#0c5a73,#0b756c);margin-bottom:0}
+.chem-guide-split{display:grid;grid-template-columns:1fr 1.15fr;gap:14px;align-items:stretch}
+.chem-illustration-card{margin:0;display:flex;flex-direction:column;border:1px solid #dce8e1;border-radius:13px;overflow:hidden;background:#fff}
+.chem-illustration-card img{display:block;width:100%;height:100%;min-height:200px;object-fit:cover}
+.chem-illustration-card figcaption{padding:10px 12px;background:#f4faf7;font-size:11.5px;line-height:1.45;color:#35584d;font-weight:600}
+.chem-steps-grid{display:grid;gap:9px}
+.chem-step-card{display:flex;align-items:flex-start;gap:11px;padding:12px 13px;border:1px solid #dce9e2;border-radius:11px;background:#fff}
+.chem-step-card span{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#e1f2f0;color:#0b756c;font:800 11px Manrope,sans-serif;font-variant-numeric:tabular-nums}
+.chem-step-card h5{margin:0 0 3px;font:800 13.5px Manrope,sans-serif;color:#174739}
+.chem-step-card p{margin:0;font-size:11.5px;line-height:1.5;color:#526b62}
+
+.msds-search-box{padding:16px 18px;border:1px solid #d5e5dc;border-radius:14px;background:#fff;display:grid;gap:14px}
+.msds-search-head h4{margin:4px 0 4px;font:800 16px Manrope,sans-serif;color:#174739}
+.msds-search-head p{margin:0;font-size:12px;line-height:1.55;color:#526b62}
+.msds-search-form{display:grid;gap:10px}
+.msds-input-row{display:flex;flex-wrap:wrap;gap:9px}
+.msds-input-row .field{flex:1;min-width:220px}
+.msds-photo-btn{cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.msds-quick-chips{display:flex;flex-wrap:wrap;align-items:center;gap:7px;font-size:11.5px;color:#546c63}
+.msds-chip{padding:6px 11px;border:1px solid #d4e4dc;border-radius:8px;background:#f5faf7;color:#174739;font:700 11.5px Manrope,sans-serif;transition:.18s}
+.msds-chip:hover{border-color:#0b756c;background:#e6f4ec;color:#0b756c}
+.msds-photo-preview{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #d6e6dd;border-radius:11px;background:#f6fbf8}
+.msds-photo-preview[hidden]{display:none}
+.msds-photo-preview img{width:56px;height:56px;border-radius:8px;object-fit:cover;border:1px solid #d4e4dc}
+.msds-photo-preview strong{display:block;font-size:12px;color:#174739}
+.msds-photo-preview small{font-size:11px;color:#546c63}
+.msds-photo-preview button{margin-left:auto}
+.msds-loading{padding:14px;border:1px solid #d4e6eb;border-radius:10px;background:#f2f9fb;color:#0d5b78;font:700 12px Manrope,sans-serif}
+.msds-result-card{display:grid;gap:13px;padding:16px;border:1px solid #cfe3db;border-radius:12px;background:#f9fcfa}
+.msds-result-top h5{margin:4px 0 3px;font:800 17px Manrope,sans-serif;color:#174739}
+.msds-active-ing,.msds-summary-text{margin:0;font-size:12px;line-height:1.55;color:#3f5b51}
+.msds-safety-mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.msds-safety-mini-grid>div{padding:10px 11px;border:1px solid #dfe9e3;border-radius:9px;background:#fff}
+.msds-safety-mini-grid b{display:block;font-size:11.5px;color:#0b756c;margin-bottom:3px}
+.msds-safety-mini-grid p{margin:0;font-size:11px;line-height:1.45;color:#4f665d}
+.msds-links-section{display:grid;gap:8px}
+.msds-links-section h6{margin:0;font:800 12.5px Manrope,sans-serif;color:#174739}
+.msds-official-list{display:grid;gap:7px}
+.msds-official-link{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #cfe2ea;border-radius:9px;background:#fff;color:#0d4b75;text-decoration:none;transition:.18s}
+.msds-official-link:hover{border-color:#0b756c;background:#f3faf7}
+.msds-official-link span{padding:3px 7px;border-radius:6px;background:#e3f1f6;color:#0d5b78;font:800 10px Manrope,sans-serif}
+.msds-official-link strong{flex:1;font-size:12px;color:#174739;word-break:break-word}
+.msds-official-link b{font-size:11.5px;color:#0b756c;white-space:nowrap}
+.msds-fallback-note,.msds-local-empty{margin:0;font-size:12px;line-height:1.55;color:#546c63}
+.msds-fallback-note code,.msds-local-empty code,.msds-local-bank-head code{padding:2px 6px;border-radius:5px;background:#e4f2e9;color:#145d3f;font-size:11px}
+.msds-local-bank{display:grid;gap:10px;padding-top:12px;border-top:1px solid #e1ece5}
+.msds-local-bank-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:#174739}
+.msds-local-bank-head span{font-size:11.5px;color:#526b62}
+.msds-local-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.msds-local-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid #dce8e1;border-radius:10px;background:#fbfdfb}
+.msds-local-item.is-highlighted{border-color:#0b756c;background:#eff9f4}
+.msds-local-item strong{display:block;font-size:12px;color:#174739}
+.msds-local-item small{font-size:11px;color:#546c63}
+
+/* Check list Preoperacional */
+.preop-tape-strip{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 14px;border:1px solid #dce8e1;border-radius:11px;background:#f8fbf9;font-size:12px;color:#174739}
+.tape-chip{padding:4px 9px;border-radius:7px;font:800 10.5px Manrope,sans-serif;border:1px solid #d0dcd5}
+.tape-verde{background:#e3f5e7;color:#146b39;border-color:#b8e1c4}
+.tape-amarillo{background:#fef5d8;color:#855d08;border-color:#efd68c}
+.tape-rojo{background:#fde6e3;color:#a8241d;border-color:#efb9b2}
+.tape-blanco{background:#fff;color:#273832;border-color:#cfd9d3}
+.preop-checklist{display:grid;gap:8px}
+.preop-check-item{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:1px solid #dce8e1;border-radius:10px;background:#fff;cursor:pointer;font-size:12px;line-height:1.5;color:#2e4f43}
+.preop-check-item input{margin-top:3px;width:16px;height:16px;accent-color:#0b756c}
+.preop-footer-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:#174739}
+
+/* Lightbox compartido */
 .cartilla-lightbox[hidden]{display:none}
 .cartilla-lightbox{position:fixed;inset:0;z-index:1200;display:grid;place-items:center;padding:20px;background:#0a1f1ba8;backdrop-filter:blur(4px)}
 .cartilla-lightbox-dialog{width:min(980px,100%);max-height:92vh;display:flex;flex-direction:column;border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 24px 60px #0000004d}
-.cartilla-lightbox-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid #e1ece5;background:#f7fbf8;color:#174739;font:800 13px Manrope,sans-serif}
+.cartilla-lightbox-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid #e1ece5;background:#f7fbf8;color:#174739;font:800 13px Manrope,sans-serif}
+.lightbox-actions{display:flex;align-items:center;gap:8px}
 .cartilla-lightbox-body{padding:12px;overflow:auto;background:#eef3ef;text-align:center}
 .cartilla-lightbox-body img{max-width:100%;height:auto;border-radius:8px;border:1px solid #dce6e0}
 
-@media(max-width:850px){.security-tools-grid,.pas-grid,.pas-quiz-grid,.emergency-cards-list,.emergency-alert-script ul{grid-template-columns:1fr}}
+@media(max-width:850px){.security-tools-grid,.pas-grid,.pas-quiz-grid,.emergency-cards-list,.emergency-alert-script ul,.colpa-split,.residuos-split,.notion-grid,.drums-grid,.chem-guide-split,.msds-safety-mini-grid,.msds-local-grid{grid-template-columns:1fr}}
+
 
