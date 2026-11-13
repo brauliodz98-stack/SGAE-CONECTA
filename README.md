@@ -1,11 +1,9 @@
-<div align="center">
+# SSOMA 365 SGAE
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+## Abrir la aplicación
 
-  <h1>Built with AI Studio</h2>
+Abre `index.html` con doble clic. La experiencia funciona sin instalar paquetes ni iniciar un servidor.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+También puedes ejecutarla desde una terminal en esta carpeta con `node server.mjs` y abrir `http://localhost:4173`. Mantén esa terminal abierta mientras uses el servidor.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+Los registros de esta versión se guardan en el navegador y en el dispositivo actual. Consulta `docs/` para conocer el alcance de la demostración y la propuesta de integración con Supabase.
