@@ -6,10 +6,10 @@ const TOOL_EXTENSIONS = new Set(['.pdf', '.docx', '.doc', '.xlsx']);
 const EMERGENCY_EXTENSIONS = new Set(['.pdf', '.jpg', '.jpeg', '.png', '.webp']);
 
 const FOLDER_SOURCES = {
-  estandares: ['assets/estandares', 'assets/estandar', 'estandares', 'estandar'],
-  procedimientos: ['assets/procedimientos', 'assets/procedimiento', 'procedimientos', 'procedimiento'],
-  reglamentos: ['assets/reglamentos', 'assets/reglamento', 'reglamentos', 'reglamento'],
-  emergencias: ['assets/emergencias', 'assets/emergencia', 'emergencias', 'emergencia']
+  estandares: ['assets/estandares', 'assets/estandar', 'assets/ESTANDARES', 'assets/ESTANDAR', 'estandares', 'estandar', 'ESTANDARES', 'ESTANDAR'],
+  procedimientos: ['assets/procedimientos', 'assets/procedimiento', 'assets/PROCEDIMIENTOS', 'assets/PROCEDIMIENTO', 'procedimientos', 'procedimiento', 'PROCEDIMIENTOS', 'PROCEDIMIENTO'],
+  reglamentos: ['assets/reglamentos', 'assets/reglamento', 'assets/REGLAMENTOS', 'assets/REGLAMENTO', 'reglamentos', 'reglamento', 'REGLAMENTOS', 'REGLAMENTO'],
+  emergencias: ['assets/emergencias', 'assets/emergencia', 'assets/EMERGENCIAS', 'assets/EMERGENCIA', 'emergencias', 'emergencia', 'EMERGENCIAS', 'EMERGENCIA']
 };
 
 function prettifyTitle(filename) {
@@ -185,10 +185,18 @@ export async function resolveDocsManifest(rootDir) {
 export const EXTRA_ROOT_DOC_DIRS = [
   'estandares',
   'estandar',
+  'ESTANDARES',
+  'ESTANDAR',
   'procedimientos',
   'procedimiento',
+  'PROCEDIMIENTOS',
+  'PROCEDIMIENTO',
   'reglamentos',
   'reglamento',
+  'REGLAMENTOS',
+  'REGLAMENTO',
   'emergencias',
-  'emergencia'
+  'emergencia',
+  'EMERGENCIAS',
+  'EMERGENCIA'
 ];

@@ -1,7 +1,262 @@
 {
-  "estandares": [],
-  "procedimientos": [],
-  "reglamentos": [],
+  "estandares": [
+    {
+      "badge": "ESTÁNDAR · SST-EST-005",
+      "format": "PDF",
+      "title": "Las 9 Reglas de Oro por la Vida",
+      "file": "./assets/estandares/09%20reglas%20de%20oro.pdf",
+      "downloadName": "09 reglas de oro.pdf",
+      "purpose": "Define las 9 reglas críticas de tolerancia cero que protegen la vida frente a los riesgos mortales más frecuentes en operación, contratistas y visitas.",
+      "highlights": [
+        { "k": "Siempre en todo frente", "v": "1) Di NO al trabajo inseguro; 2) Cero alcohol, coca o drogas; 3) No seas permisivo ante riesgos; 4) Cumple reglamentos, PETS y estándares." },
+        { "k": "Equipos, bloqueos y tránsito", "v": "5) Nunca operes equipos móviles o winches sin autorización; 6) Respeta bloqueo/etiquetado (LOTO) y zonas señalizadas; 7) Respeta velocidades, descansos y restricciones en lluvias." },
+        { "k": "En labores mineras", "v": "8) Ventila, riega, desata y sostén antes de avanzar; 9) Mantén echaderos y chimeneas con parrillas aseguradas y arnés." }
+      ],
+      "goldenRule": "Las 9 Reglas de Oro tienen Tolerancia Cero: si una condición pone en riesgo tu vida o la de tu compañero, ejerce tu derecho a decir NO y avisa de inmediato.",
+      "question": "Si ves un peligro inminente sin control en tu área de trabajo, ¿qué establece la Regla de Oro N° 1?",
+      "answers": [
+        "Decir NO al trabajo inseguro, retirarse del punto peligroso y avisar de inmediato al supervisor.",
+        "Seguir trabajando rápido para no retrasar la guardia y avisar al final del turno."
+      ],
+      "correct": 0,
+      "search": "9 reglas de oro vida sst-est-005 tolerancia cero decir no alcohol bloqueo loto velocidad desatado parrillas"
+    },
+    {
+      "badge": "ESTÁNDAR · SIG_SST_EST_020",
+      "format": "PDF",
+      "title": "Botiquines de Primeros Auxilios",
+      "file": "./assets/estandares/Botiquines.pdf",
+      "downloadName": "Botiquines.pdf",
+      "purpose": "Establece cómo deben estar ubicados, equipados, identificados e inspeccionados los botiquines en oficinas, operaciones de campo y vehículos.",
+      "highlights": [
+        { "k": "Acceso rápido y sin llave", "v": "Todo botiquín debe ir en zona visible y despejada, sin cerraduras que bloqueen su apertura, y todo trabajador debe saber dónde está." },
+        { "k": "Uso seguro e higiene", "v": "Lávate y desinféctate las manos antes y después, revisa la fecha de vencimiento y registra cada insumo utilizado en la libreta de control." },
+        { "k": "Evaluación médica obligatoria", "v": "El botiquín atiende lesiones leves de forma inicial; después de usarlo, el trabajador lesionado debe pasar por posta médica para evaluación." }
+      ],
+      "goldenRule": "Inspecciona el botiquín mensualmente en su tarjeta, nunca lo mantengas con candado y repón de inmediato los insumos usados.",
+      "question": "¿Qué se debe hacer después de usar un insumo del botiquín ante una lesión en campo?",
+      "answers": [
+        "Registrar la salida en la libreta de control y acudir a la posta médica para evaluación.",
+        "Cerrar el botiquín con candado y esperar hasta la inspección de fin de mes."
+      ],
+      "correct": 0,
+      "search": "botiquines sig_sst_est_020 primeros auxilios libreta control inspeccion mensual posta medica vehiculos"
+    },
+    {
+      "badge": "ESTÁNDAR · SST-EST-004",
+      "format": "PDF",
+      "title": "Disciplina Operativa (DO)",
+      "file": "./assets/estandares/Disciplina%20Operativa.pdf",
+      "downloadName": "Disciplina Operativa.pdf",
+      "purpose": "Asegura que todas las tareas se hagan de forma correcta, consistente y segura cumpliendo las 4 etapas de la Disciplina Operativa.",
+      "highlights": [
+        { "k": "1. Disponibilidad y 2. Calidad", "v": "Los estándares y PETS deben estar vigentes y accesibles en el frente de trabajo, escritos con claridad y límites seguros." },
+        { "k": "3. Comunicación y competencia", "v": "Todo trabajador recibe capacitación teórica y evaluación de entendimiento antes de ejecutar actividades críticas." },
+        { "k": "4. Cumplimiento en campo (OPT / IP)", "v": "La supervisión verifica en campo mediante Observación Planeada de la Tarea (OPT) e Inspecciones Planificadas (IP)." }
+      ],
+      "goldenRule": "Un documento desactualizado o confuso no está disponible para operar: si falta en tu frente o no se entiende, solicítalo antes de empezar.",
+      "question": "¿Cuáles son las 4 etapas de la Disciplina Operativa que garantizan un trabajo consistente y seguro?",
+      "answers": [
+        "Disponibilidad, Calidad, Comunicación y Cumplimiento.",
+        "Rapidez, Improvisación, Archivo y Cierre."
+      ],
+      "correct": 0,
+      "search": "disciplina operativa sst-est-004 disponibilidad calidad comunicacion cumplimiento opt ip colpa"
+    },
+    {
+      "badge": "ESTÁNDAR · SIG_SST_EST_008",
+      "format": "PDF",
+      "title": "Equipo de Protección Personal (EPP) y Uniformes",
+      "file": "./assets/estandares/Equipo%20de%20Protecci%C3%B3n%20Personal%20(EPP).pdf",
+      "downloadName": "Equipo de Protección Personal (EPP).pdf",
+      "purpose": "Fija los requisitos técnicos, selección por puesto, cuidados y reemplazo del EPP para cabeza, ojos, cara, oídos, vías respiratorias, manos, pies, caídas y ropa de alta visibilidad.",
+      "highlights": [
+        { "k": "Revisión y cero reparaciones", "v": "Inspecciona tu EPP antes de cada turno; un EPP dañado, golpeado o vencido NO se repara, se reporta y se reemplaza de inmediato." },
+        { "k": "Reglas por tipo de EPP", "v": "Casco sin stickers ni perforaciones (personal nuevo usa triángulo amarillo 6 meses); prueba de sello en respirador sin vello facial; doble protección auditiva sobre 85 dBA." },
+        { "k": "Alta visibilidad por área", "v": "Uniformes de contratistas en superficie llevan cinta reflectiva de 2\" y color rojo fluorescente (en interior mina, amarillo-verde fluorescente)." }
+      ],
+      "goldenRule": "Ningún trabajador ni visita puede ingresar o laborar sin el EPP certificado exigido para su tarea y en perfecto estado.",
+      "question": "¿Qué debes hacer si detectas que tu casco, lente rayado o guante está deteriorado antes de iniciar labores?",
+      "answers": [
+        "Comunicarlo al supervisor para reemplazarlo de inmediato por uno nuevo certificado, sin repararlo.",
+        "Parchearlo o seguir usándolo hasta terminar el mes."
+      ],
+      "correct": 0,
+      "search": "epp equipo proteccion personal sig_sst_est_008 casco lentes respirador guantes calzado arnes uniforme alta visibilidad"
+    },
+    {
+      "badge": "ESTÁNDAR · SIG_SST_EST_019",
+      "format": "PDF",
+      "title": "Equipos y Sistemas contra Incendios",
+      "file": "./assets/estandares/EQUIPOS%20Y%20SISTEMAS%20CONTRA%20INCENDIOS.pdf",
+      "downloadName": "EQUIPOS Y SISTEMAS CONTRA INCENDIOS.pdf",
+      "purpose": "Detalla qué tipo y capacidad de extintor corresponde a cada área o vehículo, a qué altura instalarlo y cómo inspeccionarlo cada mes.",
+      "highlights": [
+        { "k": "Extintor según riesgo y vehículo", "v": "Camionetas/minibuses y dormitorios: PQS ABC de 6 kg; vehículos/equipos pesados y almacenes: 9–12 kg; cocina: Tipo K (acetato de potasio); oficinas: PQS y CO2." },
+        { "k": "Ubicación e instalación segura", "v": "Señalización visible a 1.80 m de altura, base del extintor nunca a menos de 20 cm del suelo y pasillo siempre libre de obstáculos." },
+        { "k": "Inspección mensual en tarjeta", "v": "Verifica cada mes precinto, manómetro en zona verde, manguera, boquilla y fecha de mantenimiento anual / prueba hidrostática (cada 5 años)." }
+      ],
+      "goldenRule": "Mantén el acceso al extintor siempre despejado; si ves el manómetro despresurizado, sin precinto o vencido, repórtalo para recambio inmediato.",
+      "question": "¿Con qué frecuencia mínima se inspeccionan los extintores portátiles en su tarjeta de verificación?",
+      "answers": [
+        "De manera mensual en su tarjeta de inspección (además de recarga anual y prueba hidrostática cada 5 años).",
+        "Únicamente después de que ocurra un amago de incendio."
+      ],
+      "correct": 0,
+      "search": "equipos sistemas contra incendios sig_sst_est_019 extintores pqs co2 tipo k hidrantes inspeccion mensual"
+    },
+    {
+      "badge": "ESTÁNDAR · SIG_SST_EST_010",
+      "format": "PDF",
+      "title": "Trabajos en Altura (desde 1.80 m)",
+      "file": "./assets/estandares/Estandar%20trabajos%20en%20altura.pdf",
+      "downloadName": "Estandar trabajos en altura.pdf",
+      "purpose": "Establece los controles obligatorios para prevenir caídas a distinto nivel desde 1.80 m, uso de arnés, puntos de anclaje, escaleras, andamios y trabajo en taludes.",
+      "highlights": [
+        { "k": "Permiso, aptitud y compañía", "v": "Obligatorio contar con PETAR autorizado, certificado médico de aptitud, capacitación vigente y mínimo 2 personas en la tarea." },
+        { "k": "Arnés, anclaje y clima", "v": "Arnés de cuerpo completo (mín. 4 anillos D) con doble línea de vida o retráctil; anclaje resistente (2,270 kg) sobre la cabeza; prohibido con viento > 30 km/h o lluvia/tormenta." },
+        { "k": "Escaleras, andamios y taludes", "v": "Escaleras inclinación 1:4 (75°) sobresaliendo 1 m; andamios certificados con barandas y rodapiés; taludes con evaluación geotécnica previa." }
+      ],
+      "goldenRule": "Mantente 100% anclado desde 1.80 m y retira y destruye de inmediato cualquier arnés o línea que haya detenido una caída.",
+      "question": "¿Cuál es la regla obligatoria respecto a personas, permiso y viento para iniciar un trabajo en altura (≥ 1.80 m)?",
+      "answers": [
+        "Contar con PETAR validado, mínimo 2 personas, arnés con doble línea de vida y no trabajar con viento > 30 km/h o lluvia.",
+        "Trabajar solo con cinturón de cuero para avanzar más rápido en la escalera."
+      ],
+      "correct": 0,
+      "search": "trabajos altura sig_sst_est_010 1.80 arnes linea vida petar escaleras andamios taludes viento"
+    },
+    {
+      "badge": "ESTÁNDAR · SST-EST-006",
+      "format": "PDF",
+      "title": "IPERC Línea Base e IPERC Continuo",
+      "file": "./assets/estandares/IPERC-continuo.pdf",
+      "downloadName": "IPERC-continuo.pdf",
+      "purpose": "Explica cómo usar la Matriz IPERC de Línea Base y cómo llenar cada día el IPERC Continuo con el equipo en el frente antes de iniciar labores.",
+      "highlights": [
+        { "k": "Toma Dos y Observación Total", "v": "Pausa 2 minutos antes de empezar: habla con tus compañeros y aplica AAAAA (mira Arriba, Abajo, Atrás, Adelante, A los lados), escucha, huele y percibe." },
+        { "k": "Evalúa GEMA y riesgo residual", "v": "Identifica peligros, responde ¿qué nos podría pasar?, aplica jerarquía de controles (Eliminación hasta EPP) y verifica que el riesgo residual quede bajo." },
+        { "k": "Firma y revisión en campo", "v": "Todos los participantes firman el IPERC Continuo y el supervisor inmediato lo verifica y firma en campo (evaluado con Safe Matrix)." }
+      ],
+      "goldenRule": "Si tras aplicar los controles a tu alcance el peligro sigue en nivel Alto y fuera de tu control, ejerce tu derecho a decir NO y repórtalo.",
+      "question": "¿Qué significa aplicar la Observación Total antes de llenar el IPERC Continuo en el frente de trabajo?",
+      "answers": [
+        "Observar en todas las direcciones (Arriba, Abajo, Atrás, Adelante y Lados), escuchar, oler y percibir el entorno real.",
+        "Copiar los mismos peligros de ayer sin mirar el terreno actual."
+      ],
+      "correct": 0,
+      "search": "iperc continuo linea base sst-est-006 toma dos observacion total gema jerarquia controles safe matrix"
+    },
+    {
+      "badge": "ESTÁNDAR · SST-EST-007",
+      "format": "PDF",
+      "title": "Reporte, Investigación y Análisis de Incidentes y Accidentes",
+      "file": "./assets/estandares/Reporte%20de%20Investigaci%C3%B3n%20y%20Analisis%20de%20incidentes%20y%20accidentes.pdf",
+      "downloadName": "Reporte de Investigación y Analisis de incidentes y accidentes.pdf",
+      "purpose": "Indica cómo actuar de inmediato ante un incidente, accidente o evento ambiental, resguardar el área e investigar las causas raíz para evitar que vuelva a ocurrir.",
+      "highlights": [
+        { "k": "Respuesta inicial inmediata", "v": "Asegura el área, activa la respuesta a emergencias y evacúa al lesionado a la posta médica más cercana; comunica de inmediato al supervisor y SST." },
+        { "k": "No alteres la escena", "v": "Señaliza y bloquea el lugar del evento para preservar evidencias (técnica PEEPO: Personas, Entorno, Equipos, Procedimientos y Organización)." },
+        { "k": "Buscar causas, no culpables", "v": "La investigación (ICAM / ACR / 5 Por qué) conforma equipo en < 24 h para corregir fallas del sistema y evitar reincidencias." }
+      ],
+      "goldenRule": "Todo incidente —aunque no haya dejado heridos— debe reportarse de inmediato y la escena no se altera sin autorización de SST.",
+      "question": "¿Qué debe hacerse con el lugar donde ocurrió un accidente antes de iniciar la investigación?",
+      "answers": [
+        "Señalizarlo y bloquearlo sin alterarlo hasta que el equipo investigador y SST autoricen el ingreso.",
+        "Limpiar y mover todos los equipos enseguida para ocultar lo ocurrido."
+      ],
+      "correct": 0,
+      "search": "reporte investigacion analisis incidentes accidentes sst-est-007 peepo icam causas raiz bloquear escena"
+    },
+    {
+      "badge": "ESTÁNDAR · SIG_SST_EST_015",
+      "format": "PDF",
+      "title": "Señalización y Código de Señales y Colores",
+      "file": "./assets/estandares/Se%C3%B1alizaci%C3%B3n.pdf",
+      "downloadName": "Señalización.pdf",
+      "purpose": "Estandariza los colores de advertencia, prohibición, obligación, emergencia, cintas de cercado, tuberías, gases y tachos de residuos sólidos.",
+      "highlights": [
+        { "k": "4 señales básicas", "v": "Amarillo (Advertencia de peligro) · Rojo con blanco (Prohibición) · Azul (Uso obligatorio de EPP) · Verde (Rutas de salida, botiquín, punto de reunión)." },
+        { "k": "Cinta ROJA vs. AMARILLA", "v": "Cinta ROJA: alto riesgo / acceso totalmente prohibido (solo entra el supervisor de la tarea). Cinta AMARILLA: precaución, solo ingresa personal que trabaja en esa labor." },
+        { "k": "Colores de residuos (NTP 900.058)", "v": "Amarillo (Metales) · Plomo (Vidrio) · Azul (Papel/cartón) · Blanco (Plástico) · Marrón (Orgánicos) · Negro (Generales) · Rojo (Peligrosos)." }
+      ],
+      "goldenRule": "Nunca cruces una cinta ROJA ni retires o dañes una señal de seguridad; cada color comunica un control que salva vidas.",
+      "question": "¿Cuál es la diferencia entre cercar un área de trabajo con cinta ROJA frente a cinta AMARILLA?",
+      "answers": [
+        "La cinta roja bloquea el ingreso por alto riesgo (solo supervisor autorizado); la amarilla permite el paso solo al personal de la tarea.",
+        "Ambas significan lo mismo y cualquier visitante puede cruzarlas sin permiso."
+      ],
+      "correct": 0,
+      "search": "señalizacion sig_sst_est_015 codigo colores cinta roja amarilla residuos rombo nfpa tuberias"
+    }
+  ],
+  "procedimientos": [
+    {
+      "badge": "PROCEDIMIENTO · SGAE.SGI_P-04",
+      "format": "PDF",
+      "title": "Reporte de Actos y Condiciones Subestándares",
+      "file": "./assets/procedimientos/Reporte%20de%20Actos%20y%20Condiciones.pdf",
+      "downloadName": "Reporte de Actos y Condiciones.pdf",
+      "purpose": "Establece cómo cada trabajador de SGAE identifica, corrige o reporta diariamente actos inseguros y condiciones fuera de estándar antes de empezar su tarea.",
+      "highlights": [
+        { "k": "Reporta antes de empezar", "v": "Ningún trabajador iniciará la orden de trabajo si antes no aseguró un ambiente saludable y libre de peligros sin controlar." },
+        { "k": "Si no puedes corregirlo, avisa", "v": "Corrige lo que está a tu alcance de forma segura; si no puedes eliminarlo, informa de inmediato a tu supervisor y regístralo en el Anexo 1." },
+        { "k": "Cierre con evidencia", "v": "La supervisión registra los reportes en el reparto de guardia, asigna responsable/plazo y verifica el levantamiento efectivo." }
+      ],
+      "goldenRule": "Reportar un acto o condición insegura a tiempo evita el accidente antes de que ocurra: no comiences la tarea sobre un peligro sin control.",
+      "question": "Según el procedimiento SGAE.SGI_P-04, ¿qué debes hacer si detectas una condición insegura que no puedes corregir por ti mismo?",
+      "answers": [
+        "No iniciar la tarea, avisar de inmediato a la línea de mando y registrarla en el formato Anexo 1.",
+        "Empezar la tarea con cuidado y reportarlo la próxima semana."
+      ],
+      "correct": 0,
+      "search": "procedimiento reporte actos condiciones inseguras subestandares sgae.sgi_p-04 anexo 1 reparto guardia"
+    }
+  ],
+  "reglamentos": [
+    {
+      "badge": "REGLAMENTO · RIMA 2024",
+      "format": "PDF",
+      "title": "Reglamento Interno de Medio Ambiente (RIMA)",
+      "file": "./assets/reglamentos/Reglamento%20interno%20de%20medio%20ambiente%20(RIMA).pdf",
+      "downloadName": "Reglamento interno de medio ambiente (RIMA).pdf",
+      "purpose": "Reúne las normas obligatorias para proteger agua, suelo, aire, flora y fauna, gestionar residuos y materiales peligrosos y aplicar las 10 Rs en todas las operaciones.",
+      "highlights": [
+        { "k": "Agua, polvo y suelo limpio", "v": "Cierra caños, reporta fugas, riega áreas verdes en horas frescas (mañana/tarde), prohíbe lavar equipos en ríos y exige losas/trampas de grasa." },
+        { "k": "Residuos y cero plásticos de un uso", "v": "Segrega en la fuente según código de colores, prohíbe quemar o arrojar restos al suelo/quebradas y prohíbe descartables de tecnopor o plástico." },
+        { "k": "Flora, fauna y derrames", "v": "Prohibido cazar fauna silvestre o talar plantas sin autorización; ante derrame químico o hidrocarburo usa kit antiderrames y reporta a Gestión Ambiental." }
+      ],
+      "goldenRule": "Cuidar el ambiente es deber de cada colaborador: cero derrames al suelo, cero plástico de un solo uso y segregación correcta en la fuente.",
+      "question": "¿Cuál es la regla obligatoria del RIMA respecto a residuos, plásticos de un solo uso y derrames?",
+      "answers": [
+        "Segregar en la fuente por colores, evitar plásticos descartables y contener de inmediato cualquier derrame avisando a Gestión Ambiental.",
+        "Enterrar o quemar restos vegetales y envases en campo para ahorrar traslado."
+      ],
+      "correct": 0,
+      "search": "rima reglamento interno medio ambiente agua energia matpel residuos polvo flora fauna colpa 10 rs"
+    },
+    {
+      "badge": "REGLAMENTO · RISSO 2023",
+      "format": "PDF",
+      "title": "Reglamento Interno de Seguridad y Salud Ocupacional (RISSO)",
+      "file": "./assets/reglamentos/Reglamento%20interno%20de%20seguridad%20y%20salud%20ocupacional%20(RISSO).pdf",
+      "downloadName": "Reglamento interno de seguridad y salud ocupacional (RISSO).pdf",
+      "purpose": "Norma matriz obligatoria con derechos, obligaciones, trabajo de alto riesgo, EPP, IPERC, higiene ocupacional, emergencias y código de cintas trimestrales para herramientas.",
+      "highlights": [
+        { "k": "Tus derechos y deberes clave", "v": "Recibir EPP gratis, conocer los peligros vía IPERC, capacitarte, retirarte ante peligro inminente avisando al supervisor y cumplir PETS/PETAR." },
+        { "k": "Código trimestral de herramientas", "v": "Anexo N° 4: Ene-Mar VERDE · Abr-Jun AMARILLO · Jul-Set ROJO · Oct-Dic BLANCO. Toda herramienta hechiza o inoperativa se retira del área." },
+        { "k": "Trabajos críticos y salud", "v": "Obligatorio PETAR en altura (>= 1.80 m), excavaciones (>= 1.50 m), caliente, izaje y electricidad; bloqueador FPS 30+ y manga larga bajo el sol." }
+      ],
+      "goldenRule": "Conoce tus derechos, usa siempre tus herramientas con cinta trimestral vigente y nunca operes equipos sin autorización ni PETAR cuando aplique.",
+      "question": "Según el Anexo N° 4 del RISSO, ¿qué debes hacer si encuentras una herramienta hechiza o sin cinta de inspección del trimestre?",
+      "answers": [
+        "Retirarla de la zona de trabajo y comunicarlo al supervisor para su reemplazo.",
+        "Usarla igual si todavía sirve para terminar la jornada."
+      ],
+      "correct": 0,
+      "search": "risso reglamento interno seguridad salud ocupacional derechos obligaciones petar herramientas cinta trimestral anexo 4"
+    }
+  ],
   "emergencias": [
     {
       "sede": "Santa María",
