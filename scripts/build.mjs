@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { cp, mkdir, rm } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 
@@ -15,8 +16,10 @@ for (const file of filesToCheck) {
 await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
 
-for (const entry of ['index.html', 'manifest.webmanifest', 'sw.js', 'src', 'assets']) {
-  await cp(entry, `dist/${entry}`, { recursive: true });
+for (const entry of ['index.html', 'manifest.webmanifest', 'sw.js', 'src', 'assets', 'favicon.ico']) {
+  if (existsSync(entry)) {
+    await cp(entry, `dist/${entry}`, { recursive: true });
+  }
 }
 
 console.log('Build completado en dist/');
