@@ -1,0 +1,55 @@
+{
+  "estandares": [],
+  "procedimientos": [],
+  "reglamentos": [],
+  "emergencias": [
+    {
+      "sede": "Santa María",
+      "title": "Cartilla de Respuesta ante Emergencias – Santa María",
+      "format": "JPEG",
+      "file": "./public/assets/aistudio/Cartilla_de_emergencia_-_Santa_Mar_a_e47ff024.jpeg",
+      "downloadName": "Cartilla_Emergencia_Santa_Maria.jpeg",
+      "summary": "Flujo oficial de aviso al Puesto de Vigilancia (Garita Halcón), Centro Médico Santa María, SST y Gestión Ambiental.",
+      "vigilancia": "Canal de Radio N° 9 · Garita Halcón Anexo 3165 · Rotativo 956270600",
+      "medico": "Centro Médico Santa María 948328883 · Dr. Mickel Minchola 948328873 · Posta SM Anexo 3220 (Canal 5 y 6)",
+      "sst": "SST Santa María Anexo 3062 · Sup. SST Anexo 2344 / 3052 / 2384 (Edgar Capcha 982056790 · Jorge Mayta 986868388 · Aron Taype 993760445 · Franklin Santos 993769834)",
+      "ambiental": "Gestión Ambiental Anexo 2325 / 2382 · Ing. Yvonne Lomparte 993572859 · Ing. Carlos Uriol 956778565"
+    },
+    {
+      "sede": "Paraíso (Papagayo)",
+      "title": "Cartilla de Respuesta ante Emergencias – Papagayo / Paraíso",
+      "format": "JPEG",
+      "file": "./public/assets/aistudio/Cartilla_de_emergencia_-_Para_so_9b60cd7f.jpeg",
+      "downloadName": "Cartilla_Emergencia_Papagayo_Paraiso.jpeg",
+      "summary": "Canales y anexos para emergencias operativas y ambientales en Papagayo - Paraíso.",
+      "vigilancia": "Canal de Radio N° 9 · Garita Papagayo Anexo 3087 · Rotativo 956268794",
+      "medico": "Centro Médico Paraíso Anexo 3096 / 948328880 · Posta Médica Paraíso Anexo 3096 (Canal 9)",
+      "sst": "SST Paraíso Anexo 3093 · Sup. SST Anexo 3052 (Oscar Milla 989211517 · Alejandro León 946844705 · Aron Taype 993760445 · Franklin Santos 993769834)",
+      "ambiental": "Gestión Ambiental Anexo 2325-2382 · Ing. Yvonne Lomparte 993572859 · Ing. Carlos Uriol 956778565"
+    },
+    {
+      "sede": "Vijus",
+      "title": "Cartilla de Respuesta ante Emergencias – Vijus",
+      "format": "JPEG",
+      "file": "./public/assets/aistudio/Cartilla_de_emergencia_-_Vijus_dc7c3b5d.jpeg",
+      "downloadName": "Cartilla_Emergencia_Vijus.jpeg",
+      "summary": "Contactos de Garita 1er Nivel, Centro Médico Vijus, brigada SST y respuesta ambiental.",
+      "vigilancia": "Canal de Radio N° 9 · Garita 1er Nivel Anexo 3250 · Rotativo 956267273",
+      "medico": "Centro Médico Vijus 948328882 / Anexo 3220 · Dr. Fernando Olivera 948328874 (Canal 9)",
+      "sst": "SST Vijus Anexo 3550 · Sup. SST Anexos 3093 o 3052 (Eduardo Chavez 980457183 · Oscar Peralta 964146059 · Aron Taype 993760445 · Franklin Santos 993769834)",
+      "ambiental": "Gestión Ambiental Anexo 2325 / 2382 · Ing. Yvonne Lomparte 993572859 · Ing. Carlos Uriol 956778565"
+    },
+    {
+      "sede": "Hualanga",
+      "title": "Cartilla de Respuesta ante Emergencias – Hualanga",
+      "format": "JPEG",
+      "file": "./public/assets/aistudio/Cartilla_de_emergencia_-_Hualanga_1cab0e03.jpeg",
+      "downloadName": "Cartilla_Emergencia_Hualanga.jpeg",
+      "summary": "Flujo de comunicación con Garita Halcón, Centro Médico Hualanga, SST y Gestión Ambiental.",
+      "vigilancia": "Canal de Radio N° 9 · Garita Halcón Anexo 3165 · Rotativo 956267273",
+      "medico": "Centro Médico Hualanga 959260566 · Dr. Mickel Minchola 948328873 · Posta SM Anexo 3220 (Canal 5 y 6)",
+      "sst": "SST Santa María Anexo 3062 / 3550 · Sup. SST Anexo 2344 / 3093 / 3052 (Eduardo Chavez 980457183 · Aron Taype 993760445 · Franklin Santos 993769834)",
+      "ambiental": "Gestión Ambiental Anexo 2325 / 2382 · Ing. Yvonne Lomparte 993572859 · Ing. Carlos Uriol 956778565"
+    }
+  ]
+}

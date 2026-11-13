@@ -7,6 +7,6 @@
     "dev": "node scripts/server.mjs",
     "start": "node scripts/server.mjs",
     "build": "node scripts/build.mjs",
-    "lint": "node --check scripts/server.mjs && node --check src/main.js && node --check src/extras.js && node --check src/library-docs.js && node --check scripts/build.mjs"
+    "lint": "node --check scripts/server.mjs && node --check scripts/docs-catalog.mjs && node --check src/main.js && node --check src/extras.js && node --check src/library-docs.js && node --check scripts/build.mjs"
   }
 }

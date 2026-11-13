@@ -281,7 +281,9 @@
     if(talkData&&!detail.querySelector('.didactic-poster')){
       const poster=document.createElement('section');poster.className='didactic-poster';
       poster.innerHTML=`<header class="poster-ribbon"><span class="poster-brand"><img src="./assets/logo-sgae.png" alt="Logo SGAE">${talk.isMotivational?'CHARLA MOTIVACIONAL':'FICHA VISUAL · CONECTA SGAE'}</span><span>DÍA ${String(talk.day||'').padStart(3,'0')} / 365 · ${talk.duration||5} MIN</span></header><div class="poster-message"><span class="poster-kicker">IDEA CLAVE</span><h4>${lesson.headline}</h4><p>${lesson.scenario}</p></div><div class="poster-steps">${lesson.steps.map((step,i)=>`<article class="poster-step"><span class="poster-number">0${i+1}</span><strong>${['OBSERVA','DECIDE','ACTÚA'][i]}</strong><p>${step}</p></article>`).join('')}</div><div class="poster-hazards"><span>${talk.isMotivational?'PARA CONVERSAR':'OJO CON'}</span>${lesson.hazards.map(x=>`<i>${x}</i>`).join('')}</div><footer class="poster-footer">SER SEGUROS Y PRODUCTIVOS, ES NUESTRA RESPONSABILIDAD</footer>`;
-      talkData.insertAdjacentElement('afterend',poster);
+      const fullBody=detail.querySelector('.talk-body-full');
+      if(fullBody)fullBody.insertAdjacentElement('afterbegin',poster);
+      else talkData.insertAdjacentElement('afterend',poster);
     }
     if(!detail.querySelector('.shareable-lesson')){
       const guide=talkGuide(talk,lesson);
