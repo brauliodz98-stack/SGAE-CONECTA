@@ -252,4 +252,73 @@
 
 @media(max-width:850px){.security-tools-grid,.pas-grid,.pas-quiz-grid,.emergency-cards-list,.emergency-alert-script ul,.colpa-split,.residuos-split,.notion-grid,.drums-grid,.chem-guide-split,.msds-safety-mini-grid,.msds-local-grid{grid-template-columns:1fr}}
 
+/* Lo que cobra vida aquí - Destacado en Inicio */
+.vida-aqui-section{border-top:1px solid #e1ece5}
+.vida-tag{display:inline-block;margin-bottom:6px;padding:3px 8px;border-radius:6px;background:#e8f4ed;color:#146b45;font:800 9.5px Manrope,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.vida-cta-bar{max-width:1176px;margin:18px auto 0;padding:16px 20px;border:1px solid #d5e6dc;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:0 8px 24px #143f3008}
+.vida-cta-bar strong{display:block;font:800 14px Manrope,sans-serif;color:#174739}
+.vida-cta-bar small{display:block;font-size:11.5px;color:#526b62;margin-top:3px}
+
+/* PMA · Aspecto vs Impacto visual cards */
+.pma-visual-concepts{gap:14px}
+.pma-concept-card{padding:0!important;overflow:hidden;display:flex;flex-direction:column;border:1px solid #d7e7de;border-radius:14px;background:#fff!important}
+.pma-concept-img-btn{position:relative;display:block;width:100%;padding:0;border:0;background:#eef5f0;cursor:zoom-in;overflow:hidden;aspect-ratio:16/9}
+.pma-concept-img-btn img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.pma-concept-img-btn:hover img{transform:scale(1.03)}
+.pma-concept-img-btn span{position:absolute;right:10px;bottom:10px;padding:5px 9px;border-radius:7px;background:#103f38e6;color:#fff;font:700 10px Manrope,sans-serif}
+.pma-concept-body{padding:14px 16px;display:grid;gap:6px}
+.concept-badge{display:inline-block;width:max-content;padding:3px 8px;border-radius:6px;background:#e1f2ee;color:#0b756c;font:800 9.5px Manrope,sans-serif;letter-spacing:.06em}
+.concept-badge.is-impact{background:#e7f4e9;color:#146b45}
+.pma-concept-body h4{margin:2px 0 0;font:800 16px Manrope,sans-serif;color:#174739}
+.pma-concept-body p{margin:0;font-size:12px;line-height:1.55;color:#476057}
+.pma-concept-body small{font-size:11px;font-weight:700;color:#0b756c}
+
+/* Charlas Diarias y Observación Ambiental dentro de ECOGUÍA AL DÍA */
+.charlas-folder-panel,.observacion-panel{grid-column:1/-1;display:grid;gap:14px;padding:4px}
+.charlas-icon{background:#e3f3eb!important;color:#146b45!important}
+.charlas-spotlight{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:15px 17px;border:1px solid #d3e6da;border-radius:13px;background:linear-gradient(105deg,#edf7f1,#fff)}
+.charlas-spotlight h4{margin:4px 0;font:800 16px Manrope,sans-serif;color:#174739}
+.charlas-spotlight p{margin:0;font-size:12px;color:#526b62;max-width:620px}
+.charlas-quick-filter{display:flex;gap:10px;flex-wrap:wrap}
+.charlas-quick-filter input{flex:1;min-width:220px}
+.charlas-mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.charla-mini-card{display:flex;flex-direction:column;gap:8px;padding:13px;border:1px solid #dce8e1;border-radius:12px;background:#fff}
+.charla-mini-top{display:flex;align-items:flex-start;gap:10px}
+.charla-mini-top small{display:block;font-size:10px;color:#0b756c;font-weight:700}
+.charla-mini-top h5{margin:2px 0 0;font:800 13px/1.35 Manrope,sans-serif;color:#174739}
+.charla-mini-card p{margin:0;font-size:11px;color:#526b62}
+.charla-open-btn{border:0;background:none;padding:0;text-align:left;margin-top:auto}
+
+/* Control de Acceso y Permisos por Cargo (Trabajador / Supervisor / Gerente General) */
+.gerencia-banner{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding:8px 18px;background:#145d3f;color:#fff;font-size:12px;border-top:1px solid #ffffff26}
+.gerencia-banner strong{color:#d9f59b;font:800 11px Manrope,sans-serif;letter-spacing:.04em}
+.gerencia-banner small{opacity:.82;font-size:10.5px}
+.role-badge{padding:5px 10px;border-radius:8px;font:800 10.5px Manrope,sans-serif;letter-spacing:.03em}
+.role-worker{background:#e7f4ed;color:#146b45}
+.role-supervisor{background:#e3f1f6;color:#0d5b78}
+.role-executive{background:#fdf0d8;color:#8c5c0c}
+.permission-list{margin:0;padding:0;list-style:none;display:grid;gap:7px;font-size:12px}
+.permission-list li{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border-radius:9px;background:#f4faf6;border:1px solid #dfece4;color:#274e40}
+.permission-list.is-allowed li span{color:#146b45;font-weight:900}
+.permission-list.is-locked li{background:#fafaf9;border-color:#eceee9;color:#6c7b74}
+.role-preview-box{margin-top:14px;padding:12px 14px;border:1px solid #d5e5dc;border-radius:11px;background:#f5faf7;font-size:11.5px;color:#224c3d}
+.role-preview-box strong{display:block;margin-bottom:6px;font:800 12px Manrope,sans-serif}
+.role-preview-box ul{margin:0;padding-left:0;list-style:none;display:grid;gap:4px}
+.role-lock-box,.role-lock-note{padding:12px 14px;border:1px solid #ebdcb8;border-radius:10px;background:#fffaf0;color:#6b4e13;font-size:11.5px;line-height:1.5;margin-bottom:10px}
+.role-lock-box strong{display:block;font:800 13px Manrope,sans-serif;margin-bottom:4px}
+.role-lock-box p{margin:0 0 10px}
+.supervisor-hazard-list{display:grid;gap:10px}
+.supervisor-hazard-card{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;padding:13px 15px;border:1px solid #dce8e1;border-radius:11px;background:#fbfdfb}
+.supervisor-hazard-card strong{display:block;font-size:13px;color:#174739}
+.supervisor-hazard-card small{display:block;font-size:11px;color:#526b62;margin:2px 0 6px}
+.supervisor-hazard-card p{margin:0;font-size:12px;color:#35564a}
+.corrective-note-saved{margin-top:6px!important;color:#146b45!important;font-weight:700}
+.supervisor-hazard-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.gerencia-notice-form{display:grid;gap:8px;padding:13px 15px;border:1px solid #d7e7de;border-radius:11px;background:#f6faf7}
+.gerencia-notice-row{display:flex;gap:8px;flex-wrap:wrap}
+.gerencia-notice-row .field{flex:1;min-width:240px}
+
+@media(max-width:850px){.charlas-mini-grid{grid-template-columns:1fr}}
+
+
 

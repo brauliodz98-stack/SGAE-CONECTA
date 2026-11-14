@@ -6,11 +6,24 @@
   };
 
   const TOOL_VISUALS = {
-    eppOro: './src/assets/images/tool_seguridad_oro_epp_1794612478942.jpg',
-    alturaFuego: './src/assets/images/tool_altura_incendios_botiquin_1794612479258.jpg',
-    ipercSenal: './src/assets/images/tool_iperc_senalizacion_campo_1794612478690.jpg',
-    ambiental: './src/assets/images/tool_ambiental_revegetacion_1794612482804.jpg',
+    ipercBase: './src/assets/images/doc_iperc_linea_base_1794615194744.jpg',
+    petsAreasVerdes: './src/assets/images/doc_pets_areas_verdes_1794615171410.jpg',
+    petsFrutalesForestales: './src/assets/images/tool_ambiental_revegetacion_1794612482804.jpg',
+    reglasOro: './src/assets/images/doc_9_reglas_oro_1794615164779.jpg',
+    botiquines: './src/assets/images/doc_botiquines_1794615165099.jpg',
+    disciplinaOperativa: './src/assets/images/doc_disciplina_operativa_1794615190908.jpg',
+    eppUniformes: './src/assets/images/tool_seguridad_oro_epp_1794612478942.jpg',
+    incendios: './src/assets/images/doc_incendios_extintores_1794615191457.jpg',
+    trabajosAltura: './src/assets/images/doc_trabajos_altura_1794615166867.jpg',
+    ipercContinuo: './src/assets/images/tool_iperc_senalizacion_campo_1794612478690.jpg',
+    investigacionIncidentes: './src/assets/images/doc_investigacion_incidentes_1794615168205.jpg',
+    senalizacion: './src/assets/images/doc_senalizacion_colores_1794615191972.jpg',
+    reporteActos: './src/assets/images/doc_reporte_actos_1794615169305.jpg',
+    reglamentoRima: './src/assets/images/doc_reglamento_rima_1794615170310.jpg',
+    reglamentoRisso: './src/assets/images/doc_reglamento_risso_1794615192652.jpg',
     quimicos: './src/assets/images/agro_pesticidas_seguro_1794612480380.jpg',
+    pmaAspecto: './src/assets/images/pma_aspecto_ambiental_1794615192883.jpg',
+    pmaImpacto: './src/assets/images/pma_impacto_ambiental_1794615194863.jpg',
   };
 
   const POSTER_ASSETS = {
@@ -19,41 +32,102 @@
   };
 
   function pickToolVisual(tool) {
-    const text = `${tool.title || ''} ${tool.badge || ''} ${tool.search || ''}`.toLowerCase();
-    if (text.includes('altura') || text.includes('incendio') || text.includes('botiquin') || text.includes('botiquín')) {
-      return { src: TOOL_VISUALS.alturaFuego, caption: 'Control crítico · Altura, incendios y primeros auxilios' };
+    const title = (tool.title || '').toLowerCase();
+    const id = (tool.id || '').toLowerCase();
+    const full = `${title} ${tool.badge || ''} ${tool.search || ''}`.toLowerCase();
+
+    if (id === 'tool-iperc-base' || title.includes('2026')) {
+      return { src: TOOL_VISUALS.ipercBase, caption: 'Matriz IPERC Línea Base · Jerarquía de controles en campo' };
     }
-    if (text.includes('rima') || text.includes('medio ambiente') || text.includes('areas verdes') || text.includes('áreas verdes') || text.includes('frutales') || text.includes('forestales')) {
-      return { src: TOOL_VISUALS.ambiental, caption: 'Operación sostenible · Protección de agua, suelo y flora' };
+    if (title.includes('áreas verdes') || title.includes('areas verdes') || title.includes('rv01')) {
+      return { src: TOOL_VISUALS.petsAreasVerdes, caption: 'PETS RV01 · Poda con motoguadaña, conos y riego seguro' };
     }
-    if (text.includes('iperc') || text.includes('señal') || text.includes('senal') || text.includes('actos') || text.includes('investigaci')) {
-      return { src: TOOL_VISUALS.ipercSenal, caption: 'Prevención en campo · IPERC, señalización y reporte' };
+    if (title.includes('frutales') || title.includes('forestales') || title.includes('siembra')) {
+      return { src: TOOL_VISUALS.petsFrutalesForestales, caption: 'PETS Forestal · Excavación segura, distancia y siembra' };
     }
-    return { src: TOOL_VISUALS.eppOro, caption: 'Seguridad operativa · Reglas de oro, EPP y disciplina' };
+    if (title.includes('reglas de oro') || full.includes('sst-est-005')) {
+      return { src: TOOL_VISUALS.reglasOro, caption: 'Tolerancia Cero · Derecho a decir NO y bloqueo LOTO' };
+    }
+    if (title.includes('botiquin') || title.includes('botiquín') || full.includes('sst_est_020')) {
+      return { src: TOOL_VISUALS.botiquines, caption: 'Primeros auxilios · Acceso sin candado e inspección mensual' };
+    }
+    if (title.includes('disciplina operativa') || full.includes('sst-est-004')) {
+      return { src: TOOL_VISUALS.disciplinaOperativa, caption: 'Disciplina Operativa · Disponibilidad, calidad, comunicación y OPT' };
+    }
+    if (title.includes('protección personal') || title.includes('epp') || full.includes('sst_est_008')) {
+      return { src: TOOL_VISUALS.eppUniformes, caption: 'EPP y Uniformes · Inspección previa y ropa de alta visibilidad' };
+    }
+    if (title.includes('incendio') || title.includes('extintor') || full.includes('sst_est_019')) {
+      return { src: TOOL_VISUALS.incendios, caption: 'Protección contra incendios · Extintores PQS/CO2 y pasillo libre' };
+    }
+    if (title.includes('altura') || full.includes('sst_est_010')) {
+      return { src: TOOL_VISUALS.trabajosAltura, caption: 'Trabajos en altura >= 1.80 m · Arnés doble línea y PETAR' };
+    }
+    if (title.includes('iperc continuo') || full.includes('sst-est-006')) {
+      return { src: TOOL_VISUALS.ipercContinuo, caption: 'IPERC Continuo · Pausa Toma Dos y Observación Total diaria' };
+    }
+    if (title.includes('investigación') || title.includes('incidentes') || full.includes('sst-est-007')) {
+      return { src: TOOL_VISUALS.investigacionIncidentes, caption: 'Investigación PEEPO · Asegurar y no alterar la escena' };
+    }
+    if (title.includes('señalización') || title.includes('señales') || full.includes('sst_est_015')) {
+      return { src: TOOL_VISUALS.senalizacion, caption: 'Código de Señales y Colores · Cinta roja vs. cinta amarilla' };
+    }
+    if (title.includes('actos y condiciones') || full.includes('sgi_p-04')) {
+      return { src: TOOL_VISUALS.reporteActos, caption: 'Reporte diario · Detén la tarea ante un peligro sin control' };
+    }
+    if (title.includes('medio ambiente') || title.includes('rima')) {
+      return { src: TOOL_VISUALS.reglamentoRima, caption: 'RIMA 2024 · Protección de agua, flora, fauna y cero plásticos' };
+    }
+    if (title.includes('seguridad y salud ocupacional') || title.includes('risso')) {
+      return { src: TOOL_VISUALS.reglamentoRisso, caption: 'RISSO 2023 · Cintas trimestrales de herramientas y protección solar' };
+    }
+    return { src: TOOL_VISUALS.ipercBase, caption: 'Gestión SSOMA · Reglas clave antes de operar' };
   }
 
-  const pmaLesson = `<div class="learning-hero pma-hero"><span class="learning-kicker">OBSERVAR · PREVENIR · CUIDAR</span><h3>Plan de Manejo Ambiental</h3><p>Aprende a relacionar cada labor con el aspecto, el impacto y el control ambiental.</p></div>
-    <section class="learning-block"><h4>¿Qué es el PMA?</h4><p>El Plan de Manejo Ambiental organiza las medidas para prevenir, reducir, controlar y hacer seguimiento a los efectos ambientales relacionados con un servicio. La matriz oficial que descargarás reúne actividades, aspectos e impactos, objetivos, metas, controles operacionales, frecuencias y responsables.</p></section>
-    <div class="learning-concepts environmental-concepts">
-      <section><span class="concept-icon">↔</span><h4>Aspecto ambiental</h4><p>Elemento de una actividad que interactúa con el ambiente: uso de agua, intervención del suelo, consumo de insumos o generación de residuos.</p><small>Pregunta: ¿qué usamos, generamos o modificamos?</small></section>
-      <section><span class="concept-icon">◎</span><h4>Impacto ambiental</h4><p>Cambio que puede producirse en el agua, suelo, aire, flora o fauna como consecuencia de ese aspecto. Puede ser adverso o beneficioso.</p><small>Pregunta: ¿qué podría ocurrirle al entorno?</small></section>
+  const pmaLesson = `<div class="learning-hero pma-hero"><span class="learning-kicker">OBSERVAR · PREVENIR · CUIDAR</span><h3>Plan de Manejo Ambiental (PMA)</h3><p>Identifica con claridad qué es un Aspecto Ambiental y qué Impacto Ambiental podría causar en tu jornada.</p></div>
+    <section class="learning-block"><h4>¿Qué es el PMA?</h4><p>El Plan de Manejo Ambiental organiza las medidas para prevenir, reducir, controlar y hacer seguimiento a los efectos ambientales relacionados con cada servicio. La matriz oficial reúne actividades, aspectos e impactos, metas, controles operacionales, frecuencias y responsables.</p></section>
+    <div class="learning-concepts environmental-concepts pma-visual-concepts">
+      <section class="pma-concept-card">
+        <button type="button" class="pma-concept-img-btn" data-zoom-src="${TOOL_VISUALS.pmaAspecto}" data-zoom-title="Aspectos Ambientales en Campo · Agua, Suelo, Químicos y Residuos" data-zoom-download="PMA_Aspecto_Ambiental_SGAE.jpg">
+          <img src="${TOOL_VISUALS.pmaAspecto}" alt="Ilustración de aspectos ambientales en campo: uso de agua en riego, remoción de suelo, contenedor en bandeja antiderrame y restos de poda en cilindros" referrerpolicy="no-referrer" loading="lazy">
+          <span>🔍 Ampliar lámina</span>
+        </button>
+        <div class="pma-concept-body">
+          <span class="concept-badge">CAUSA / INTERACCIÓN</span>
+          <h4>Aspecto ambiental</h4>
+          <p>Es el elemento de nuestras actividades que interactúa directamente con el ambiente: consumo de agua en riego, excavación de suelo, uso de agroquímicos o generación de residuos de poda.</p>
+          <small>Pregunta guía: ¿qué usamos, generamos o movemos en la labor?</small>
+        </div>
+      </section>
+      <section class="pma-concept-card">
+        <button type="button" class="pma-concept-img-btn" data-zoom-src="${TOOL_VISUALS.pmaImpacto}" data-zoom-title="Impacto Ambiental · Sin control vs Con control positivo SGAE" data-zoom-download="PMA_Impacto_Ambiental_SGAE.jpg">
+          <img src="${TOOL_VISUALS.pmaImpacto}" alt="Comparación visual de impacto ambiental negativo por erosión o derrame frente a impacto ambiental positivo con laderas revegetadas y quebrada limpia" referrerpolicy="no-referrer" loading="lazy">
+          <span>🔍 Ampliar lámina</span>
+        </button>
+        <div class="pma-concept-body">
+          <span class="concept-badge is-impact">EFECTO EN EL ENTORNO</span>
+          <h4>Impacto ambiental</h4>
+          <p>Es el cambio en el agua, suelo, aire, flora o fauna como resultado de ese aspecto. Sin control produce erosión o contaminación; con control SGAE logra recuperación vegetal y agua limpia.</p>
+          <small>Pregunta guía: ¿qué beneficio o daño puede recibir el entorno?</small>
+        </div>
+      </section>
     </div>
-    <section class="learning-block"><h4>Imágenes de nuestras actividades</h4><p>Observa cómo estas labores se conectan con la prevención y la recuperación ambiental.</p>
+    <section class="learning-block"><h4>Escenas reales de nuestras actividades</h4><p>Observa cómo estas labores se conectan con la prevención y la recuperación ambiental.</p>
       <div class="learning-photo-grid">
-        <figure><img src="./assets/photos/pma-area-verde.jpg" alt="Área verde habilitada con plantones, césped y sistema de riego" referrerpolicy="no-referrer"><figcaption><b>Habilitación y mantenimiento</b><span>El riego y el cuidado del suelo requieren controles para evitar fugas, exceso de agua y erosión.</span></figcaption></figure>
-        <figure><img src="./assets/photos/operacion-3.jpeg" alt="Trabajador realiza aplicación fitosanitaria en campo con equipo de protección" referrerpolicy="no-referrer"><figcaption><b>Aplicación fitosanitaria</b><span>El manejo del producto debe prevenir derrames, deriva y contaminación de suelo o agua.</span></figcaption></figure>
-        <figure class="learning-before-after"><div><img src="./assets/photos/pma-revegetacion-antes.jpg" alt="Área disturbada antes de la revegetación" referrerpolicy="no-referrer"><span>ANTES</span></div><div><img src="./assets/photos/pma-revegetacion-despues.jpg" alt="Área revegetada como resultado de la rehabilitación" referrerpolicy="no-referrer"><span>DESPUÉS</span></div><figcaption><b>Rehabilitación y cierre de minas</b><span>El seguimiento permite verificar cobertura vegetal, prendimiento y necesidad de reposición.</span></figcaption></figure>
+        <figure><img src="./assets/photos/operacion-2.jpeg" alt="Cuadrilla manteniendo áreas verdes con líneas de riego y revegetación" referrerpolicy="no-referrer"><figcaption><b>Habilitación y riego controlado</b><span>Inspeccionar válvulas y líneas HDPE evita fugas, desperdicio de agua y erosión del suelo.</span></figcaption></figure>
+        <figure><img src="./assets/photos/operacion-3.jpeg" alt="Trabajador realizando aplicación fitosanitaria con EPP completo" referrerpolicy="no-referrer"><figcaption><b>Aplicación fitosanitaria responsable</b><span>Verificar etiqueta, dosis, viento y bandeja antiderrame protege suelo y fuentes de agua.</span></figcaption></figure>
+        <figure class="learning-before-after"><div><img src="./assets/photos/pma-revegetacion-antes.jpg" alt="Área disturbada antes de la revegetación" referrerpolicy="no-referrer"><span>ANTES</span></div><div><img src="./assets/photos/pma-revegetacion-despues.jpg" alt="Área revegetada como resultado de la rehabilitación" referrerpolicy="no-referrer"><span>DESPUÉS</span></div><figcaption><b>Rehabilitación y cierre de minas</b><span>Impacto positivo: cobertura vegetal consolidada, retención de suelo y protección hídrica.</span></figcaption></figure>
       </div>
     </section>
-    <section class="learning-block"><h4>Aspecto, impacto y controles para nuestras labores</h4><p>Los impactos indicados son posibilidades que se deben prevenir. Aplica los controles establecidos en la matriz oficial y en los procedimientos vigentes del proyecto.</p>
+    <section class="learning-block"><h4>Aspecto, impacto y controles para nuestras labores</h4><p>Aplica los controles establecidos en la matriz oficial y en los procedimientos vigentes del proyecto.</p>
       <div class="learning-control-grid">
         <article><span class="control-number">01</span><h5>Riego y áreas verdes</h5><p><b>Aspecto:</b> consumo de agua; posibles fugas o escurrimientos.</p><p><b>Impacto posible:</b> uso innecesario del recurso, encharcamiento o erosión.</p><div class="control-action"><b>Controles preventivos</b><ul><li>Inspecciona mangueras, válvulas, uniones y líneas HDPE antes de regar.</li><li>Aplica el caudal y tiempo programados; evita que el agua salga del área.</li><li>Cierra las válvulas al terminar y reporta fugas o consumos anormales.</li></ul></div></article>
-        <article><span class="control-number">02</span><h5>Suelo, siembra y revegetación</h5><p><b>Aspecto:</b> preparación, remoción y almacenamiento de suelo; instalación de especies.</p><p><b>Impacto posible:</b> compactación, pérdida de suelo o erosión; la revegetación puede favorecer la recuperación del componente.</p><div class="control-action"><b>Controles preventivos</b><ul><li>Delimita la intervención y conserva el suelo superficial según el plan.</li><li>Descompacta y usa enmiendas, semillas y plantones autorizados para el proyecto.</li><li>Aplica riego y abonamiento programados; monitorea prendimiento y repón según corresponda.</li></ul></div></article>
-        <article><span class="control-number">03</span><h5>Productos fitosanitarios</h5><p><b>Aspecto:</b> uso y almacenamiento de productos para el control fitosanitario.</p><p><b>Impacto posible:</b> contaminación del suelo o agua por derrame, mala disposición o deriva de aplicación.</p><div class="control-action"><b>Controles preventivos</b><ul><li>Verifica producto, etiqueta, dosis y FDS antes de preparar la aplicación.</li><li>Evita aplicar con viento que disperse el producto o cerca de cuerpos de agua sin control definido.</li><li>Ten medios de contención previstos y gestiona envases y sobrantes según el procedimiento.</li></ul></div></article>
-        <article><span class="control-number">04</span><h5>Residuos de campo</h5><p><b>Aspecto:</b> restos vegetales, envases y residuos generados durante el servicio.</p><p><b>Impacto posible:</b> contaminación o afectación de suelo y agua por mezcla, quema o disposición inadecuada.</p><div class="control-action"><b>Controles preventivos</b><ul><li>Separa residuos en el punto de generación y usa recipientes identificados.</li><li>Composta restos orgánicos solo cuando el plan del área lo permita.</li><li>No abandones, entierres ni quemes residuos; entrega cada tipo al flujo definido.</li></ul></div></article>
+        <article><span class="control-number">02</span><h5>Suelo, siembra y revegetación</h5><p><b>Aspecto:</b> preparación, remoción y almacenamiento de suelo; instalación de especies.</p><p><b>Impacto posible:</b> recuperación del suelo con revegetación o pérdida/erosión sin control.</p><div class="control-action"><b>Controles preventivos</b><ul><li>Delimita la intervención y conserva el suelo superficial según el plan.</li><li>Descompacta y usa enmiendas, semillas y plantones autorizados para el proyecto.</li><li>Aplica riego y abonamiento programados; monitorea prendimiento y repón según corresponda.</li></ul></div></article>
+        <article><span class="control-number">03</span><h5>Productos fitosanitarios</h5><p><b>Aspecto:</b> uso y almacenamiento de productos para el control fitosanitario.</p><p><b>Impacto posible:</b> contaminación del suelo o agua por derrame o deriva de aplicación.</p><div class="control-action"><b>Controles preventivos</b><ul><li>Verifica producto, etiqueta, dosis y FDS antes de preparar la aplicación.</li><li>Evita aplicar con viento que disperse el producto o cerca de cuerpos de agua sin control definido.</li><li>Ten bandeja de contención y gestiona envases y sobrantes según el procedimiento.</li></ul></div></article>
+        <article><span class="control-number">04</span><h5>Residuos de campo</h5><p><b>Aspecto:</b> restos vegetales, envases y residuos generados durante el servicio.</p><p><b>Impacto posible:</b> contaminación de suelo y agua por mezcla, quema o disposición inadecuada.</p><div class="control-action"><b>Controles preventivos</b><ul><li>Separa residuos en la fuente según el código de colores NTP 900.058.</li><li>Composta restos orgánicos solo cuando el plan del área lo permita.</li><li>No abandones, entierres ni quemes residuos; entrega cada tipo al acopio autorizado.</li></ul></div></article>
       </div>
     </section>
-    <section class="learning-block"><h4>¿Cómo leer la matriz del PMA?</h4><div class="learning-steps"><p><b>1 · Actividad:</b> ubica el proceso y la labor que realizarás.</p><p><b>2 · Aspecto e impacto:</b> entiende la interacción con el ambiente y el cambio que se busca prevenir o gestionar.</p><p><b>3 · Objetivo y meta:</b> revisa el resultado ambiental esperado.</p><p><b>4 · Control operacional:</b> identifica las medidas, frecuencia y responsable. Coordina su aplicación con el PETS y las instrucciones del proyecto.</p></div><p class="learning-note strong">Antes, durante y al cerrar: revisa tu área, evita salir de los límites de intervención y comunica derrames, daños o controles que no funcionaron.</p></section>`;
+    <section class="learning-block"><h4>¿Cómo leer la matriz del PMA?</h4><div class="learning-steps"><p><b>1 · Actividad:</b> ubica el proceso y la labor que realizarás.</p><p><b>2 · Aspecto e impacto:</b> distingue la interacción de la tarea frente al cambio positivo o negativo que genera en el entorno.</p><p><b>3 · Objetivo y meta:</b> revisa el resultado ambiental esperado.</p><p><b>4 · Control operacional:</b> identifica las medidas, frecuencia y responsable. Coordina su aplicación con el PETS y las instrucciones del proyecto.</p></div><p class="learning-note strong">Antes, durante y al cerrar: revisa tu área, evita salir de los límites de intervención y comunica derrames, daños o controles que no funcionaron.</p></section>`;
 
   const baseSecurityTools = [
     {
@@ -1445,6 +1519,176 @@
     }
   }
 
+  function buildCharlasDiariasFolder() {
+    const allTalks = window.getSgaeTalks?.() || [];
+    const todayTalk = allTalks[0];
+    const monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    return `<details class="library-folder management-folder charlas-folder" id="charlasDiariasFolder">
+      <summary class="library-folder-summary">
+        <span class="library-folder-icon charlas-icon" aria-hidden="true">▣</span>
+        <span class="library-folder-title">
+          <strong>CHARLAS DIARIAS SSOMA · 365 DÍAS</strong>
+          <small>Encuentra la charla diaria de tu frente de trabajo, busca por tema o abre el calendario anual completo</small>
+        </span>
+        <span class="library-folder-toggle" aria-hidden="true">⌄</span>
+      </summary>
+      <div class="library-folder-items">
+        <div class="charlas-folder-panel">
+          <div class="charlas-spotlight">
+            <div>
+              <span class="pas-section-kicker">CHARLA DIARIA DESTACADA</span>
+              <h4>${todayTalk ? escapeHtml(todayTalk.title) : 'Charla diaria SSOMA'}</h4>
+              <p>${todayTalk ? escapeHtml(todayTalk.objective) : 'Conversación preventiva de inicio de jornada.'}</p>
+            </div>
+            <div class="cartilla-actions">
+              <button type="button" class="btn btn-primary" id="openTodayTalkBtn">Abrir charla de hoy →</button>
+              <button type="button" class="btn btn-outline" data-page="calendar">Calendario completo 365 ▦</button>
+            </div>
+          </div>
+
+          <div class="charlas-quick-filter">
+            <input id="ecoTalkSearch" class="field" placeholder="Buscar charla diaria por tema, actividad o peligro (ej. riego, poda, EPP, altura)…">
+            <select id="ecoTalkMonth" class="field">
+              <option value="">Todos los meses (365 días)</option>
+              ${monthNames.map((m, idx) => `<option value="${idx}">${m}</option>`).join('')}
+            </select>
+          </div>
+
+          <div class="charlas-mini-grid" id="ecoTalkResults"></div>
+        </div>
+      </div>
+    </details>`;
+  }
+
+  function wireCharlasDiariasFolder(folder) {
+    if (!folder) return;
+    const allTalks = window.getSgaeTalks?.() || [];
+    const searchEl = folder.querySelector('#ecoTalkSearch');
+    const monthEl = folder.querySelector('#ecoTalkMonth');
+    const gridEl = folder.querySelector('#ecoTalkResults');
+    const todayBtn = folder.querySelector('#openTodayTalkBtn');
+
+    todayBtn?.addEventListener('click', () => window.openSgaeTalk?.(1));
+
+    const renderMini = () => {
+      if (!gridEl) return;
+      const q = (searchEl?.value || '').trim().toLowerCase();
+      const mo = monthEl?.value ?? '';
+      const list = allTalks
+        .filter(t => !q || `${t.title} ${t.topic} ${t.activity} ${t.category}`.toLowerCase().includes(q))
+        .filter(t => mo === '' || new Date(2026, 0, t.day).getMonth() === Number(mo))
+        .slice(0, 12);
+
+      gridEl.innerHTML = list.length
+        ? list.map(t => `
+          <article class="charla-mini-card">
+            <div class="charla-mini-top">
+              <span class="day-badge">${String(t.day).padStart(3, '0')}</span>
+              <div>
+                <small>${escapeHtml(t.category)} · ${t.duration} min${t.isMotivational ? ' · Motivacional' : ''}</small>
+                <h5>${escapeHtml(t.title)}</h5>
+              </div>
+            </div>
+            <p>${escapeHtml(t.activity)}</p>
+            <button type="button" class="text-link charla-open-btn" data-open-talk-day="${t.day}">Abrir charla diaria →</button>
+          </article>
+        `).join('')
+        : '<div class="empty-folder-card"><strong>Sin charlas coincidentes</strong><p>Prueba otra palabra clave o cambia el mes seleccionado.</p></div>';
+
+      gridEl.querySelectorAll('[data-open-talk-day]').forEach(btn => {
+        btn.addEventListener('click', () => window.openSgaeTalk?.(btn.dataset.openTalkDay));
+      });
+    };
+
+    renderMini();
+    searchEl?.addEventListener('input', renderMini);
+    monthEl?.addEventListener('change', renderMini);
+  }
+
+  function buildObservacionFolder() {
+    const s = window.getSgaeSession?.();
+    return `<details class="library-folder management-folder observacion-folder" id="observacionFolder">
+      <summary class="library-folder-summary">
+        <span class="library-folder-icon" aria-hidden="true">⚑</span>
+        <span class="library-folder-title">
+          <strong>FICHA DE OBSERVACIÓN AMBIENTAL EN CAMPO</strong>
+          <small>Registra aspectos ambientales, fugas, residuos, hallazgos u oportunidades de mejora directamente desde ECOGUÍA AL DÍA</small>
+        </span>
+        <span class="library-folder-toggle" aria-hidden="true">⌄</span>
+      </summary>
+      <div class="library-folder-items">
+        <div class="observacion-panel">
+          <div class="security-tools-intro">
+            <p>Usa esta ficha cuando observes una condición o aspecto ambiental en tu frente de trabajo (consumo o fuga de agua, mezcla de residuos, derrame o afectación de flora). El registro se integra a la bandeja de Supervisión y Gerencia General.</p>
+          </div>
+          <form id="ecoObservacionForm" class="form-grid">
+            <div class="form-field">
+              <label>Área o frente de trabajo</label>
+              <input name="area" required placeholder="Ej. Vivero Santa María / Sector Poda" value="${s?.sede ? `${escapeHtml(s.sede)} · ` : ''}">
+            </div>
+            <div class="form-field">
+              <label>Aspecto / componente observado</label>
+              <select name="activity">
+                <option>Agua y líneas de riego HDPE</option>
+                <option>Suelo y cobertura vegetal</option>
+                <option>Residuos sólidos y segregación</option>
+                <option>Productos químicos y bandeja antiderrame</option>
+                <option>Flora y fauna del entorno</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Nivel de atención</label>
+              <select name="priority">
+                <option>Media</option>
+                <option>Alta</option>
+                <option>Baja</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Tipo de registro</label>
+              <select name="type">
+                <option>Aspecto ambiental</option>
+                <option>Oportunidad de mejora</option>
+                <option>Condición subestándar</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label>Descripción de lo observado</label>
+              <textarea name="description" required placeholder="Ej. Goteo continuo en acople de manguera HDPE cerca del módulo 3…"></textarea>
+            </div>
+            <div class="form-field full">
+              <label>Control o acción recomendada</label>
+              <textarea name="control" placeholder="Ej. Cerrar llave de paso, ajustar abrazadera y colocar bandeja…"></textarea>
+            </div>
+            <div class="form-field full" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+              <button type="submit" class="btn btn-primary">Guardar observación ambiental →</button>
+              <span id="ecoObservacionFeedback" class="learning-quiz-feedback" aria-live="polite"></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </details>`;
+  }
+
+  function wireObservacionFolder(folder) {
+    if (!folder) return;
+    const form = folder.querySelector('#ecoObservacionForm');
+    const fb = folder.querySelector('#ecoObservacionFeedback');
+    form?.addEventListener('submit', ev => {
+      ev.preventDefault();
+      const s = window.getSgaeSession?.();
+      const d = Object.fromEntries(new FormData(ev.currentTarget));
+      d.when = new Date().toLocaleString('es-PE');
+      d.status = navigator.onLine ? 'Registrado' : 'Pendiente de sincronización';
+      d.reporter = s ? `${s.name} (${s.role})` : 'Colaborador en campo';
+      const current = window.sgaeRead?.('hazards', []) || [];
+      current.push(d);
+      window.sgaeSave?.('hazards', current);
+      ev.currentTarget.reset();
+      if (fb) fb.textContent = '¡Observación ambiental registrada! Ya figura en la bandeja de Supervisión y Reportes.';
+    });
+  }
+
   let activeToolTab = 'all';
 
   function filterSecurityTools(folder, tools) {
@@ -1457,7 +1701,7 @@
     folder.style.display = folderVisible ? '' : 'none';
     if (!folderVisible) {
       folder.open = false;
-      return;
+      return false;
     }
 
     let visibleCount = 0;
@@ -1482,6 +1726,7 @@
         emptyBox.hidden = true;
       }
     }
+    return visibleCount > 0 || Boolean(!query);
   }
 
   async function enhanceLibrary() {
@@ -1512,14 +1757,14 @@
         <span class="library-folder-icon" aria-hidden="true">▣</span>
         <span class="library-folder-title">
           <strong>HERRAMIENTAS DE GESTIÓN DE SEGURIDAD</strong>
-          <small>Estándares · Procedimientos y PETS · Reglamentos · IPERC Línea Base — Fichas visuales y descarga</small>
+          <small>Estándares · Procedimientos y PETS · Reglamentos · IPERC Línea Base — Fichas visuales únicas y descarga PDF</small>
         </span>
         <span class="library-folder-toggle" aria-hidden="true">⌄</span>
       </summary>
       <div class="library-folder-items">
         <div class="security-tools-panel">
           <div class="security-tools-intro">
-            <p>Selecciona la carpeta que necesitas revisar. Cada ficha visual resume lo indispensable del documento antes de habilitar su descarga en PDF.</p>
+            <p>Selecciona la carpeta que necesitas revisar. Cada ficha visual ilustra el tema del documento y resume sus reglas críticas antes de habilitar la descarga en PDF.</p>
           </div>
           <div class="security-tabs" role="tablist" aria-label="Carpetas de herramientas de gestión">
             <button type="button" class="security-tab is-active" data-tool-tab="all">Todos <span>${counts.all}</span></button>
@@ -1536,6 +1781,7 @@
       </div>
     </details>`;
 
+    list.insertAdjacentHTML('beforebegin', buildCharlasDiariasFolder());
     list.insertAdjacentHTML('beforebegin', securityMarkup);
     list.insertAdjacentHTML('beforebegin', buildPmaFolder());
     list.insertAdjacentHTML('beforebegin', buildEmergencyMarkup(manifest.emergencias || []));
@@ -1543,7 +1789,9 @@
     list.insertAdjacentHTML('beforebegin', buildResiduosFolder());
     list.insertAdjacentHTML('beforebegin', buildChemicalsFolder(manifest.msds || []));
     list.insertAdjacentHTML('beforebegin', buildPreopFolder());
+    list.insertAdjacentHTML('beforebegin', buildObservacionFolder());
 
+    const charlasFolder = document.getElementById('charlasDiariasFolder');
     const securityFolder = document.getElementById('securityToolsFolder');
     const pmaFolder = document.getElementById('pmaFolder');
     const emergencyFolder = document.getElementById('emergencyFolder');
@@ -1551,6 +1799,8 @@
     const residuosFolder = document.getElementById('residuosFolder');
     const chemicalsFolder = document.getElementById('chemicalsFolder');
     const preopFolder = document.getElementById('preopFolder');
+    const observacionFolder = document.getElementById('observacionFolder');
+    const emptyLibraryMsg = document.getElementById('libraryEmptyMsg');
 
     allTools.forEach(tool => {
       const card = securityFolder.querySelector(`[data-tool-gate="${tool.id}"]`)?.closest('.tool-summary-card');
@@ -1565,26 +1815,36 @@
       });
     });
 
+    wireCharlasDiariasFolder(charlasFolder);
     wirePmaFolder(pmaFolder);
     wireEmergencyFolder(emergencyFolder);
     wireColpaFolder(colpaFolder);
     wireResiduosFolder(residuosFolder);
     wireChemicalsFolder(chemicalsFolder, manifest.msds || []);
     wirePreopFolder(preopFolder);
+    wireObservacionFolder(observacionFolder);
     wireUnifiedLightbox();
 
     const toggleFolder = (folderEl, visible) => {
-      if (!folderEl) return;
+      if (!folderEl) return false;
       folderEl.style.display = visible ? '' : 'none';
       if (!visible) folderEl.open = false;
+      return visible;
     };
 
     const applyAllFilters = () => {
       const query = (document.querySelector('#docSearch')?.value || '').trim().toLowerCase();
       const category = document.querySelector('#docFilter')?.value || '';
-      filterSecurityTools(securityFolder, allTools);
 
-      toggleFolder(
+      const visCharlas = toggleFolder(
+        charlasFolder,
+        (!category || category === 'Charlas diarias SSOMA') &&
+          (!query || 'charlas diarias ssoma 365 dias calendario motivacional forestacion poda riego epp'.includes(query))
+      );
+
+      const visSecurity = filterSecurityTools(securityFolder, allTools);
+
+      const visPma = toggleFolder(
         pmaFolder,
         (!category || category === 'Gestión ambiental (PMA)') &&
           (!query || pmaFolder.querySelector('.doc-item').dataset.doc.includes(query))
@@ -1594,19 +1854,19 @@
         'respuesta ante emergencias metodo pas proteger alertar socorrer cartillas sede unidad minera',
         ...(manifest.emergencias || []).map(item => `${item.sede || ''} ${item.title || ''} ${item.summary || ''}`)
       ].join(' ').toLowerCase();
-      toggleFolder(
+      const visEmerg = toggleFolder(
         emergencyFolder,
         (!category || category === 'Respuesta ante emergencias') &&
           (!query || emergencySearchText.includes(query))
       );
 
-      toggleFolder(
+      const visColpa = toggleFolder(
         colpaFolder,
         (!category || category === 'COLPA · Orden y limpieza') &&
           (!query || 'colpa clasificacion orden limpieza prevencion autodisciplina 5s charla afiche'.includes(query))
       );
 
-      toggleFolder(
+      const visResiduos = toggleFolder(
         residuosFolder,
         (!category || category === 'Residuos en campo') &&
           (!query || 'segregacion disposicion residuos solidos codigo colores plomo azul blanco amarillo marron negro rojo ntp'.includes(query))
@@ -1616,17 +1876,28 @@
         'uso responsable productos quimicos pesticidas fds msds fumigacion glifosato cipermetrina triple lavado',
         ...(manifest.msds || []).map(item => `${item.title || ''} ${item.product || ''} ${item.downloadName || ''}`)
       ].join(' ').toLowerCase();
-      toggleFolder(
+      const visChem = toggleFolder(
         chemicalsFolder,
         (!category || category === 'Productos químicos · MSDS') &&
           (!query || msdsSearchText.includes(query))
       );
 
-      toggleFolder(
+      const visPreop = toggleFolder(
         preopFolder,
         (!category || category === 'Formatos operativos') &&
           (!query || 'lista verificacion preoperacional herramientas cinta trimestral epp check list'.includes(query))
       );
+
+      const visObs = toggleFolder(
+        observacionFolder,
+        (!category || category === 'Observación ambiental') &&
+          (!query || 'ficha observacion ambiental aspecto hallazgo mejora campo reporte'.includes(query))
+      );
+
+      if (emptyLibraryMsg) {
+        const anyVisible = visCharlas || visSecurity || visPma || visEmerg || visColpa || visResiduos || visChem || visPreop || visObs;
+        emptyLibraryMsg.hidden = anyVisible;
+      }
     };
 
     applyAllFilters();
