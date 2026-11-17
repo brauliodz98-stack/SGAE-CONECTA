@@ -6,11 +6,14 @@ import { EXTRA_ROOT_DOC_DIRS, resolveDocsManifest } from './docs-catalog.mjs';
 const filesToCheck = [
   'scripts/server.mjs',
   'scripts/docs-catalog.mjs',
+  'scripts/pdf-builder.mjs',
   'scripts/msds-service.mjs',
   'api/msds-search.js',
+  'api/msds-pdf.js',
   'src/main.js',
   'src/extras.js',
   'src/library-docs.js',
+  'src/games.js',
 ];
 
 for (const file of filesToCheck) {

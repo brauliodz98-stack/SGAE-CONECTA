@@ -320,5 +320,169 @@
 
 @media(max-width:850px){.charlas-mini-grid{grid-template-columns:1fr}}
 
+/* Mes visible en charlas y botón de retroceso en charla diaria */
+.charla-month-pill{display:inline-block;margin-bottom:3px;padding:2px 8px;border-radius:6px;background:#e4f3ec;color:#0f5c43;font:800 10px Manrope,sans-serif;letter-spacing:.02em}
+.talk-back-row{max-width:880px;margin:0 auto 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.talk-back-btn{display:inline-flex;align-items:center;gap:6px;font-weight:700}
+.compare-item[data-zoom-src]{cursor:zoom-in}
+
+/* Ficha descriptiva de insumo y descarga directa PDF en MSDS */
+.msds-result-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.msds-primary-pdf-action{display:grid;gap:4px;justify-items:start}
+.msds-primary-pdf-action small{font-size:10.5px;color:#526b62}
+.msds-meta-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.msds-meta-chip{display:inline-block;padding:4px 9px;border-radius:7px;background:#eef5f1;color:#174739;font-size:11px;border:1px solid #d5e6dc}
+.msds-reg-alert{padding:11px 14px;border-radius:10px;background:#fdf0ee;border:1px solid #e6b8b0;color:#7f1d1d;font-size:12px;line-height:1.5;margin:10px 0}
+.msds-usage-box{padding:12px 14px;border-radius:10px;background:#f4faf6;border:1px solid #d7e7de;margin:10px 0}
+.msds-usage-box strong{display:block;font:800 12px Manrope,sans-serif;color:#145d3f;margin-bottom:4px}
+.msds-usage-box p{margin:0;font-size:12.5px;line-height:1.55;color:#274e40}
+.msds-item-btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* Ventanas flotantes SGAE RETO y SGAE GAME */
+.sgae-floating-dock{position:fixed;right:18px;bottom:18px;z-index:940;display:grid;gap:6px;justify-items:end;max-width:calc(100vw - 24px)}
+.sgae-dock-collapse{border:1px solid #cddfd4;border-radius:999px;padding:4px 11px;background:#ffffffeb;backdrop-filter:blur(6px);color:#145d3f;font:800 10.5px Manrope,sans-serif;cursor:pointer;box-shadow:0 6px 16px #0f342718}
+.sgae-dock-cards{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.sgae-dock-cards[hidden]{display:none}
+.sgae-float-btn{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;border:1px solid #ffffff38;color:#fff;cursor:pointer;box-shadow:0 12px 26px #0d2b202e;text-align:left;transition:transform .16s ease,box-shadow .16s ease}
+.sgae-float-btn:hover{transform:translateY(-2px);box-shadow:0 16px 32px #0d2b203a}
+.sgae-float-btn.is-reto{background:linear-gradient(135deg,#0f6344,#147d5a)}
+.sgae-float-btn.is-game{background:linear-gradient(135deg,#0f4c75,#1d6fa5)}
+.sgae-float-icon{width:34px;height:34px;border-radius:10px;background:#ffffff24;display:grid;place-items:center;flex:none}
+.sgae-float-icon svg{width:19px;height:19px}
+.sgae-float-text{display:grid;line-height:1.15}
+.sgae-float-text strong{font:800 12.5px Manrope,sans-serif;letter-spacing:.03em}
+.sgae-float-text small{font-size:10.5px;opacity:.9;margin-top:2px}
+
+/* Modales interactivos SGAE GAME y SGAE RETO */
+.sgae-modal-backdrop{position:fixed;inset:0;z-index:1100;background:#0c241bb8;backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:16px}
+.sgae-modal-backdrop[hidden]{display:none}
+.sgae-modal-shell{width:min(1040px,100%);max-height:92vh;background:#fff;border-radius:18px;border:1px solid #d5e6dc;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px #081c144a}
+.sgae-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 20px;background:linear-gradient(110deg,#104d39,#0b756c);color:#fff}
+.sgae-modal-kicker{display:block;font:800 10px Manrope,sans-serif;letter-spacing:.08em;color:#bcebd5;text-transform:uppercase}
+.sgae-modal-head h2{margin:3px 0 0;font:800 18px Manrope,sans-serif;color:#fff}
+.sgae-modal-actions{display:flex;gap:8px;align-items:center}
+.sgae-modal-actions .btn-outline{background:#ffffff1a;border-color:#ffffff4d;color:#fff}
+.sgae-modal-actions .btn-quiet{background:#fff;color:#144d39}
+.btn-sm{padding:7px 12px;font-size:11.5px}
+.sgae-game-tabs{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;background:#f3f9f5;border-bottom:1px solid #dcebe2}
+.sgae-gtab{flex:none;border:1px solid #cfe2d7;border-radius:10px;background:#fff;color:#174739;padding:8px 12px;font:700 12px Manrope,sans-serif;cursor:pointer}
+.sgae-gtab.is-active{background:#145d3f;border-color:#145d3f;color:#fff}
+.sgae-modal-body{padding:18px 20px;overflow-y:auto;display:grid;gap:14px}
+
+/* Estilos comunes de juegos */
+.game-subbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.game-subbar h3,.game-card-center h3{margin:0;font:800 17px Manrope,sans-serif;color:#174739}
+.game-subbar p,.game-card-center p{margin:4px 0 0;font-size:12px;color:#526b62}
+.game-pill{display:inline-block;padding:4px 10px;border-radius:8px;background:#e4f3ec;color:#145d3f;font:800 11px Manrope,sans-serif}
+.game-options{display:grid;gap:8px;margin-top:12px}
+.game-opt-btn{text-align:left;padding:11px 14px;border-radius:10px;border:1px solid #cfe2d7;background:#fff;color:#173d31;font:600 12.5px/1.45 'DM Sans',sans-serif;cursor:pointer}
+.game-opt-btn:hover:not(:disabled){border-color:#145d3f;background:#f3faf6}
+.game-opt-btn.is-ok{background:#e7f6ed;border-color:#177c4e;color:#0e5735}
+.game-opt-btn.is-err{background:#fdf0ee;border-color:#c63f33;color:#822119}
+.game-feedback{margin-top:10px;font-size:12.5px;line-height:1.5;min-height:20px}
+.game-empty-hint,.game-complete-card{padding:20px;border:1px solid #d5e6dc;border-radius:14px;background:#f6fbf8;text-align:center;display:grid;gap:8px;justify-items:center}
+.game-complete-card h3,.game-complete-card h4{margin:4px 0 0;font:800 17px Manrope,sans-serif;color:#174739}
+.game-complete-card p{margin:0;font-size:12.5px;color:#526b62;max-width:520px}
+
+/* Ruleta */
+.game-ruleta-grid{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:center}
+.game-card-center{display:grid;gap:12px;justify-items:center;text-align:center}
+.wheel-wrap{position:relative;width:270px;height:270px;display:grid;place-items:center}
+.wheel-pointer{position:absolute;top:-6px;left:50%;transform:translateX(-50%);z-index:3;font-size:20px;color:#b82520;text-shadow:0 2px 4px #fff}
+.wheel-svg{width:100%;height:100%;transition:transform 2.3s cubic-bezier(.16,.84,.28,1)}
+.game-question-panel{padding:16px;border:1px solid #d7e7de;border-radius:14px;background:#f8fcf9}
+.game-question-panel h4{margin:8px 0 0;font:800 15px/1.4 Manrope,sans-serif;color:#174739}
+
+/* Encuentra el peligro */
+.game-scene-pills{display:flex;gap:6px;flex-wrap:wrap}
+.hazard-stage-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;align-items:start}
+.hazard-canvas-box{padding:12px;border:1px solid #d5e6dc;border-radius:14px;background:#f9fcfa;display:grid;gap:8px}
+.hazard-canvas-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.hazard-svg-container{position:relative;border-radius:10px;overflow:hidden;border:1px solid #dcebe2;background:#fff}
+.hazard-scene-svg{display:block;width:100%;height:auto}
+.hazard-hotspot{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:999px;border:2px solid #fff;background:#d92d20;color:#fff;font:800 13px Manrope,sans-serif;cursor:pointer;box-shadow:0 4px 12px #00000038;animation:sgaePulse 1.8s infinite}
+.hazard-hotspot.is-found{background:#15803d;animation:none}
+@keyframes sgaePulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.12)}}
+.hazard-ref-note{font-size:11px;color:#526b62}
+.hazard-findings-list{display:grid;gap:8px}
+.hazard-findings-list h4{margin:0 0 2px;font:800 14px Manrope,sans-serif;color:#174739}
+.hazard-finding-card{padding:10px 12px;border:1px solid #dce8e1;border-radius:10px;background:#fafcfb;font-size:11.5px}
+.hazard-finding-card.is-found{background:#eef8f2;border-color:#98cfb1}
+.hazard-finding-card strong{display:block;color:#174739;margin-bottom:3px}
+.hazard-finding-card p{margin:0;color:#476057;line-height:1.45}
+
+/* Clasifica */
+.sort-card{padding:18px;border:1px solid #d5e6dc;border-radius:14px;background:#f8fcf9}
+.sort-progress{font-size:11.5px;color:#526b62;margin-bottom:6px}
+.sort-card h4{margin:0 0 14px;font:800 17px Manrope,sans-serif;color:#174739}
+.sort-choices-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.sort-choice-btn{padding:12px 10px;border:0;border-radius:10px;background:var(--choice-bg,#145d3f);color:#fff;cursor:pointer;display:grid;gap:2px;text-align:center}
+.sort-choice-btn strong{font:800 14px Manrope,sans-serif}
+.sort-choice-btn span{font-size:11px;opacity:.92}
+
+/* Crucigrama */
+.cw-layout{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.cw-board-box{overflow-x:auto;padding:12px;border:1px solid #d5e6dc;border-radius:12px;background:#f6fbf8}
+.crossword-grid{display:grid;gap:4px;width:max-content}
+.cw-block{width:34px;height:34px;background:transparent}
+.cw-cell{width:34px;height:34px;text-align:center;font:800 15px Manrope,sans-serif;text-transform:uppercase;border:1.5px solid #9ab9a8;border-radius:7px;background:#fff;color:#174739}
+.cw-cell.is-ok{background:#e3f6eb;border-color:#15803d;color:#0f5132}
+.cw-cell.is-err{background:#fdecea;border-color:#c63f33;color:#842029}
+.cw-clues-box{padding:14px;border:1px solid #dce8e1;border-radius:12px;background:#fff}
+.cw-clues-box h4{margin:0 0 8px;font:800 14px Manrope,sans-serif;color:#174739}
+.cw-clues-box ul{margin:0;padding-left:18px;display:grid;gap:7px;font-size:12px;color:#35564a}
+
+/* Decisiones & Relámpago */
+.decision-card{padding:16px;border:1px solid #d7e7de;border-radius:14px;background:#f8fcf9}
+.decision-card h4{margin:6px 0;font:800 16px Manrope,sans-serif;color:#174739}
+.decision-situation{margin:0;font-size:13px;line-height:1.55;color:#274e40}
+.decision-nav{display:flex;justify-content:space-between;gap:10px;margin-top:12px}
+.blitz-bar{height:8px;border-radius:999px;background:#e4efe9;overflow:hidden;margin-bottom:10px}
+.blitz-bar div{height:100%;background:#145d3f;transition:width .25s ease}
+
+/* SGAE RETO y Panel de Compromiso */
+.reto-layout{display:grid;gap:14px}
+.reto-summary-banner{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:14px 16px;border-radius:14px;background:linear-gradient(105deg,#edf7f1,#fff);border:1px solid #d5e6dc}
+.reto-summary-banner h3{margin:3px 0;font:800 16px Manrope,sans-serif;color:#174739}
+.reto-summary-banner p{margin:0;font-size:12px;color:#476057;max-width:600px}
+.reto-score-badge{padding:10px 14px;border-radius:12px;background:#145d3f;color:#fff;text-align:center;min-width:130px;display:grid;gap:1px}
+.reto-score-badge strong{font:800 20px Manrope,sans-serif}
+.reto-score-badge span{font-size:11px;font-weight:700}
+.reto-score-badge small{font-size:10px;opacity:.9}
+.reto-score-badge.tone-gold{background:#9c6b0e}
+.reto-days-strip{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 14px;border:1px solid #dce8e1;border-radius:11px;background:#fafdfb;font-size:12px;color:#274e40}
+.reto-days-pills{display:flex;gap:6px}
+.reto-days-pills span{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:#e9f1ec;color:#627b70;font:800 11px Manrope,sans-serif}
+.reto-days-pills span.is-on{background:#145d3f;color:#fff}
+.reto-missions-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.reto-mission{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1px solid #dce8e1;border-radius:12px;background:#fff}
+.reto-mission.is-done{background:#eef8f2;border-color:#98cfb1}
+.reto-mission span{font:800 10px Manrope,sans-serif;color:#0b756c;letter-spacing:.04em}
+.reto-mission h4{margin:2px 0;font:800 13.5px Manrope,sans-serif;color:#174739}
+.reto-mission p{margin:0;font-size:11.5px;color:#526b62}
+.reto-case-box{padding:15px;border:1px solid #d5e6dc;border-radius:13px;background:#f8fcf9}
+.reto-case-scenario{margin:6px 0 8px;font-size:12.5px;line-height:1.55;color:#274e40}
+.reto-case-box h5{margin:0;font:800 14px Manrope,sans-serif;color:#174739}
+
+.engagement-kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.team-engagement-block{margin-top:14px;padding-top:14px;border-top:1px solid #e1ece5;display:grid;gap:10px}
+.team-engagement-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.team-engagement-head strong{display:block;font:800 13.5px Manrope,sans-serif;color:#174739}
+.team-engagement-head small{font-size:11.5px;color:#526b62}
+.team-engagement-table-wrap{overflow-x:auto;border:1px solid #dce8e1;border-radius:11px}
+.team-engagement-table{width:100%;border-collapse:collapse;font-size:12px;text-align:left}
+.team-engagement-table th{background:#f2f8f4;color:#174739;font:800 11px Manrope,sans-serif;padding:9px 11px;border-bottom:1px solid #dce8e1}
+.team-engagement-table td{padding:9px 11px;border-bottom:1px solid #eef4f0;color:#274e40}
+
+@media(max-width:850px){
+  .game-ruleta-grid,.hazard-stage-grid,.cw-layout,.reto-missions-grid,.engagement-kpi-grid{grid-template-columns:1fr}
+  .sgae-floating-dock{right:10px;bottom:10px}
+  .sgae-float-btn{padding:8px 10px;border-radius:11px}
+  .sgae-float-icon{width:28px;height:28px}
+  .sgae-float-text strong{font-size:11.5px}
+  .sgae-float-text small{display:none}
+}
+
+
 
 

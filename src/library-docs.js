@@ -114,9 +114,9 @@
     </div>
     <section class="learning-block"><h4>Escenas reales de nuestras actividades</h4><p>Observa cómo estas labores se conectan con la prevención y la recuperación ambiental.</p>
       <div class="learning-photo-grid">
-        <figure><img src="./assets/photos/operacion-2.jpeg" alt="Cuadrilla manteniendo áreas verdes con líneas de riego y revegetación" referrerpolicy="no-referrer"><figcaption><b>Habilitación y riego controlado</b><span>Inspeccionar válvulas y líneas HDPE evita fugas, desperdicio de agua y erosión del suelo.</span></figcaption></figure>
+        <figure><img src="./assets/photos/operacion-4.jpeg" alt="Cuadrilla manteniendo áreas verdes con equipo de campo" referrerpolicy="no-referrer"><figcaption><b>Habilitación y riego controlado</b><span>Inspeccionar válvulas y líneas HDPE evita fugas, desperdicio de agua y erosión del suelo.</span></figcaption></figure>
         <figure><img src="./assets/photos/operacion-3.jpeg" alt="Trabajador realizando aplicación fitosanitaria con EPP completo" referrerpolicy="no-referrer"><figcaption><b>Aplicación fitosanitaria responsable</b><span>Verificar etiqueta, dosis, viento y bandeja antiderrame protege suelo y fuentes de agua.</span></figcaption></figure>
-        <figure class="learning-before-after"><div><img src="./assets/photos/pma-revegetacion-antes.jpg" alt="Área disturbada antes de la revegetación" referrerpolicy="no-referrer"><span>ANTES</span></div><div><img src="./assets/photos/pma-revegetacion-despues.jpg" alt="Área revegetada como resultado de la rehabilitación" referrerpolicy="no-referrer"><span>DESPUÉS</span></div><figcaption><b>Rehabilitación y cierre de minas</b><span>Impacto positivo: cobertura vegetal consolidada, retención de suelo y protección hídrica.</span></figcaption></figure>
+        <figure class="learning-before-after"><div><img src="./assets/photos/operacion-7.jpeg" alt="Talud y ladera antes de la rehabilitación ambiental" referrerpolicy="no-referrer"><span>ANTES</span></div><div><img src="./assets/photos/operacion-2.jpeg" alt="Talud revegetado con líneas de riego en etapa de recuperación" referrerpolicy="no-referrer"><span>DESPUÉS</span></div><figcaption><b>Rehabilitación y cierre de minas</b><span>Impacto positivo: cobertura vegetal consolidada, retención de suelo y protección hídrica.</span></figcaption></figure>
       </div>
     </section>
     <section class="learning-block"><h4>Aspecto, impacto y controles para nuestras labores</h4><p>Aplica los controles establecidos en la matriz oficial y en los procedimientos vigentes del proyecto.</p>
@@ -333,6 +333,7 @@
         download.download = tool.downloadName;
         download.setAttribute('aria-disabled', 'false');
         download.classList.add('is-ready');
+        window.sgaeTrackAction?.('doc', tool.id || tool.title);
       } else {
         download.removeAttribute('href');
         download.removeAttribute('download');
@@ -1144,26 +1145,49 @@
       .replaceAll('"', '&quot;');
   }
 
+  let lastMsdsResult = null;
+
   function renderMsdsSearchResult(data) {
+    lastMsdsResult = data;
+    const directPdfLinks = Array.isArray(data.directPdfLinks) ? data.directPdfLinks : [];
     const officialLinks = Array.isArray(data.officialLinks) ? data.officialLinks : [];
     const localMatches = Array.isArray(data.localMatches) ? data.localMatches : [];
-    const bandColor = /roj/i.test(data.toxicologicalBand) ? '#b82520'
+    const bandColor = /roj|prohib/i.test(data.toxicologicalBand) ? '#b82520'
       : /amarill/i.test(data.toxicologicalBand) ? '#b57c0e'
       : /azul/i.test(data.toxicologicalBand) ? '#1d56a5'
       : /verd/i.test(data.toxicologicalBand) ? '#176b39'
       : '#0b756c';
+    const safeFileName = `MSDS_${String(data.productName || data.query || 'Insumo').replace(/[^\w\-]+/g, '_')}.pdf`;
 
     return `<article class="msds-result-card">
       <div class="msds-result-top">
         <div>
           <span class="tool-meta-text" style="color:${bandColor}">
-            ${data.foundOfficialOnline ? 'FUENTE OFICIAL ENCONTRADA' : 'BÚSQUEDA CON RESPALDO LOCAL'}
+            ${data.foundOfficialOnline ? 'FUENTE OFICIAL ENCONTRADA' : localMatches.length ? 'RESPALDO LOCAL DISPONIBLE' : 'FICHA TÉCNICA DE INSUMO'}
             ${data.toxicologicalBand ? ` · BANDA: ${escapeHtml(data.toxicologicalBand)}` : ''}
           </span>
-          <h5>${escapeHtml(data.productName || 'Producto consultado')}</h5>
-          ${data.activeIngredient ? `<p class="msds-active-ing">Ingrediente activo: <b>${escapeHtml(data.activeIngredient)}</b></p>` : ''}
+          <h5>${escapeHtml(data.productName || data.query || 'Producto consultado')}</h5>
+          <div class="msds-meta-chips">
+            ${data.activeIngredient ? `<span class="msds-meta-chip"><b>Ingrediente activo:</b> ${escapeHtml(data.activeIngredient)}</span>` : ''}
+            ${data.chemicalGroup ? `<span class="msds-meta-chip"><b>Clase:</b> ${escapeHtml(data.chemicalGroup)}</span>` : ''}
+          </div>
+        </div>
+        <div class="msds-primary-pdf-action">
+          <button type="button" class="btn btn-primary" id="msdsDownloadPdfBtn" data-msds-filename="${escapeHtml(safeFileName)}">
+            Descargar Ficha MSDS en PDF ↓
+          </button>
+          <small>Documento PDF listo para imprimir o llevar a campo</small>
         </div>
       </div>
+
+      ${data.regulatoryNote ? `<div class="msds-reg-alert"><strong>⚠ Alerta normativa Perú:</strong> ${escapeHtml(data.regulatoryNote)}</div>` : ''}
+
+      ${data.usageDescription ? `
+        <div class="msds-usage-box">
+          <strong>Descripción del insumo y uso agrícola</strong>
+          <p>${escapeHtml(data.usageDescription)}</p>
+        </div>
+      ` : ''}
 
       ${data.summary ? `<p class="msds-summary-text">${escapeHtml(data.summary)}</p>` : ''}
 
@@ -1174,8 +1198,45 @@
       </div>
 
       <div class="msds-links-section">
-        <h6>1. Enlaces oficiales en Perú (SENASA / Fabricantes autorizados)</h6>
-        ${officialLinks.length ? `
+        <h6>1. Descarga de Hojas MSDS en PDF (Carpeta local + PDFs oficiales encontrados)</h6>
+        ${(localMatches.length || directPdfLinks.length) ? `
+          <div class="msds-local-grid">
+            ${localMatches.map(item => `
+              <article class="msds-local-item is-highlighted">
+                <div>
+                  <strong>${escapeHtml(item.title)}</strong>
+                  <small>${escapeHtml(item.category || 'Carpeta local MSDS')} · Archivo PDF original</small>
+                </div>
+                <div class="msds-item-btns">
+                  <a class="btn btn-outline" href="${escapeHtml(item.file)}" target="_blank" rel="noopener">Abrir PDF ↗</a>
+                  <a class="btn btn-primary" href="${escapeHtml(item.file)}" download="${escapeHtml(item.downloadName)}" target="_blank" rel="noopener">Descargar PDF ↓</a>
+                </div>
+              </article>
+            `).join('')}
+            ${directPdfLinks.map(link => {
+              const proxyHref = `/api/msds-pdf?mode=proxy&url=${encodeURIComponent(link.uri)}&name=${encodeURIComponent(safeFileName)}`;
+              return `
+                <article class="msds-local-item is-highlighted">
+                  <div>
+                    <strong>${escapeHtml(link.title || 'Hoja MSDS Oficial (PDF)')}</strong>
+                    <small>Documento PDF oficial verificado en línea</small>
+                  </div>
+                  <div class="msds-item-btns">
+                    <a class="btn btn-outline" href="${escapeHtml(link.uri)}" target="_blank" rel="noopener noreferrer">Abrir PDF ↗</a>
+                    <a class="btn btn-primary" href="${proxyHref}" download="${escapeHtml(safeFileName)}">Descargar PDF ↓</a>
+                  </div>
+                </article>
+              `;
+            }).join('')}
+          </div>
+        ` : `
+          <p class="msds-fallback-note">No se encontró un PDF externo con enlace directo ni un archivo cargado en <code>MSDS/</code> o <code>assets/msds/</code> para "${escapeHtml(data.productName || data.query)}". Usa el botón <b>"Descargar Ficha MSDS en PDF ↓"</b> arriba para obtener la ficha técnica resumida en PDF o sube el PDF del proveedor a la carpeta <code>MSDS/</code>.</p>
+        `}
+      </div>
+
+      ${officialLinks.length ? `
+        <div class="msds-links-section">
+          <h6>2. Fuentes oficiales y portales de consulta en Perú (SENASA / Fabricantes)</h6>
           <div class="msds-official-list">
             ${officialLinks.map(link => `
               <a class="msds-official-link" href="${escapeHtml(link.uri)}" target="_blank" rel="noopener noreferrer">
@@ -1185,30 +1246,43 @@
               </a>
             `).join('')}
           </div>
-        ` : `
-          <p class="msds-fallback-note">No se confirmó un enlace directo oficial en este intento.${data.aiNotice ? ` (${escapeHtml(data.aiNotice)})` : ''} Activando respaldo en tu carpeta local de MSDS.</p>
-        `}
-      </div>
-
-      <div class="msds-links-section">
-        <h6>2. Búsqueda en tu carpeta local de hojas MSDS de fumigación</h6>
-        ${localMatches.length ? `
-          <div class="msds-local-grid">
-            ${localMatches.map(item => `
-              <article class="msds-local-item is-highlighted">
-                <div>
-                  <strong>${escapeHtml(item.title)}</strong>
-                  <small>${escapeHtml(item.category || 'Carpeta MSDS')} · Listo para descargar</small>
-                </div>
-                <a class="btn btn-primary" href="${escapeHtml(item.file)}" download="${escapeHtml(item.downloadName)}" target="_blank" rel="noopener">Descargar PDF ↓</a>
-              </article>
-            `).join('')}
-          </div>
-        ` : `
-          <p class="msds-fallback-note">No hay un PDF coincidente cargado todavía en la carpeta <code>MSDS/</code> o <code>assets/msds/</code> para "${escapeHtml(data.productName || data.query)}".</p>
-        `}
-      </div>
+        </div>
+      ` : ''}
     </article>`;
+  }
+
+  function wireMsdsPdfButton(resultsBox) {
+    const btn = resultsBox?.querySelector('#msdsDownloadPdfBtn');
+    if (!btn || !lastMsdsResult) return;
+    btn.addEventListener('click', async () => {
+      const originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Generando PDF…';
+      try {
+        const res = await fetch('/api/msds-pdf', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(lastMsdsResult)
+        });
+        if (!res.ok) throw new Error('No se pudo generar el archivo PDF.');
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = btn.dataset.msdsFilename || 'Ficha_MSDS_SGAE.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1500);
+        window.sgaeTrackAction?.('msds', lastMsdsResult.productName || lastMsdsResult.query || 'MSDS PDF');
+      } catch (err) {
+        btn.textContent = 'Error al descargar';
+        setTimeout(() => { btn.textContent = originalText; }, 2200);
+      } finally {
+        btn.disabled = false;
+        if (btn.textContent === 'Generando PDF…') btn.textContent = originalText;
+      }
+    });
   }
 
   function wireChemicalsFolder(folder, localMsdsList = []) {
@@ -1266,10 +1340,10 @@
 
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Buscando en Perú y carpeta MSDS…';
+        submitBtn.textContent = 'Buscando PDF y ficha técnica…';
       }
       if (resultsBox) {
-        resultsBox.innerHTML = '<div class="msds-loading">Consultando fuentes oficiales peruanas (SENASA / fabricantes) y revisando tu carpeta local de MSDS…</div>';
+        resultsBox.innerHTML = '<div class="msds-loading">Consultando fuentes oficiales peruanas (SENASA / fabricantes), buscando PDFs descargables y revisando tu carpeta local de MSDS…</div>';
       }
 
       try {
@@ -1284,7 +1358,11 @@
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data?.error || 'Error en la consulta');
-        if (resultsBox) resultsBox.innerHTML = renderMsdsSearchResult(data);
+        if (resultsBox) {
+          resultsBox.innerHTML = renderMsdsSearchResult(data);
+          wireMsdsPdfButton(resultsBox);
+        }
+        window.sgaeTrackAction?.('msds', data.productName || q || 'MSDS');
       } catch (err) {
         const normQ = q.toLowerCase();
         const fallbackMatches = localMsdsList.filter(item =>
@@ -1294,11 +1372,14 @@
           resultsBox.innerHTML = renderMsdsSearchResult({
             query: q,
             productName: q || 'Consulta local',
+            usageDescription: 'Insumo fitosanitario consultado en modo respaldo local. Verifica etiqueta del fabricante, banda toxicológica y dosis autorizada antes de preparar la mezcla.',
             foundOfficialOnline: false,
             localMatches: fallbackMatches,
+            directPdfLinks: [],
             officialLinks: [],
             aiNotice: err.message
           });
+          wireMsdsPdfButton(resultsBox);
         }
       } finally {
         if (submitBtn) {
@@ -1447,6 +1528,7 @@
         download.setAttribute('aria-disabled', 'false');
         download.classList.add('is-ready');
         status.textContent = 'Lectura confirmada. Ya puedes descargar el documento oficial.';
+        window.sgaeTrackAction?.('doc', 'PMA-2026');
       } else {
         download.removeAttribute('href');
         download.removeAttribute('download');
@@ -1519,6 +1601,10 @@
     }
   }
 
+  window.wireSgaeLightbox = wireUnifiedLightbox;
+
+  let ecoTalkFilterState = { query: '', month: '' };
+
   function buildCharlasDiariasFolder() {
     const allTalks = window.getSgaeTalks?.() || [];
     const todayTalk = allTalks[0];
@@ -1563,28 +1649,36 @@
   function wireCharlasDiariasFolder(folder) {
     if (!folder) return;
     const allTalks = window.getSgaeTalks?.() || [];
+    const monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
     const searchEl = folder.querySelector('#ecoTalkSearch');
     const monthEl = folder.querySelector('#ecoTalkMonth');
     const gridEl = folder.querySelector('#ecoTalkResults');
     const todayBtn = folder.querySelector('#openTodayTalkBtn');
 
-    todayBtn?.addEventListener('click', () => window.openSgaeTalk?.(1));
+    if (searchEl) searchEl.value = ecoTalkFilterState.query;
+    if (monthEl) monthEl.value = ecoTalkFilterState.month;
+
+    todayBtn?.addEventListener('click', () => window.openSgaeTalk?.(1, 'library'));
 
     const renderMini = () => {
       if (!gridEl) return;
       const q = (searchEl?.value || '').trim().toLowerCase();
       const mo = monthEl?.value ?? '';
+      ecoTalkFilterState = { query: searchEl?.value || '', month: mo };
       const list = allTalks
-        .filter(t => !q || `${t.title} ${t.topic} ${t.activity} ${t.category}`.toLowerCase().includes(q))
-        .filter(t => mo === '' || new Date(2026, 0, t.day).getMonth() === Number(mo))
+        .filter(t => !q || `${t.title} ${t.topic} ${t.activity} ${t.category} ${t.monthName || ''}`.toLowerCase().includes(q))
+        .filter(t => mo === '' || (t.monthIndex ?? new Date(2026, 0, t.day).getMonth()) === Number(mo))
         .slice(0, 12);
 
       gridEl.innerHTML = list.length
-        ? list.map(t => `
+        ? list.map(t => {
+          const mLabel = t.monthName || monthNames[t.monthIndex ?? new Date(2026, 0, t.day).getMonth()];
+          return `
           <article class="charla-mini-card">
             <div class="charla-mini-top">
               <span class="day-badge">${String(t.day).padStart(3, '0')}</span>
               <div>
+                <div class="charla-month-pill">Mes: ${escapeHtml(mLabel)} · ${escapeHtml(t.date || '')}</div>
                 <small>${escapeHtml(t.category)} · ${t.duration} min${t.isMotivational ? ' · Motivacional' : ''}</small>
                 <h5>${escapeHtml(t.title)}</h5>
               </div>
@@ -1592,17 +1686,23 @@
             <p>${escapeHtml(t.activity)}</p>
             <button type="button" class="text-link charla-open-btn" data-open-talk-day="${t.day}">Abrir charla diaria →</button>
           </article>
-        `).join('')
+        `;
+        }).join('')
         : '<div class="empty-folder-card"><strong>Sin charlas coincidentes</strong><p>Prueba otra palabra clave o cambia el mes seleccionado.</p></div>';
 
       gridEl.querySelectorAll('[data-open-talk-day]').forEach(btn => {
-        btn.addEventListener('click', () => window.openSgaeTalk?.(btn.dataset.openTalkDay));
+        btn.addEventListener('click', () => window.openSgaeTalk?.(btn.dataset.openTalkDay, 'library'));
       });
     };
 
     renderMini();
     searchEl?.addEventListener('input', renderMini);
     monthEl?.addEventListener('change', renderMini);
+
+    if (window.consumeSgaeReopenCharlas?.()) {
+      folder.open = true;
+      setTimeout(() => folder.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+    }
   }
 
   function buildObservacionFolder() {
