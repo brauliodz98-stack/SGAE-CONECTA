@@ -483,6 +483,102 @@
   .sgae-float-text small{display:none}
 }
 
+/* === Puntero temático ambiental (hoja verde de reforestación en escritorio) === */
+@media(hover:hover) and (pointer:fine){
+  body,.shell{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cpath d='M4 3 C14 3 22 9 22 19 C15 21 7 15 4 3 Z' fill='%2325935d' stroke='%23ffffff' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M4 3 L16 14' stroke='%23d7f59c' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 3 2, auto}
+  a,button,[role='button'],summary,select,input[type='checkbox'],input[type='file'],.quick-card,.quiz-option,.game-opt-btn,.sort-choice-btn,.compare-half,.hazard-hotspot{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M4 3 C16 3 24 10 24 21 C16 23 8 17 4 3 Z' fill='%2388c93b' stroke='%230c4734' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M4 3 L17 15' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round'/%3E%3Ccircle cx='21' cy='7' r='2.5' fill='%23ffffff'/%3E%3C/svg%3E") 3 2, pointer}
+}
 
+/* === Landing Page animada de Acceso Usuarios (Reforestación SGAE) === */
+.login-hero-stage{position:relative;min-height:calc(100vh - 122px);padding:34px max(calc((100vw - 1176px)/2),24px) 44px;overflow:hidden;display:flex;align-items:center;background:#0a3227}
+#reforestCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none}
+.login-hero-overlay{position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 20% 25%,rgba(125,212,92,.14),transparent 52%),linear-gradient(125deg,rgba(6,32,25,.72) 0%,rgba(9,45,35,.55) 55%,rgba(6,28,22,.8) 100%);pointer-events:none}
+.login-hero-grid{position:relative;z-index:2;width:100%;max-width:1176px;margin:0 auto;display:grid;grid-template-columns:1.15fr .95fr;gap:34px;align-items:center}
+.login-brand-copy{color:#fff;display:grid;gap:16px}
+.login-brand-pill{display:inline-flex;align-items:center;gap:10px;width:max-content;max-width:100%;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(196,245,148,.34);backdrop-filter:blur(8px)}
+.login-brand-pill img{width:28px;height:28px;object-fit:contain;background:#fff;border-radius:50%;padding:2px}
+.login-brand-pill span{font:800 10px/1.2 Manrope,sans-serif;letter-spacing:.08em;color:#e0f8be}
+.login-brand-copy h1{margin:0;font:800 clamp(30px,4.2vw,48px)/1.08 Manrope,sans-serif;letter-spacing:-.03em;color:#fff}
+.login-brand-copy h1 span{color:#a7eb65}
+.login-brand-copy>p{margin:0;max-width:540px;font-size:14px;line-height:1.65;color:#e3f3eb}
+.reforest-stages-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:4px}
+.reforest-stage-chip{padding:11px 12px;border-radius:12px;background:rgba(8,36,28,.62);border:1px solid rgba(173,234,132,.26);backdrop-filter:blur(7px);display:grid;gap:3px}
+.reforest-stage-chip strong{font:800 12px Manrope,sans-serif;color:#b8f174}
+.reforest-stage-chip small{font-size:11px;line-height:1.4;color:#d6ebe2}
+.login-guest-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.btn-outline-light{background:#fff;color:#0e5739;border:1px solid #fff;box-shadow:0 10px 24px #001a1240}
+.btn-outline-light:hover{background:#e7f9d4;transform:translateY(-2px)}
+.btn-ghost-light{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.42)}
+.btn-ghost-light:hover{background:rgba(255,255,255,.22)}
+.login-glass-panel{padding:26px 26px 24px;border-radius:20px;background:rgba(255,255,255,.97);border:1px solid rgba(215,240,224,.85);box-shadow:0 26px 60px rgba(3,24,18,.48)}
+.login-form-head{display:flex;align-items:center;gap:12px}
+.login-form-head img{width:46px;height:46px;object-fit:contain;flex:none}
+.login-form-head h1{margin:0 0 3px;font:800 22px Manrope,sans-serif;color:#143d31}
+.login-form-head p{margin:0;font-size:12px;color:var(--muted);line-height:1.45}
 
+/* === Card 03: Antes / Después en imagen superior === */
+.activity-photo-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;width:100%;height:100%;background:#11392d}
+.compare-half{position:relative;height:100%;overflow:hidden}
+.compare-half img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.compare-half:hover img{transform:scale(1.06)}
+.compare-badge{position:absolute;bottom:8px;left:8px;z-index:2;padding:4px 8px;border-radius:7px;font:800 10px Manrope,sans-serif;letter-spacing:.06em;color:#fff;box-shadow:0 3px 10px rgba(0,0,0,.35)}
+.compare-badge.is-before{background:rgba(148,79,22,.92)}
+.compare-badge.is-after{background:rgba(21,128,61,.94)}
+
+/* === Tarjeta MSDS visual + Barra de peligro + 16 Ítems Perú === */
+.msds-showcase-grid{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:12px;border:1px solid #d5e6dc;border-radius:14px;background:linear-gradient(125deg,#f6fbf7,#fff)}
+.msds-visual-box{display:grid;place-items:center;padding:8px;border-radius:12px;background:#fff;border:1px solid #dceae1;min-height:148px}
+.msds-bottle-svg{width:110px;height:132px;display:block}
+.msds-uploaded-photo{width:130px;height:132px;object-fit:cover;border-radius:9px}
+.msds-visual-summary{display:grid;gap:8px;min-width:0}
+.msds-band-pill{display:inline-flex;align-items:center;gap:6px;width:max-content;max-width:100%;padding:5px 10px;border-radius:999px;font:800 10.5px Manrope,sans-serif;letter-spacing:.04em}
+.msds-band-pill.band-red{background:#fdecea;color:#9b1c1c;border:1px solid #f4b6b1}
+.msds-band-pill.band-yellow{background:#fef6e0;color:#8a5700;border:1px solid #ebd082}
+.msds-band-pill.band-blue{background:#eaf3fd;color:#124e91;border:1px solid #accff6}
+.msds-band-pill.band-green{background:#e9f7ef;color:#0f5d38;border:1px solid #9fd9b6}
+.msds-hazard-gauge{display:grid;gap:5px;padding:9px 11px;border-radius:10px;background:#fff;border:1px solid #dceae1}
+.msds-hazard-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11.5px;color:#174739}
+.msds-hazard-pill{padding:2px 8px;border-radius:999px;font:800 10px Manrope,sans-serif}
+.msds-hazard-pill.tone-danger{background:#fdecea;color:#9b1c1c}
+.msds-hazard-pill.tone-warn{background:#fef6e0;color:#8a5700}
+.msds-hazard-pill.tone-info{background:#eaf3fd;color:#124e91}
+.msds-hazard-pill.tone-ok{background:#e9f7ef;color:#0f5d38}
+.msds-hazard-bar{height:8px;border-radius:999px;background:#e6efe9;overflow:hidden}
+.msds-hazard-bar div{height:100%;border-radius:999px;transition:width .35s ease}
+.msds-hazard-bar div.tone-danger{background:#c82820}
+.msds-hazard-bar div.tone-warn{background:#d98b07}
+.msds-hazard-bar div.tone-info{background:#1b6ec2}
+.msds-hazard-bar div.tone-ok{background:#15803d}
+.msds-sga-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.msds-sga-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 8px 4px 5px;border-radius:8px;background:#fff;border:1px solid #dceae1;font-size:10.5px;font-weight:700;color:#1d4739}
+.msds-sga-diamond{width:24px;height:24px;display:inline-grid;place-items:center}
+.msds-sga-diamond svg{width:24px;height:24px;display:block}
+.msds-action-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.msds-card-actions{display:flex;gap:6px;flex-wrap:wrap}
+.msds-16-accordion{border:1px solid #d5e6dc;border-radius:12px;background:#fbfdfb;overflow:hidden}
+.msds-16-accordion summary{padding:11px 14px;cursor:pointer;font:800 12px Manrope,sans-serif;color:#124b3a;background:#eef7f1;list-style:none}
+.msds-16-accordion summary::-webkit-details-marker{display:none}
+.msds-16-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:12px}
+.msds-16-item{padding:9px 11px;border:1px solid #dceae1;border-radius:9px;background:#fff;display:grid;gap:3px}
+.msds-16-item strong{font:800 11px Manrope,sans-serif;color:#0b6b4d}
+.msds-16-item p{margin:0;font-size:11px;line-height:1.45;color:#425f53}
+
+/* === Modal Visor PDF integrado === */
+.msds-pdf-dialog{width:min(980px,96vw);max-height:92vh;border:0;border-radius:16px;padding:0;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.45)}
+.msds-pdf-dialog::backdrop{background:rgba(8,30,23,.72);backdrop-filter:blur(4px)}
+.msds-pdf-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;background:linear-gradient(115deg,#0f4d3b,#177354);color:#fff}
+.msds-pdf-head strong{display:block;font:800 14px Manrope,sans-serif}
+.msds-pdf-head small{font-size:11px;color:#d6f2dd}
+.msds-pdf-head-actions{display:flex;gap:8px;flex:none}
+.msds-pdf-frame-wrap{height:76vh;background:#eef3f0}
+.msds-pdf-frame-wrap iframe{width:100%;height:100%;border:0;display:block}
+.game-board-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+
+@media(max-width:850px){
+  .login-hero-stage{min-height:auto;padding:24px 16px 32px}
+  .login-hero-grid{grid-template-columns:1fr;gap:20px}
+  .reforest-stages-strip{grid-template-columns:1fr}
+  .login-glass-panel{padding:20px 16px}
+  .msds-showcase-grid,.msds-16-grid{grid-template-columns:1fr}
+}
 

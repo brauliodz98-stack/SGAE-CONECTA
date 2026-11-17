@@ -340,26 +340,26 @@
     {
       title:'Habilitación y mantenimiento de áreas verdes',icon:'♧',image:'operacion-4.jpeg',alt:'Trabajador de SGAE preparando y manteniendo áreas verdes y plantaciones con carretilla y riego',
       summary:'Preparamos, habilitamos y conservamos jardines, viveros y espacios con cobertura vegetal.',
-      tasks:['Preparación y nivelación del terreno','Siembra de grass y plantas ornamentales','Riego manual y tecnificado: aspersores, goteo y tubería HDPE','Abonamiento y fertilización','Poda, perfilado y control de maleza','Aplicación fitosanitaria según el procedimiento y el producto'],
+      tasks:['Preparación y nivelación del terreno','Siembra de grass y especies ornamentales','Riego manual y tecnificado (aspersores, goteo, HDPE)','Abonamiento, poda, perfilado y control de maleza','Aplicación fitosanitaria según procedimiento y hoja MSDS'],
       phases:[]
     },
     {
       title:'Mantenimiento y siembra de especies frutales y forestales',icon:'🌱',image:'operacion-1.jpeg',alt:'Colaborador de SGAE plantando una especie en campo',
       summary:'Instalamos y cuidamos plantones, semillas y especies establecidas desde el vivero hasta su desarrollo en campo.',
-      tasks:['Preparación de hoyos, suelos y sustratos','Siembra de plantones y semillas en campo o vivero','Riego y revisión de sistemas de goteo','Abonamiento y fertilización según el cultivo','Desmalezado, poda de formación y mantenimiento','Cosecha de frutales y manejo de restos vegetales'],
+      tasks:['Preparación de hoyos, suelos y sustratos en vivero','Siembra de plantones frutales, forestales y semillas','Riego y verificación periódica de sistemas de goteo','Abonamiento, desmalezado y poda de formación','Cosecha de frutales y manejo responsable de restos'],
       phases:[]
     },
     {
-      title:'Rehabilitación de áreas disturbadas y cierre de minas',icon:'⛰',image:'operacion-8.jpeg',alt:'Maquinaria y cuadrilla SGAE trabajando en la rehabilitación de un componente minero',
-      summary:'Recuperamos áreas intervenidas mediante cierre progresivo, cierre final y seguimiento post-cierre, según el alcance de cada proyecto.',
-      tasks:['Retiro, conservación y manejo del suelo superficial; descompactación y enmiendas orgánicas','Revegetación con grass, semillas, plantones frutales y forestales, y trabajo de vivero','Riego temporal o tecnificado con sistemas HDPE y abonamiento','Instalación de cerco perimétrico para proteger el área rehabilitada','Monitoreo del prendimiento, reposición de plantas y control de maleza','Registro fotográfico e informe de hectáreas y plantas instaladas'],
-      phases:['Cierre progresivo','Cierre final','Seguimiento post-cierre'],
-      comparison:[['operacion-7.jpeg','Antes','Ladera con suelo expuesto, mantas y sacos en preparación inicial.'],['operacion-2.jpeg','Después','Ladera revegetada con cobertura vegetal establecida y riego tecnificado.']]
+      title:'Rehabilitación de áreas disturbadas y cierre de minas',icon:'⛰',image:'operacion-8.jpeg',alt:'Comparación Antes y Después de rehabilitación ambiental SGAE',
+      summary:'Recuperamos áreas intervenidas mediante cierre progresivo, cierre final y seguimiento post-cierre, devolviendo cobertura vegetal estable.',
+      tasks:['Conservación del suelo superficial, descompactación y enmiendas','Revegetación con grass, semillas y plantones nativos','Riego temporal o tecnificado con sistemas HDPE y abonamiento','Instalación de cerco perimétrico y reposición de plantas','Cierre progresivo, cierre final y registro de hectáreas'],
+      phases:[],
+      comparison:[['operacion-7.jpeg','ANTES','Ladera con suelo expuesto y preparación inicial.'],['operacion-2.jpeg','DESPUÉS','Ladera revegetada con cobertura vegetal y riego.']]
     }
   ];
   window.landingPage=()=>`<main class="landing-page"><section class="hero"><div class="hero-card"><div class="hero-content"><span class="eyebrow">Nuestra cultura preventiva</span><h1>SEGURIDAD,<br>SALUD Y MEDIO<br>AMBIENTE</h1><p>365 días aprendiendo, previniendo y cuidando nuestro entorno. Una plataforma para fortalecer la cultura preventiva en cada actividad que realizamos.</p><div class="hero-ctas"><button class="btn btn-white" data-page="about">CONOCER SGAE <b>→</b></button><button class="btn btn-outline" data-page="activities">LO QUE COBRA VIDA AQUÍ</button></div></div><div class="hero-kpis"><div class="kpi-mini"><strong>365</strong><small>días para aprender</small></div><div class="kpi-mini"><strong>3</strong><small>pilares preventivos</small></div><div class="kpi-mini"><strong>1</strong><small>equipo que se cuida</small></div></div></div></section>${window.quick?.()||''}<section class="section" style="padding-top:10px;padding-bottom:36px"><div class="section-head"><div><span class="eyebrow" style="color:var(--green)">Nuestro compromiso</span><h2>Cultura preventiva en acción</h2></div><p>Personas seguras, operaciones responsables y un entorno cuidado.</p></div><div class="pillars" style="margin-bottom:20px"><article class="pillar"><span class="pillar-symbol">⬡</span><div><h3>SEGURIDAD</h3><p>Identificamos peligros, evaluamos riesgos y aplicamos controles en nuestras tareas.</p></div></article><article class="pillar"><span class="pillar-symbol">♡</span><div><h3>SALUD</h3><p>Promovemos espacios de trabajo saludables y protegemos a nuestros colaboradores.</p></div></article><article class="pillar"><span class="pillar-symbol">♧</span><div><h3>MEDIO AMBIENTE</h3><p>Cuidamos los recursos naturales y practicamos una gestión ambiental responsable.</p></div></article></div><div class="vida-cta-bar"><div><strong>¿Listo para repasar normas, buscar hojas MSDS o participar en el reto semanal?</strong><small>Consulta charlas diarias, estándares, PETS, PAS, COLPA y residuos en ECOGUÍA AL DÍA o practica en SGAE GAME y SGAE RETO.</small></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-outline" data-open-games>Abrir SGAE GAME 🎮</button><button class="btn btn-primary" data-page="library">Abrir ECOGUÍA AL DÍA →</button></div></div></section></main>`;
   window.aboutPage=()=>`<main class="about-route"><section id="nosotros"></section></main>`;
-  window.activitiesPage=()=>`<main class="activities-page"><div class="page-bg activities-route-head"><div class="page-title-row"><div><a class="back-link" data-page="home">← Volver al inicio</a><span class="eyebrow" style="color:var(--green);margin-top:8px">Lo que cobra vida aquí</span><h1>Nuestras actividades en campo</h1><p>Servicios ambientales y labores de campo que devuelven vida al entorno con seguridad y cuidado ambiental.</p></div><button class="btn btn-primary" data-page="library">Charlas y guías en ECOGUÍA AL DÍA →</button></div></div><section class="activities" id="activities-catalog"><div class="activity-workflow" aria-label="Etapas del trabajo ambiental"><div><span>01</span><strong>Preparación</strong><small>Evaluación del terreno y organización de recursos.</small></div><div><span>02</span><strong>Implementación</strong><small>Siembra, habilitación y controles según la labor.</small></div><div><span>03</span><strong>Mantenimiento</strong><small>Riego, fertilización, poda y cuidado de las áreas.</small></div><div><span>04</span><strong>Seguimiento</strong><small>Monitoreo, reposición y registro de avances.</small></div></div><div class="activities-overview"><span class="eyebrow">Lo que cobra vida aquí</span><h2>Servicios que devuelven vida al entorno</h2><p>Experiencia que acompaña cada etapa: del establecimiento vegetal al mantenimiento y la recuperación.</p></div><div class="activity-grid">${routeActivities.map((a,i)=>`<article class="activity-card service-card"><div class="activity-photo"><img src="./assets/photos/${a.image}" alt="${a.alt}" referrerpolicy="no-referrer"><span class="service-number">0${i+1}</span></div><div class="activity-card-body"><h3><span class="about-activity-icon">${a.icon}</span>${a.title}</h3><p>${a.summary}</p>${a.comparison?`<div class="rehab-comparison" aria-label="Comparación de revegetación antes y después">${a.comparison.map(([image,label,alt])=>`<figure class="rehab-zoom-fig" data-zoom-src="./assets/photos/${image}" data-zoom-title="${label} · Rehabilitación Ambiental SGAE" data-zoom-download="${image}"><img src="./assets/photos/${image}" alt="${alt}" loading="lazy" referrerpolicy="no-referrer"><figcaption><strong>${label}</strong><span>${alt}</span></figcaption></figure>`).join('')}</div>`:''}${a.phases.length?`<div class="service-phases" aria-label="Fases de cierre">${a.phases.map(phase=>`<span>${phase}</span>`).join('')}</div>`:''}<details class="service-scope"><summary>Ver tareas que comprende</summary><ul>${a.tasks.map(task=>`<li>${task}</li>`).join('')}</ul></details><a class="text-link" data-page="library">Ver charlas y guías en ECOGUÍA AL DÍA →</a></div></article>`).join('')}</div></section></main>`;
+  window.activitiesPage=()=>`<main class="activities-page"><div class="page-bg activities-route-head"><div class="page-title-row"><div><a class="back-link" data-page="home">← Volver al inicio</a><span class="eyebrow" style="color:var(--green);margin-top:8px">Lo que cobra vida aquí</span><h1>Nuestras actividades en campo</h1><p>Servicios ambientales y labores de campo que devuelven vida al entorno con seguridad y cuidado ambiental.</p></div><button class="btn btn-primary" data-page="library">Charlas y guías en ECOGUÍA AL DÍA →</button></div></div><section class="activities" id="activities-catalog"><div class="activity-workflow" aria-label="Etapas del trabajo ambiental"><div><span>01</span><strong>Preparación</strong><small>Evaluación del terreno y organización de recursos.</small></div><div><span>02</span><strong>Implementación</strong><small>Siembra, habilitación y controles según la labor.</small></div><div><span>03</span><strong>Mantenimiento</strong><small>Riego, fertilización, poda y cuidado de las áreas.</small></div><div><span>04</span><strong>Seguimiento</strong><small>Monitoreo, reposición y registro de avances.</small></div></div><div class="activities-overview"><span class="eyebrow">Lo que cobra vida aquí</span><h2>Servicios que devuelven vida al entorno</h2><p>Experiencia que acompaña cada etapa: del establecimiento vegetal al mantenimiento y la recuperación.</p></div><div class="activity-grid">${routeActivities.map((a,i)=>`<article class="activity-card service-card"><div class="activity-photo">${a.comparison?`<div class="activity-photo-compare" aria-label="Comparación Antes y Después de rehabilitación ambiental">${a.comparison.map(([image,label,caption])=>`<div class="compare-half" data-zoom-src="./assets/photos/${image}" data-zoom-title="${label} · Rehabilitación Ambiental SGAE — ${caption}" data-zoom-download="${image}"><img src="./assets/photos/${image}" alt="${caption}" referrerpolicy="no-referrer"><span class="compare-badge ${label==='DESPUÉS'?'is-after':'is-before'}">${label}</span></div>`).join('')}</div>`:`<img src="./assets/photos/${a.image}" alt="${a.alt}" referrerpolicy="no-referrer">`}<span class="service-number">0${i+1}</span></div><div class="activity-card-body"><h3><span class="about-activity-icon">${a.icon}</span>${a.title}</h3><p>${a.summary}</p><details class="service-scope"><summary>Ver tareas que comprende</summary><ul>${a.tasks.map(task=>`<li>${task}</li>`).join('')}</ul></details><a class="text-link" data-page="library">Ver charlas y guías en ECOGUÍA AL DÍA →</a></div></article>`).join('')}</div></section></main>`;
   window.dynamicsPage=()=>`<main class="page-bg">${window.pageHead?.('Simulaciones preventivas','Practica decisiones de campo con situaciones de seguridad y cuidado ambiental.')||'<h1>Simulaciones preventivas</h1>'}<div id="simulation-root"></div></main>`;
 
   const monthNames=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
@@ -466,16 +466,231 @@
     event.preventDefault();event.stopImmediatePropagation();window.go(link.dataset.page);
   },true);
 
+  function initReforestationCanvas() {
+    if (typeof window.__sgaeReforestCleanup === 'function') {
+      window.__sgaeReforestCleanup();
+      window.__sgaeReforestCleanup = null;
+    }
+    const canvas = document.getElementById('reforestCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let width = 0, height = 0, dpr = 1, raf = 0;
+    const mouse = { x: 0.5, y: 0.5, active: false };
+
+    const trees = Array.from({ length: 22 }, (_, i) => ({
+      nx: 0.04 + (i / 21) * 0.92,
+      layer: i % 3,
+      scale: 0.72 + ((i * 37) % 10) * 0.055,
+      delay: (i * 0.14) % 2.4,
+      hue: i % 2 === 0 ? '#4cd17e' : '#96d94b',
+      foliage: i % 3 === 0 ? 'pine' : 'broad',
+      swayOffset: i * 0.7
+    }));
+
+    const seeds = Array.from({ length: 34 }, (_, i) => ({
+      x: Math.random(),
+      y: Math.random(),
+      r: 1.5 + (i % 4) * 0.9,
+      vx: 0.00018 + (i % 5) * 0.00006,
+      vy: -0.00025 - (i % 3) * 0.00009,
+      phase: i * 0.5,
+      kind: i % 4 === 0 ? 'leaf' : 'pollen'
+    }));
+
+    function resize() {
+      const rect = canvas.parentElement?.getBoundingClientRect();
+      width = Math.max(320, Math.round(rect?.width || window.innerWidth));
+      height = Math.max(460, Math.round(rect?.height || window.innerHeight));
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function drawHill(baseY, amp, freq, phase, color, terrace = false) {
+      ctx.beginPath();
+      ctx.moveTo(0, height);
+      for (let x = 0; x <= width; x += 18) {
+        const y = baseY + Math.sin(x * freq + phase) * amp + Math.cos(x * freq * 0.5 - phase * 0.5) * (amp * 0.45);
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(width, height);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+      if (terrace) {
+        ctx.strokeStyle = 'rgba(173, 233, 128, 0.14)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+    }
+
+    function drawTree(tx, ty, growth, tree, t) {
+      if (growth <= 0.02) return;
+      const sway = Math.sin(t * 1.4 + tree.swayOffset) * (3 + tree.layer * 1.5) + (mouse.active ? (mouse.x - 0.5) * 14 * (1 - tree.layer * 0.25) : 0);
+      const trunkH = (26 + tree.layer * 12) * tree.scale * growth;
+      ctx.save();
+      ctx.translate(tx, ty);
+
+      // Trunk
+      ctx.beginPath();
+      ctx.moveTo(-2.5 * tree.scale, 0);
+      ctx.quadraticCurveTo(sway * 0.35, -trunkH * 0.5, sway * 0.7, -trunkH);
+      ctx.lineWidth = Math.max(2, 4.4 * tree.scale * growth);
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = '#5e432e';
+      ctx.stroke();
+
+      // Foliage crown
+      const cx = sway * 0.75;
+      const cy = -trunkH;
+      const crownR = (18 + tree.layer * 6) * tree.scale * growth;
+
+      if (tree.foliage === 'pine') {
+        for (let tier = 0; tier < 3; tier++) {
+          const w = crownR * (1.25 - tier * 0.24);
+          const yOff = cy - tier * (crownR * 0.48);
+          ctx.beginPath();
+          ctx.moveTo(cx, yOff - crownR * 0.85);
+          ctx.lineTo(cx - w, yOff + crownR * 0.32);
+          ctx.lineTo(cx + w, yOff + crownR * 0.32);
+          ctx.closePath();
+          ctx.fillStyle = tier === 2 ? '#8ad64e' : (tier === 1 ? '#36a868' : '#1b7a4b');
+          ctx.fill();
+        }
+      } else {
+        ctx.fillStyle = tree.layer === 2 ? '#238252' : '#2ea669';
+        ctx.beginPath();
+        ctx.arc(cx, cy - crownR * 0.3, crownR * 0.82, 0, Math.PI * 2);
+        ctx.arc(cx - crownR * 0.48, cy + crownR * 0.05, crownR * 0.58, 0, Math.PI * 2);
+        ctx.arc(cx + crownR * 0.48, cy + crownR * 0.05, crownR * 0.58, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = tree.hue;
+        ctx.beginPath();
+        ctx.arc(cx - crownR * 0.12, cy - crownR * 0.48, crownR * 0.44, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    function drawFrame(now) {
+      const t = reduceMotion ? 6.0 : now * 0.001;
+      const sky = ctx.createLinearGradient(0, 0, 0, height);
+      sky.addColorStop(0, '#07241e');
+      sky.addColorStop(0.45, '#0d4133');
+      sky.addColorStop(0.85, '#155c44');
+      sky.addColorStop(1, '#0c3528');
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, width, height);
+
+      // Soft sun glow behind hills
+      const sunX = width * (0.28 + (mouse.x - 0.5) * 0.05);
+      const sunY = height * 0.25;
+      const glow = ctx.createRadialGradient(sunX, sunY, 12, sunX, sunY, width * 0.42);
+      glow.addColorStop(0, 'rgba(182, 232, 110, 0.24)');
+      glow.addColorStop(0.5, 'rgba(54, 178, 114, 0.10)');
+      glow.addColorStop(1, 'rgba(12, 53, 40, 0)');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, width, height);
+
+      // Layered terraced slopes
+      drawHill(height * 0.62, 26, 0.004, t * 0.08, '#0c3d30', false);
+      drawHill(height * 0.70, 22, 0.0055, 1.2 + t * 0.05, '#12533e', true);
+      drawHill(height * 0.79, 18, 0.0068, 2.5, '#1a6849', true);
+
+      // Foreground terraced rehabilitation contour
+      const fgGrad = ctx.createLinearGradient(0, height * 0.8, width, height);
+      fgGrad.addColorStop(0, '#4f4635');
+      fgGrad.addColorStop(0.35, '#2b613c');
+      fgGrad.addColorStop(1, '#196f49');
+      drawHill(height * 0.87, 14, 0.007, 4.1, fgGrad, true);
+
+      // Swaying grass blades across the foreground ridge
+      ctx.strokeStyle = 'rgba(155, 220, 92, 0.45)';
+      ctx.lineWidth = 1.6;
+      for (let gx = 8; gx < width; gx += 16) {
+        const gy = height * 0.87 + Math.sin(gx * 0.007 + 4.1) * 14 + Math.cos(gx * 0.0035 - 2.05) * 6.3;
+        const lean = Math.sin(t * 2.1 + gx * 0.04) * 5;
+        ctx.beginPath();
+        ctx.moveTo(gx, gy + 4);
+        ctx.quadraticCurveTo(gx + lean * 0.5, gy - 7, gx + lean, gy - 14);
+        ctx.stroke();
+      }
+
+      // Draw sprouting and mature trees
+      for (const tree of trees) {
+        const cycle = reduceMotion ? 1 : Math.min(1, Math.max(0.15, ((t * 0.52 - tree.delay * 0.25) % 8.5) / 1.4));
+        const eased = 1 - Math.pow(1 - Math.min(1, cycle), 3);
+        const tx = tree.nx * width;
+        const baseY = tree.layer === 0 ? height * 0.68 : (tree.layer === 1 ? height * 0.78 : height * 0.88);
+        const ty = baseY + Math.sin(tx * 0.006 + tree.layer) * 14;
+        drawTree(tx, ty, eased, tree, t);
+      }
+
+      // Floating seeds, mist particles and sprouting leaves
+      for (const p of seeds) {
+        if (!reduceMotion) {
+          p.x = (p.x + p.vx + Math.sin(t + p.phase) * 0.00018 + 1) % 1;
+          p.y = (p.y + p.vy + 1) % 1;
+        }
+        const px = p.x * width + (mouse.x - 0.5) * 18;
+        const py = p.y * height + (mouse.y - 0.5) * 12;
+        ctx.save();
+        ctx.translate(px, py);
+        if (p.kind === 'leaf') {
+          ctx.rotate(t * 0.9 + p.phase);
+          ctx.fillStyle = 'rgba(159, 232, 92, 0.58)';
+          ctx.beginPath();
+          ctx.ellipse(0, 0, p.r * 2.1, p.r * 0.95, 0, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.fillStyle = 'rgba(218, 250, 172, 0.36)';
+          ctx.beginPath();
+          ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      if (!reduceMotion) raf = requestAnimationFrame(drawFrame);
+    }
+
+    const onMove = ev => {
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      mouse.x = (ev.clientX - rect.left) / rect.width;
+      mouse.y = (ev.clientY - rect.top) / rect.height;
+      mouse.active = true;
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
+    canvas.parentElement?.addEventListener('pointermove', onMove);
+    raf = requestAnimationFrame(drawFrame);
+
+    window.__sgaeReforestCleanup = () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', resize);
+      canvas.parentElement?.removeEventListener('pointermove', onMove);
+    };
+  }
+
   function enhance() {
     if(document.querySelector('.hero-card'))installCarousel();
     if(document.querySelector('#simulation-root'))installSimulations();
     if(document.querySelector('#nosotros'))enrichAbout();
     if(document.querySelector('.talk-detail'))enrichTalk();
+    if(document.querySelector('#reforestCanvas'))initReforestationCanvas();
+    else if(typeof window.__sgaeReforestCleanup==='function'){window.__sgaeReforestCleanup();window.__sgaeReforestCleanup=null;}
     window.wireSgaeLightbox?.();
     window.sgaeRefreshTracker?.();
   }
   const baseRender=window.render;
   if(typeof baseRender==='function')window.render=function(...args){baseRender.apply(this,args);enhance();};
   enhance();
-  window.go('home');
+  window.go(window.getSgaeSession?.()?'home':'login');
 })();

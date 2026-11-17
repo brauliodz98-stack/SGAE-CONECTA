@@ -39,24 +39,31 @@ const KNOWN_AGROCHEMICALS = [
     activeIngredient: 'Endosulfán (Insecticida / Acaricida organoclorado)',
     chemicalGroup: 'Insecticida Organoclorado · Ciclodieno',
     toxicologicalBand: 'Roja / Altamente Peligroso (Prohibido en Perú - SENASA)',
+    hazardLevel: 'CRITICO',
+    hazardLevelLabel: 'MUY PELIGROSO / PROHIBIDO EN PERÚ',
+    pictograms: ['toxic', 'env', 'health'],
     usageDescription: 'Históricamente formulado como insecticida y acaricida de contacto e ingestión para controlar masticadores, chupadores y ácaros en cultivos agrícolas.',
-    summary: 'Sustancia tóxica persistente para personas, fauna acuática y abejas. En Perú su importación, comercialización y uso están restringidos/prohibidos por SENASA (Convenio de Estocolmo). Si encuentras un envase en almacén, NO lo apliques; inmovilízalo, rotúlalo y coordina su disposición como residuo peligroso (Cilindro Rojo).',
-    regulatoryNote: 'ALERTA SENASA PERÚ: El Endosulfán (Thiodan) está prohibido en el país como Contaminante Orgánico Persistente (COP). No debe adquirirse ni aplicarse en campo.',
+    summary: 'Sustancia tóxica persistente para personas, fauna acuática y abejas. En Perú su importación, comercialización y uso están prohibidos por SENASA (Convenio de Estocolmo y D.S. N° 001-2015-MINAGRI). Si encuentras un envase en almacén, NO lo apliques; inmovilízalo, rotúlalo y coordina su disposición como residuo peligroso (Cilindro Rojo).',
+    regulatoryNote: 'ALERTA SENASA PERÚ (D.S. N° 001-2015-MINAGRI): El Endosulfán (Thiodan) está prohibido en el Perú como Contaminante Orgánico Persistente (COP). No debe adquirirse ni aplicarse en campo.',
     ppeRequired: 'Para inventario o retiro seguro de envases antiguos: respirador doble vía con filtros para vapores orgánicos, lentes herméticos, guantes de nitrilo grueso, traje Tyvek impermeable y botas de jebe.',
     firstAid: 'Si hubo contacto o inhalación: retirar inmediatamente al aire fresco, quitar ropa contaminada, lavar piel/ojos con agua abundante por 15 minutos y trasladar con urgencia al centro médico con la etiqueta.',
-    spillControl: 'Contener sin agua usando absorbente inerte/arena sobre bandeja antiderrame. Recoger todo en bolsa roja rotulada como residuo peligroso. Nunca verter a desagües o quebradas.'
+    spillControl: 'Contener sin agua usando absorbente inerte/arena sobre bandeja antiderrame. Recoger todo en bolsa roja rotulada como residuo peligroso (NTP 900.058). Nunca verter a desagües o quebradas.'
   },
   {
     aliases: ['glifosato', 'roundup', 'ranger', 'faena', 'panzer', 'bazuka'],
     productName: 'Glifosato (Roundup / Herbicida sistémico)',
     activeIngredient: 'Glifosato sal isopropilamina / potásica (360 - 480 g/L)',
     chemicalGroup: 'Herbicida sistémico no selectivo · Fosfonometilglicina',
-    toxicologicalBand: 'Azul o Verde (Ligeramente peligroso según formulación Perú)',
+    toxicologicalBand: 'Azul o Verde (Ligeramente peligroso según registro SENASA Perú)',
+    hazardLevel: 'MODERADO',
+    hazardLevelLabel: 'PRECAUCIÓN · BANDA AZUL / VERDE',
+    pictograms: ['irritant', 'env'],
     usageDescription: 'Herbicida sistémico post-emergente no selectivo usado para el control de malezas de hoja ancha y gramíneas en habilitación de áreas verdes, caminos y mantenimiento de cercos.',
     summary: 'Se absorbe por el follaje y se trasloca a las raíces. Aplica a favor del viento con boquilla antideriva, protegiendo las especies forestales y frutales vecinas para evitar fitotoxicidad.',
+    regulatoryNote: 'Uso permitido solo con registro SENASA vigente y etiqueta autorizada en español (D.S. N° 001-2015-MINAGRI). Respetar franjas de seguridad junto a canales y cultivos sensibles.',
     ppeRequired: 'Traje impermeable completo o mandil de PVC, botas de goma, guantes de nitrilo, lentes de seguridad cerrados y respirador con filtro para neblinas/vapores orgánicos durante mezcla y aspersión.',
     firstAid: 'Ojos/Piel: lavar con abundante agua limpia durante 15 minutos. Ingestión: no inducir el vómito; acudir al centro médico mostrando la etiqueta o hoja MSDS.',
-    spillControl: 'Absorber con tierra seca, arena o kit antiderrames en bandeja de contención. Enjuagar envases vacíos mediante triple lavado y perforarlos antes de llevarlos al acopio autorizado.'
+    spillControl: 'Absorber con tierra seca, arena o kit antiderrames en bandeja de contención. Enjuagar envases vacíos mediante triple lavado y perforarlos antes de llevarlos al acopio autorizado (Cilindro Rojo).'
   },
   {
     aliases: ['cipermetrina', 'cymbush', 'sherpa', 'arrivo', 'galgotrin'],
@@ -64,11 +71,15 @@ const KNOWN_AGROCHEMICALS = [
     activeIngredient: 'Cipermetrina (200 - 250 g/L EC)',
     chemicalGroup: 'Insecticida Piretroide sintético',
     toxicologicalBand: 'Amarilla (Moderadamente peligroso)',
+    hazardLevel: 'ALTO',
+    hazardLevelLabel: 'PELIGROSO · BANDA AMARILLA (NOCIVO)',
+    pictograms: ['toxic', 'irritant', 'env'],
     usageDescription: 'Insecticida piretroide de amplio espectro que actúa por contacto e ingestión contra plagas defoliadoras, gusanos cortadores, trips y pulgones en viveros, áreas verdes y frutales.',
     summary: 'Efecto rápido de choque, muy tóxico para peces, organismos acuáticos y abejas. Evita aplicar en horas de floración o cerca de canales de riego y quebradas.',
+    regulatoryNote: 'Cumplir periodo de reingreso establecido en etiqueta SENASA y normas de protección de polinizadores en Perú.',
     ppeRequired: 'Respirador media cara con cartucho para vapores orgánicos + prefiltro P100, gafas herméticas, guantes de nitrilo, mameluco impermeable con capucha y botas de seguridad.',
     firstAid: 'Puede causar parestesia (hormigueo facial/cutáneo). Lavar la piel inmediatamente con agua y jabón suave, retirar a ambiente ventilado y consultar atención médica si persisten síntomas.',
-    spillControl: 'Evitar que llegue a canales de agua. Absorber derrame líquido con arena/vermiculita, recoger en bolsa roja de peligrosos y practicar triple lavado al envase vacío.'
+    spillControl: 'Evitar que llegue a canales de agua. Absorber derrame líquido con arena/vermiculita, recoger en bolsa roja de peligrosos (NTP 900.058) y practicar triple lavado al envase vacío.'
   },
   {
     aliases: ['mancozeb', 'dithane', 'manzate', 'mancozeb 80'],
@@ -76,10 +87,14 @@ const KNOWN_AGROCHEMICALS = [
     activeIngredient: 'Mancozeb 80% WP (Etilenbisditiocarbamato de Mn y Zn)',
     chemicalGroup: 'Fungicida Ditiocarbamato · Polvo mojable',
     toxicologicalBand: 'Verde o Azul (Cuidado al manipular polvo mojable)',
+    hazardLevel: 'MODERADO',
+    hazardLevelLabel: 'PRECAUCIÓN · RIESGO POR POLVO AL DOSIFICAR',
+    pictograms: ['irritant', 'health', 'env'],
     usageDescription: 'Fungicida agrícola de contacto con acción preventiva para proteger plantones en vivero y especies frutales contra hongos foliares como alternaria, mildiu, roya y manchas foliares.',
-    summary: 'Por presentarse como polvo mojable genera riesgo de inhalación al dosificar. Prepara la pre-mezcla en zona ventilada sin viento usando mascarilla con filtro de partículas.',
+    summary: 'Por presentarse como polvo mojable genera riesgo de inhalación y sensibilización cutánea al dosificar. Prepara la pre-mezcla en zona ventilada sin viento usando mascarilla P100.',
+    regulatoryNote: 'Uso regulado por SENASA Perú. Almacenar lejos de humedad para evitar calentamiento y descomposición en campo.',
     ppeRequired: 'Respirador contra polvo y neblinas (N95/P100 o cartucho combinado), gafas ajustadas, guantes de nitrilo, ropa manga larga impermeable y botas.',
-    firstAid: 'Inhalación: trasladar al aire fresco. Piel u ojos: irrigar con agua abundante por 15 min. Irritante leve de vías respiratorias si se respira el polvo seco.',
+    firstAid: 'Inhalación: trasladar al aire fresco. Piel u ojos: irrigar con agua abundante por 15 min. Acudir a tópico si persiste irritación respiratoria o ocular.',
     spillControl: 'No barrer en seco si levanta polvo; humedecer ligeramente o recoger con absorbente en bolsa roja rotulada. Almacenar en lugar fresco y seco, lejos de humedad.'
   },
   {
@@ -88,24 +103,31 @@ const KNOWN_AGROCHEMICALS = [
     activeIngredient: 'Clorpirifos (480 g/L EC)',
     chemicalGroup: 'Insecticida Organofosforado · Inhibidor de colinesterasa',
     toxicologicalBand: 'Amarilla / Alta restricción sanitaria en Perú (SENASA)',
+    hazardLevel: 'CRITICO',
+    hazardLevelLabel: 'ALTA PELIGROSIDAD / RESTRINGIDO EN PERÚ',
+    pictograms: ['toxic', 'health', 'env'],
     usageDescription: 'Insecticida de contacto, ingestión e inhalación empleado tradicionalmente en control de plagas de suelo y gusanos masticadores.',
-    summary: 'Inhibidor de colinesterasa que requiere control médico/vigilancia y cumplimiento estricto de las restricciones vigentes de SENASA Perú sobre plaguicidas con clorpirifos.',
-    regulatoryNote: 'ATENCIÓN SENASA PERÚ: SENASA ha dispuesto restricciones y prohibición progresiva de productos formulados con Clorpirifos. Verifica registro vigente antes de cualquier uso.',
+    summary: 'Inhibidor de colinesterasa que requiere control médico/vigilancia y cumplimiento estricto de las resoluciones vigentes de SENASA Perú sobre prohibición/restricción de clorpirifos.',
+    regulatoryNote: 'ATENCIÓN SENASA PERÚ (R.D. N° 0032-2023-MIDAGRI-SENASA-DIAIA y normativas conexas): SENASA dispuso prohibición y retiro del mercado de plaguicidas formulados con Clorpirifos. No utilizar salvo inventario en retiro controlado.',
     ppeRequired: 'Obligatorio EPP químico completo: respirador con cartucho para vapores orgánicos, lentes herméticos, mandil y guantes de nitrilo, traje impermeable y botas.',
     firstAid: 'Emergencia médica inmediata ante síntomas colinérgicos (mareo, sudoración excesiva, visión borrosa): retirar ropa contaminada, lavar piel, traslado médico urgente indicando organofosforado.',
-    spillControl: 'Contener sobre bandeja antiderrame lejos de drenajes, absorber con material inerte, disponer en cilindro rojo de residuos peligrosos y comunicar a SSOMA.'
+    spillControl: 'Contener sobre bandeja antiderrame lejos de drenajes, absorber con material inerte, disponer en cilindro rojo de residuos peligrosos (NTP 900.058) y comunicar a SSOMA.'
   },
   {
-    aliases: ['abamectina', 'vertimec', 'abamex', 'vertimec'],
+    aliases: ['abamectina', 'vertimec', 'abamex'],
     productName: 'Abamectina (Acaricida e insecticida biológico)',
     activeIngredient: 'Abamectina 18 g/L EC (Avermectina)',
     chemicalGroup: 'Acaricida-Insecticida de origen natural (Avermectina)',
     toxicologicalBand: 'Amarilla (Moderadamente peligroso)',
+    hazardLevel: 'ALTO',
+    hazardLevelLabel: 'PELIGROSO · BANDA AMARILLA (TÓXICO ABEJAS/PECES)',
+    pictograms: ['toxic', 'env'],
     usageDescription: 'Acaricida e insecticida translaminar utilizado contra arañita roja, ácaros y minadores de hojas en viveros, frutales y áreas ornamentales.',
     summary: 'Muy tóxico para abejas e invertebrados acuáticos. Aplicar al atardecer o sin vientos fuertes y respetar el periodo de reingreso al área tratada.',
+    regulatoryNote: 'Registro agrícola fiscalizado por SENASA Perú. Evitar deriva hacia cuerpos de agua o zonas de floración con abejas.',
     ppeRequired: 'Respirador con filtro orgánico, lentes sellados, guantes de nitrilo, traje protector impermeable y botas.',
-    firstAid: 'Lavar con agua abundante ojos/piel. Si se ingiere, acudir de inmediato al centro de salud con la etiqueta.',
-    spillControl: 'Absorber con tierra o kit antiderrame, almacenar en contenedor rojo de peligrosos y aplicar triple lavado al frasco.'
+    firstAid: 'Lavar con agua abundante ojos/piel por 15 min. Si se ingiere o inhala neblina, acudir de inmediato al centro de salud con la etiqueta.',
+    spillControl: 'Absorber con tierra seca o kit antiderrame, almacenar en cilindro rojo de peligrosos y aplicar triple lavado al frasco.'
   },
   {
     aliases: ['imidacloprid', 'confidor', 'gaucho', 'imida'],
@@ -113,8 +135,12 @@ const KNOWN_AGROCHEMICALS = [
     activeIngredient: 'Imidacloprid 350 g/L SC / 70% WP',
     chemicalGroup: 'Insecticida Neonicotinoide sistémico',
     toxicologicalBand: 'Azul (Moderadamente / Ligeramente peligroso)',
+    hazardLevel: 'MODERADO',
+    hazardLevelLabel: 'PRECAUCIÓN · BANDA AZUL (CUIDAR POLINIZADORES)',
+    pictograms: ['irritant', 'env'],
     usageDescription: 'Insecticida sistémico usado para controlar mosca blanca, pulgones, cochinillas y cigarritas en plantones frutales, forestales y vivero.',
     summary: 'Riesgo elevado para polinizadores (abejas). Prohibido aplicarlo sobre flores abiertas o en horarios de pecoreo.',
+    regulatoryNote: 'Cumplir recomendaciones SENASA de protección apícola e intervalos de aplicación en campo.',
     ppeRequired: 'Guantes de nitrilo, gafas de seguridad, traje de aplicación impermeable, botas y respirador para neblinas/vapores.',
     firstAid: 'En caso de contacto dérmico u ocular, enjuagar 15 min con agua limpia. Retirar a zona fresca.',
     spillControl: 'Recoger derrame con material absorbente en bolsa roja. Triple lavado obligatorio de envases antes de entregarlos al acopio.'
@@ -134,6 +160,146 @@ function findKnownAgrochemical(term) {
   return KNOWN_AGROCHEMICALS.find(item =>
     item.aliases.some(alias => norm.includes(normalizeText(alias)))
   ) || null;
+}
+
+function inferHazardFromBand(band = '', regNote = '') {
+  const full = `${band} ${regNote}`.toLowerCase();
+  if (/prohib|restring|extrem|rojo|roja/.test(full)) {
+    return {
+      hazardLevel: 'CRITICO',
+      hazardLevelLabel: /prohib/.test(full) ? 'MUY PELIGROSO / PROHIBIDO EN PERÚ' : 'MUY PELIGROSO · BANDA ROJA SENASA',
+      pictograms: ['toxic', 'health', 'env']
+    };
+  }
+  if (/amarill|moderad/.test(full)) {
+    return {
+      hazardLevel: 'ALTO',
+      hazardLevelLabel: 'PELIGROSO · BANDA AMARILLA SENASA',
+      pictograms: ['toxic', 'irritant', 'env']
+    };
+  }
+  if (/azul|liger/.test(full)) {
+    return {
+      hazardLevel: 'MODERADO',
+      hazardLevelLabel: 'PRECAUCIÓN · BANDA AZUL SENASA',
+      pictograms: ['irritant', 'env']
+    };
+  }
+  if (/verd|precau|normal/.test(full)) {
+    return {
+      hazardLevel: 'BAJO',
+      hazardLevelLabel: 'PRECAUCIÓN ESTÁNDAR · BANDA VERDE SENASA',
+      pictograms: ['irritant']
+    };
+  }
+  return {
+    hazardLevel: 'MODERADO',
+    hazardLevelLabel: 'VERIFICAR ETIQUETA Y BANDA SENASA PERÚ',
+    pictograms: ['irritant', 'env']
+  };
+}
+
+function buildPeru16Sections(base) {
+  const {
+    productName,
+    activeIngredient,
+    chemicalGroup,
+    toxicologicalBand,
+    hazardLevelLabel,
+    usageDescription,
+    regulatoryNote,
+    summary,
+    ppeRequired,
+    firstAid,
+    spillControl,
+    physicalProps,
+    stabilityInfo,
+    toxicologyInfo,
+    ecotoxInfo
+  } = base;
+
+  return [
+    {
+      n: 1,
+      title: '1. Identificación del producto y de la empresa (Perú)',
+      body: `Nombre comercial: ${productName}. Categoría / Grupo químico: ${chemicalGroup}. Uso previsto en operaciones SGAE bajo registro fitosanitario SENASA Perú (D.S. N° 001-2015-MINAGRI). Verificar fabricante/titular del registro en la etiqueta del envase.`
+    },
+    {
+      n: 2,
+      title: '2. Identificación de los peligros (SGA y Banda SENASA Perú)',
+      body: `Nivel de peligrosidad: ${hazardLevelLabel}. Banda toxicológica Perú: ${toxicologicalBand}. ${regulatoryNote || summary}`
+    },
+    {
+      n: 3,
+      title: '3. Composición / Información sobre los componentes',
+      body: `Ingrediente activo declarado: ${activeIngredient}. Los coadyuvantes e inertes forman parte de la formulación comercial aprobada por SENASA.`
+    },
+    {
+      n: 4,
+      title: '4. Primeros auxilios',
+      body: firstAid
+    },
+    {
+      n: 5,
+      title: '5. Medidas de lucha contra incendios',
+      body: 'Medios de extinción recomendados: Polvo Químico Seco (PQS ABC), CO2 o espuma química. Evitar chorro directo de agua para no dispersar contaminantes hacia acequias o drenajes. Usar equipo de protección respiratoria y ubicarse a favor del viento (NTP 350.043 / SST_EST_019).'
+    },
+    {
+      n: 6,
+      title: '6. Medidas en caso de vertido accidental',
+      body: spillControl
+    },
+    {
+      n: 7,
+      title: '7. Manipulación y almacenamiento',
+      body: 'Leer la etiqueta y esta FDS antes de abrir el envase. Dosificar únicamente sobre bandeja antiderrame, aplicar a favor del viento y no comer, beber ni fumar durante la labor. Almacenar bajo llave en ambiente seco, ventilado y rotulado conforme al RIMA y D.S. N° 024-2016-EM.'
+    },
+    {
+      n: 8,
+      title: '8. Controles de exposición / Protección personal (EPP Perú)',
+      body: `${ppeRequired} Estándar de referencia nacional: Ley N° 29783, D.S. N° 015-2006-SA (Límites Permisibles en Perú) y SIG_SST_EST_008.`
+    },
+    {
+      n: 9,
+      title: '9. Propiedades físicas y químicas',
+      body: physicalProps || `Formulación: ${chemicalGroup}. Estado físico, color, olor, densidad, pH y solubilidad en agua conforme a las especificaciones del fabricante autorizado en Perú.`
+    },
+    {
+      n: 10,
+      title: '10. Estabilidad y reactividad',
+      body: stabilityInfo || 'Estable en condiciones normales de almacenamiento en su envase original cerrado. Evitar humedad excesiva, luz solar directa, llamas abiertas y mezcla con oxidantes fuertes o productos incompatibles.'
+    },
+    {
+      n: 11,
+      title: '11. Información toxicológica',
+      body: toxicologyInfo || `Clasificación toxicológica nacional: ${toxicologicalBand}. Vías de exposición posibles: dérmica, ocular, inhalatoria e ingestión accidental. ${summary}`
+    },
+    {
+      n: 12,
+      title: '12. Información ecotoxicológica',
+      body: ecotoxInfo || `${usageDescription} Riesgo potencial para organismos acuáticos, suelo e insectos polinizadores si se aplica sin control de deriva o cerca de fuentes de agua.`
+    },
+    {
+      n: 13,
+      title: '13. Información relativa a la eliminación de los productos (NTP 900.058)',
+      body: 'Aplicar Triple Lavado (3 enjuagues vertidos al tanque de mezcla) e inutilizar/perforar los envases vacíos sin dañar la etiqueta. Segregar en Cilindro ROJO de Residuos Peligrosos (NTP 900.058, D.L. N° 1278 y RIMA SGAE) para entrega a EO-RS autorizada por MINAM.'
+    },
+    {
+      n: 14,
+      title: '14. Información relativa al transporte (Normativa Perú - MTC)',
+      body: 'Transportar en vehículo autorizado, envase sellado y asegurado verticalmente, separado de alimentos, semillas o personal. Portar Hoja MSDS y kit antiderrames en cumplimiento del D.S. N° 021-2008-MTC (Reglamento Nacional de Transporte Terrestre de Materiales y Residuos Peligrosos).'
+    },
+    {
+      n: 15,
+      title: '15. Información sobre reglamentación vigente en Perú',
+      body: `Normas nacionales aplicables: D.S. N° 001-2015-MINAGRI (Reglamento del Sistema Nacional de Plaguicidas de Uso Agrícola - SENASA), Ley N° 29783 (SST), D.S. N° 024-2016-EM y D.S. N° 023-2017-EM (Minería), D.L. N° 1278 (Residuos), D.S. N° 021-2008-MTC, NTP 900.058, NTP 399.010-1 y RIMA/RISSO SGAE. ${regulatoryNote || ''}`.trim()
+    },
+    {
+      n: 16,
+      title: '16. Otras informaciones y emergencias en Perú',
+      body: 'Ante intoxicación o derrame activar Método P-A-S (Proteger, Alertar, Socorrer) con la Cartilla de Emergencia de la Unidad Minera (Santa María, Paraíso, Vijus o Hualanga). Líneas nacionales en Perú: SAMU 106 · Bomberos 116 · CISPROQUIM Perú 080-050-847 · Centro Toxicológico CETOX (01) 273-2318.'
+    }
+  ];
 }
 
 function extractPdfAsciiSnippet(buffer) {
@@ -263,7 +429,7 @@ export async function searchMsds({ rootDir, query = '', imageBase64 = '', imageM
         'Analiza esta fotografía de un producto químico / pesticida / fertilizante y extrae con precisión lo que se lee en la etiqueta.',
         cleanQuery ? `El usuario también escribió esta referencia: "${cleanQuery}".` : '',
         'Responde ÚNICAMENTE con un objeto JSON válido con estas claves:',
-        '{"productName":"nombre comercial exacto visible","activeIngredient":"ingrediente activo y concentración si se ve","manufacturer":"marca o empresa formuladora","toxicBand":"banda toxicológica (Roja, Amarilla, Azul, Verde o No visible)","searchQuery":"término corto ideal para buscar su hoja FDS/MSDS en PDF en Perú"}'
+        '{"productName":"nombre comercial exacto visible","activeIngredient":"ingrediente activo y concentración si se ve","manufacturer":"marca o empresa formuladora en Perú","toxicBand":"banda toxicológica SENASA (Roja, Amarilla, Azul, Verde o No visible)","searchQuery":"término corto ideal para buscar su hoja FDS/MSDS en PDF en Perú"}'
       ].filter(Boolean).join('\n');
 
       const visionResponse = await ai.models.generateContent({
@@ -296,21 +462,29 @@ export async function searchMsds({ rootDir, query = '', imageBase64 = '', imageM
   if (ai && effectiveSearchTerm) {
     try {
       const searchPrompt = [
-        `Busca la Hoja de Datos de Seguridad en PDF (MSDS / FDS en español) para el insumo químico o pesticida: "${effectiveSearchTerm}".`,
-        'Prioriza archivos PDF directos (.pdf) de páginas oficiales y verificadas del Perú: SENASA Perú (senasa.gob.pe / gob.pe/senasa), MIDAGRI, DIGESA y fichas técnicas o FDS PDF de fabricantes autorizados en Perú (Bayer Perú, Syngenta Perú, BASF Perú, Farmex, Silvestre Perú, Aris Industrial, Farmagro, TQC, Corteva Perú, FMC, Hortus).',
+        `Busca la Hoja de Datos de Seguridad en PDF (MSDS / FDS en español, 16 secciones) para el insumo químico o pesticida: "${effectiveSearchTerm}".`,
+        'IMPORTANTE - LIMITACIÓN ESTRICTA A NORMATIVA DEL PERÚ:',
+        '- Limítate exclusivamente a normativa nacional peruana: SENASA Perú (D.S. N° 001-2015-MINAGRI), Ley N° 29783, D.S. N° 024-2016-EM / 023-2017-EM, D.S. N° 015-2006-SA, D.S. N° 021-2008-MTC, D.L. N° 1278 y NTP 900.058. NO incluyas normas extranjeras (no OSHA, EPA, UE ni leyes de otros países).',
+        '- Prioriza archivos PDF directos (.pdf) de páginas oficiales y verificadas del Perú (senasa.gob.pe, midagri.gob.pe, digesa, Silvestre Perú, Farmex, Bayer Perú, Syngenta Perú, BASF Perú, Aris, TQC, Hortus, Farmagro).',
         'Devuelve al final un bloque ```json con estas claves exactas:',
         '{',
         '  "productName": "nombre comercial identificado",',
         '  "activeIngredient": "ingrediente activo / concentración",',
-        '  "chemicalGroup": "categoría o grupo químico (ej. Herbicida, Insecticida, Fungicida)",',
-        '  "toxicologicalBand": "categoría y color de banda toxicológica (Roja, Amarilla, Azul o Verde)",',
+        '  "chemicalGroup": "categoría o grupo químico",',
+        '  "toxicologicalBand": "categoría y color de banda toxicológica SENASA Perú (Roja, Amarilla, Azul o Verde)",',
+        '  "hazardLevel": "CRITICO | ALTO | MODERADO | BAJO",',
+        '  "hazardLevelLabel": "etiqueta visual corta del peligro para el trabajador en campo",',
         '  "officialSourceFound": true/false,',
-        '  "usageDescription": "descripción breve y clara de qué es este insumo y en qué labor o plaga agrícola se usa",',
-        '  "regulatoryNote": "si tiene restricción o prohibición de SENASA Perú indícalo; si no, cadena vacía",',
+        '  "usageDescription": "descripción breve y clara de qué es este insumo y en qué labor o plaga se usa",',
+        '  "regulatoryNote": "si tiene prohibición o restricción vigente de SENASA Perú indícalo; si está permitido indícalo brevemente",',
         '  "summary": "resumen práctico SSOMA en 1-2 frases para el trabajador",',
-        '  "ppeRequired": "EPP obligatorio para dosificación y aplicación",',
-        '  "firstAid": "primeros auxilios inmediatos si hay contacto o inhalación",',
-        '  "spillControl": "qué hacer ante un derrame o envase roto y triple lavado"',
+        '  "ppeRequired": "EPP obligatorio en Perú",',
+        '  "firstAid": "primeros auxilios inmediatos",',
+        '  "spillControl": "qué hacer ante un derrame, triple lavado y cilindro rojo NTP 900.058",',
+        '  "physicalProps": "propiedades físicas y químicas resumidas (Sección 9)",',
+        '  "stabilityInfo": "estabilidad y reactividad (Sección 10)",',
+        '  "toxicologyInfo": "información toxicológica clave (Sección 11)",',
+        '  "ecotoxInfo": "información ecotoxicológica para abejas, peces y suelo (Sección 12)"',
         '}'
       ].join('\n');
 
@@ -324,15 +498,15 @@ export async function searchMsds({ rootDir, query = '', imageBase64 = '', imageM
 
       onlineSummary = tryExtractJson(searchResponse.text) || {
         productName: detectedFromPhoto?.productName || cleanQuery || effectiveSearchTerm,
-        activeIngredient: detectedFromPhoto?.activeIngredient || 'Ver etiqueta / ficha técnica del producto',
+        activeIngredient: detectedFromPhoto?.activeIngredient || 'Ver etiqueta / ficha técnica SENASA del producto',
         chemicalGroup: 'Insumo fitosanitario / agrícola',
-        toxicologicalBand: detectedFromPhoto?.toxicBand || 'Confirmar en etiqueta del envase',
+        toxicologicalBand: detectedFromPhoto?.toxicBand || 'Confirmar banda SENASA en etiqueta del envase',
         officialSourceFound: false,
         usageDescription: (searchResponse.text || '').replace(/```[\s\S]*?```/g, '').trim().slice(0, 320),
         summary: (searchResponse.text || '').replace(/```[\s\S]*?```/g, '').trim().slice(0, 360),
         ppeRequired: 'Respirador con cartucho para vapores orgánicos, lentes herméticos, guantes de nitrilo, traje impermeable y botas.',
         firstAid: 'Retirar a zona ventilada, lavar piel/ojos con abundante agua 15 min y acudir al centro médico con la etiqueta.',
-        spillControl: 'Contener con kit antiderrames/material absorbente lejos de drenajes, recoger en bolsa roja y aplicar triple lavado al envase.'
+        spillControl: 'Contener con kit antiderrames/material absorbente lejos de drenajes, recoger en bolsa roja (NTP 900.058) y aplicar triple lavado al envase.'
       };
 
       const chunks = searchResponse.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
@@ -341,15 +515,14 @@ export async function searchMsds({ rootDir, query = '', imageBase64 = '', imageM
         .map(c => c?.web)
         .filter(w => w?.uri && !seenUris.has(w.uri) && seenUris.add(w.uri))
         .map(w => ({
-          title: w.title || 'Documento / Fuente oficial',
+          title: w.title || 'Hoja MSDS Oficial en PDF',
           uri: w.uri,
           isPdf: /\.pdf($|\?)/i.test(w.uri),
           relevance: scorePeruvianOfficialLink(w.uri, w.title)
         }))
         .sort((a, b) => b.relevance - a.relevance)
-        .slice(0, 6);
+        .slice(0, 8);
 
-      // Verify top candidate links asynchronously to detect real direct PDF downloads
       officialLinks = await Promise.all(rawLinks.map(async link => {
         const directPdf = link.isPdf || (link.relevance >= 5 ? await verifyDirectPdfUrl(link.uri) : false);
         return { ...link, isPdf: directPdf };
@@ -357,40 +530,23 @@ export async function searchMsds({ rootDir, query = '', imageBase64 = '', imageM
     } catch (err) {
       const msg = String(err?.message || '');
       if (msg.includes('429') || msg.includes('RESOURCE_EXHAUSTED')) {
-        aiNotice = aiNotice || 'Búsqueda web con cuota temporal llena; se entrega ficha técnica verificada y PDF descargable.';
-      } else if (msg.includes('403') || msg.includes('400') || msg.includes('API_KEY_INVALID') || msg.includes('PERMISSION_DENIED')) {
-        aiNotice = aiNotice || 'Consulta web en vivo no autorizada; se entrega descripción del insumo y PDF descargable.';
+        aiNotice = aiNotice || 'Consulta web temporalmente ocupada; mostrando Hoja MSDS completa de 16 ítems (Perú) y respaldo local.';
       } else {
-        aiNotice = aiNotice || 'Consulta web en vivo no disponible temporalmente; usando base técnica y carpeta local MSDS.';
+        aiNotice = aiNotice || 'Generando Hoja MSDS de 16 ítems conforme a normativa peruana y buscando respaldo en carpeta local MSDS.';
       }
     }
   } else if (!ai) {
-    aiNotice = 'Mostrando ficha técnica de seguridad descargable en PDF y respaldo de carpeta local MSDS.';
+    aiNotice = 'Mostrando Hoja MSDS completa de 16 ítems (normativa Perú) y respaldo de carpeta local MSDS.';
   }
 
   const known = findKnownAgrochemical(effectiveSearchTerm || cleanQuery);
 
-  const verifiedPeruvianLinks = officialLinks.filter(l => l.relevance >= 5);
-  const directPdfLinks = (verifiedPeruvianLinks.length ? verifiedPeruvianLinks : officialLinks).filter(l => l.isPdf);
-  const foundOfficialOnline = verifiedPeruvianLinks.length > 0 || (officialLinks.length > 0 && onlineSummary?.officialSourceFound === true);
-
-  const fallbackQueryTerm = effectiveSearchTerm || cleanQuery;
-  const fallbackOfficialPortalLinks = (!foundOfficialOnline && fallbackQueryTerm)
-    ? [
-        {
-          title: `Buscar PDF oficial FDS/MSDS de "${fallbackQueryTerm}" en Perú (.gob.pe / fabricantes)`,
-          uri: `https://www.google.com/search?q=${encodeURIComponent(`"${fallbackQueryTerm}" ("FDS" OR "MSDS" OR "Hoja de seguridad") (site:gob.pe OR site:senasa.gob.pe OR Peru) filetype:pdf`)}`,
-          isPdf: false,
-          relevance: 6
-        },
-        {
-          title: `Consultar registro de "${fallbackQueryTerm}" en Portal Oficial SENASA Perú (gob.pe)`,
-          uri: `https://www.gob.pe/busquedas?institucion%5B%5D=senasa&term=${encodeURIComponent(fallbackQueryTerm)}`,
-          isPdf: false,
-          relevance: 8
-        }
-      ]
-    : [];
+  // Only keep verified direct PDF links (never send field workers to generic Google search pages)
+  const verifiedPeruvianPdfs = officialLinks.filter(l => l.isPdf && l.relevance >= 4);
+  const directPdfLinks = verifiedPeruvianPdfs.length
+    ? verifiedPeruvianPdfs
+    : officialLinks.filter(l => l.isPdf);
+  const foundOfficialOnline = directPdfLinks.length > 0;
 
   const searchTermsForLocal = [
     cleanQuery,
@@ -405,15 +561,38 @@ export async function searchMsds({ rootDir, query = '', imageBase64 = '', imageM
   const localResult = await searchLocalMsds(rootDir, manifest, searchTermsForLocal);
 
   const resolvedProduct = onlineSummary?.productName || detectedFromPhoto?.productName || known?.productName || cleanQuery || 'Insumo consultado';
-  const resolvedIngredient = onlineSummary?.activeIngredient || detectedFromPhoto?.activeIngredient || known?.activeIngredient || 'Confirmar ingrediente activo en la etiqueta del envase';
+  const resolvedIngredient = onlineSummary?.activeIngredient || detectedFromPhoto?.activeIngredient || known?.activeIngredient || 'Confirmar ingrediente activo en la etiqueta SENASA del envase';
   const resolvedGroup = onlineSummary?.chemicalGroup || known?.chemicalGroup || 'Producto químico / Fitosanitario de uso en campo';
   const resolvedBand = onlineSummary?.toxicologicalBand || detectedFromPhoto?.toxicBand || known?.toxicologicalBand || 'Verificar banda toxicológica en etiqueta (Roja/Amarilla/Azul/Verde)';
   const resolvedUsage = onlineSummary?.usageDescription || known?.usageDescription || `Producto fitosanitario o insumo agrícola consultado para tareas de fumigación, control de plagas o mantenimiento vegetal (${resolvedProduct}).`;
-  const resolvedSummary = onlineSummary?.summary || known?.summary || 'Antes de dosificar o aplicar en campo, verifica la etiqueta autorizada, dosis permitida y dirección del viento sobre bandeja antiderrame.';
+  const resolvedSummary = onlineSummary?.summary || known?.summary || 'Antes de dosificar o aplicar en campo, verifica la etiqueta autorizada por SENASA, dosis permitida y dirección del viento sobre bandeja antiderrame.';
   const resolvedPpe = onlineSummary?.ppeRequired || known?.ppeRequired || 'Respirador con cartucho para vapores orgánicos, lentes herméticos, guantes de nitrilo, traje impermeable y botas de jebe.';
   const resolvedFirstAid = onlineSummary?.firstAid || known?.firstAid || 'Retirar a lugar ventilado, lavar piel y ojos con abundante agua durante 15 minutos y trasladar al centro de salud con la etiqueta del envase.';
-  const resolvedSpill = onlineSummary?.spillControl || known?.spillControl || 'Contener sobre bandeja antiderrame con material absorbente, disponer en cilindro rojo y aplicar triple lavado al envase vacío antes de perforarlo.';
-  const resolvedRegNote = onlineSummary?.regulatoryNote || known?.regulatoryNote || '';
+  const resolvedSpill = onlineSummary?.spillControl || known?.spillControl || 'Contener sobre bandeja antiderrame con material absorbente, disponer en cilindro rojo (NTP 900.058) y aplicar triple lavado al envase vacío antes de perforarlo.';
+  const resolvedRegNote = onlineSummary?.regulatoryNote || known?.regulatoryNote || 'Uso sujeto a registro SENASA vigente en Perú (D.S. N° 001-2015-MINAGRI) y controles del RIMA SGAE.';
+
+  const inferredHazard = inferHazardFromBand(resolvedBand, resolvedRegNote);
+  const hazardLevel = onlineSummary?.hazardLevel || known?.hazardLevel || inferredHazard.hazardLevel;
+  const hazardLevelLabel = onlineSummary?.hazardLevelLabel || known?.hazardLevelLabel || inferredHazard.hazardLevelLabel;
+  const pictograms = known?.pictograms || inferredHazard.pictograms;
+
+  const sections16 = buildPeru16Sections({
+    productName: resolvedProduct,
+    activeIngredient: resolvedIngredient,
+    chemicalGroup: resolvedGroup,
+    toxicologicalBand: resolvedBand,
+    hazardLevelLabel,
+    usageDescription: resolvedUsage,
+    regulatoryNote: resolvedRegNote,
+    summary: resolvedSummary,
+    ppeRequired: resolvedPpe,
+    firstAid: resolvedFirstAid,
+    spillControl: resolvedSpill,
+    physicalProps: onlineSummary?.physicalProps,
+    stabilityInfo: onlineSummary?.stabilityInfo,
+    toxicologyInfo: onlineSummary?.toxicologyInfo,
+    ecotoxInfo: onlineSummary?.ecotoxInfo
+  });
 
   return {
     query: cleanQuery,
@@ -422,16 +601,18 @@ export async function searchMsds({ rootDir, query = '', imageBase64 = '', imageM
     activeIngredient: resolvedIngredient,
     chemicalGroup: resolvedGroup,
     toxicologicalBand: resolvedBand,
+    hazardLevel,
+    hazardLevelLabel,
+    pictograms,
     usageDescription: resolvedUsage,
     regulatoryNote: resolvedRegNote,
     summary: resolvedSummary,
     ppeRequired: resolvedPpe,
     firstAid: resolvedFirstAid,
     spillControl: resolvedSpill,
+    sections16,
     directPdfLinks,
-    officialLinks: foundOfficialOnline
-      ? (verifiedPeruvianLinks.length ? verifiedPeruvianLinks : officialLinks)
-      : fallbackOfficialPortalLinks,
+    officialLinks: directPdfLinks,
     foundOfficialOnline,
     usedFallbackToLocal: !foundOfficialOnline,
     canGeneratePdfSummary: true,

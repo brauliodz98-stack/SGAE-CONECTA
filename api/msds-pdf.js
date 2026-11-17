@@ -11,11 +11,14 @@ function sanitizeFilename(name) {
 
 export default async function handler(req, res) {
   try {
+    const reqUrl = new URL(req.url, 'http://localhost');
+    const dispParam = reqUrl.searchParams.get('disposition') || '';
+
     if (req.method === 'GET') {
-      const reqUrl = new URL(req.url, 'http://localhost');
       const mode = reqUrl.searchParams.get('mode') || '';
       const targetUrl = reqUrl.searchParams.get('url') || '';
       const name = sanitizeFilename(reqUrl.searchParams.get('name') || 'MSDS_Oficial');
+      const disp = dispParam === 'inline' ? 'inline' : 'attachment';
 
       if (mode === 'proxy' && /^https?:\/\//i.test(targetUrl)) {
         const controller = new AbortController();
@@ -28,7 +31,7 @@ export default async function handler(req, res) {
           const buf = Buffer.from(arrBuf);
           res.statusCode = 200;
           res.setHeader('Content-Type', 'application/pdf');
-          res.setHeader('Content-Disposition', `attachment; filename="${name}.pdf"`);
+          res.setHeader('Content-Disposition', `${disp}; filename="${name}.pdf"`);
           res.end(buf);
           return;
         }
@@ -42,6 +45,7 @@ export default async function handler(req, res) {
         productName: reqUrl.searchParams.get('productName') || 'Producto Químico',
         activeIngredient: reqUrl.searchParams.get('activeIngredient') || '',
         toxicologicalBand: reqUrl.searchParams.get('toxicologicalBand') || '',
+        hazardLevelLabel: reqUrl.searchParams.get('hazardLevelLabel') || '',
         usageDescription: reqUrl.searchParams.get('usageDescription') || '',
         summary: reqUrl.searchParams.get('summary') || '',
         ppeRequired: reqUrl.searchParams.get('ppeRequired') || '',
@@ -51,7 +55,7 @@ export default async function handler(req, res) {
       });
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `attachment; filename="MSDS_${name}.pdf"`);
+      res.setHeader('Content-Disposition', `${disp}; filename="MSDS_${name}.pdf"`);
       res.end(fallbackPdf);
       return;
     }
@@ -65,11 +69,12 @@ export default async function handler(req, res) {
         for await (const chunk of req) chunks.push(chunk);
         body = JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}');
       }
+      const disp = (dispParam === 'inline' || body?.disposition === 'inline') ? 'inline' : 'attachment';
       const filename = sanitizeFilename(body?.productName || 'Ficha_MSDS');
       const pdfBuf = buildMsdsSummaryPdf(body || {});
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `attachment; filename="MSDS_${filename}.pdf"`);
+      res.setHeader('Content-Disposition', `${disp}; filename="MSDS_${filename}.pdf"`);
       res.end(pdfBuf);
       return;
     }
