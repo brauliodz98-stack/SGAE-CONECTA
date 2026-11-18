@@ -280,7 +280,7 @@
     const talkData=detail.querySelector('.talk-data');
     if(talkData&&!detail.querySelector('.didactic-poster')){
       const poster=document.createElement('section');poster.className='didactic-poster';
-      poster.innerHTML=`<header class="poster-ribbon"><span class="poster-brand"><img src="./assets/logo-sgae.png" alt="Logo SGAE">${talk.isMotivational?'CHARLA MOTIVACIONAL':'FICHA VISUAL · CONECTA SGAE'}</span><span>DÍA ${String(talk.day||'').padStart(3,'0')} / 365 · ${talk.duration||5} MIN</span></header><div class="poster-message"><span class="poster-kicker">IDEA CLAVE</span><h4>${lesson.headline}</h4><p>${lesson.scenario}</p></div><div class="poster-steps">${lesson.steps.map((step,i)=>`<article class="poster-step"><span class="poster-number">0${i+1}</span><strong>${['OBSERVA','DECIDE','ACTÚA'][i]}</strong><p>${step}</p></article>`).join('')}</div><div class="poster-hazards"><span>${talk.isMotivational?'PARA CONVERSAR':'OJO CON'}</span>${lesson.hazards.map(x=>`<i>${x}</i>`).join('')}</div><footer class="poster-footer">SER SEGUROS Y PRODUCTIVOS, ES NUESTRA RESPONSABILIDAD</footer>`;
+      poster.innerHTML=`<header class="poster-ribbon"><span class="poster-brand">${window.sgaeDropletSvg?.()||''}${talk.isMotivational?'CHARLA MOTIVACIONAL':'FICHA VISUAL · CONECTA SGAE'}</span><span>DÍA ${String(talk.day||'').padStart(3,'0')} / 365 · ${talk.duration||5} MIN</span></header><div class="poster-message"><span class="poster-kicker">IDEA CLAVE</span><h4>${lesson.headline}</h4><p>${lesson.scenario}</p></div><div class="poster-steps">${lesson.steps.map((step,i)=>`<article class="poster-step"><span class="poster-number">0${i+1}</span><strong>${['OBSERVA','DECIDE','ACTÚA'][i]}</strong><p>${step}</p></article>`).join('')}</div><div class="poster-hazards"><span>${talk.isMotivational?'PARA CONVERSAR':'OJO CON'}</span>${lesson.hazards.map(x=>`<i>${x}</i>`).join('')}</div><footer class="poster-footer">SER SEGUROS Y PRODUCTIVOS, ES NUESTRA RESPONSABILIDAD</footer>`;
       const fullBody=detail.querySelector('.talk-body-full');
       if(fullBody)fullBody.insertAdjacentElement('afterbegin',poster);
       else talkData.insertAdjacentElement('afterend',poster);
@@ -357,7 +357,7 @@
       comparison:[['operacion-7.jpeg','ANTES','Ladera con suelo expuesto y preparación inicial.'],['operacion-2.jpeg','DESPUÉS','Ladera revegetada con cobertura vegetal y riego.']]
     }
   ];
-  window.landingPage=()=>`<main class="landing-page"><section class="hero"><div class="hero-card"><div class="hero-content"><span class="eyebrow">Nuestra cultura preventiva</span><h1>SEGURIDAD,<br>SALUD Y MEDIO<br>AMBIENTE</h1><p>365 días aprendiendo, previniendo y cuidando nuestro entorno. Una plataforma para fortalecer la cultura preventiva en cada actividad que realizamos.</p><div class="hero-ctas"><button class="btn btn-white" data-page="about">CONOCER SGAE <b>→</b></button><button class="btn btn-outline" data-page="activities">LO QUE COBRA VIDA AQUÍ</button></div></div><div class="hero-kpis"><div class="kpi-mini"><strong>365</strong><small>días para aprender</small></div><div class="kpi-mini"><strong>3</strong><small>pilares preventivos</small></div><div class="kpi-mini"><strong>1</strong><small>equipo que se cuida</small></div></div></div></section>${window.quick?.()||''}<section class="section" style="padding-top:10px;padding-bottom:36px"><div class="section-head"><div><span class="eyebrow" style="color:var(--green)">Nuestro compromiso</span><h2>Cultura preventiva en acción</h2></div><p>Personas seguras, operaciones responsables y un entorno cuidado.</p></div><div class="pillars" style="margin-bottom:20px"><article class="pillar"><span class="pillar-symbol">⬡</span><div><h3>SEGURIDAD</h3><p>Identificamos peligros, evaluamos riesgos y aplicamos controles en nuestras tareas.</p></div></article><article class="pillar"><span class="pillar-symbol">♡</span><div><h3>SALUD</h3><p>Promovemos espacios de trabajo saludables y protegemos a nuestros colaboradores.</p></div></article><article class="pillar"><span class="pillar-symbol">♧</span><div><h3>MEDIO AMBIENTE</h3><p>Cuidamos los recursos naturales y practicamos una gestión ambiental responsable.</p></div></article></div><div class="vida-cta-bar"><div><strong>¿Listo para repasar normas, buscar hojas MSDS o participar en el reto semanal?</strong><small>Consulta charlas diarias, estándares, PETS, PAS, COLPA y residuos en ECOGUÍA AL DÍA o practica en SGAE GAME y SGAE RETO.</small></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-outline" data-open-games>Abrir SGAE GAME 🎮</button><button class="btn btn-primary" data-page="library">Abrir ECOGUÍA AL DÍA →</button></div></div></section></main>`;
+  window.landingPage=()=>`<main class="landing-page"><section class="hero"><div class="hero-card"><div class="hero-content"><span class="eyebrow">Nuestra cultura preventiva</span><h1>SEGURIDAD,<br>SALUD Y MEDIO<br>AMBIENTE</h1><p>Aprendiendo, previniendo y cuidando nuestro entorno en cada jornada. Plataforma operativa de Servicios de Gestión Ambiental Eizaguirre S.A.C.</p><div class="hero-ctas"><button class="btn btn-white" data-page="about">CONOCER SGAE <b>→</b></button><button class="btn btn-outline" data-page="activities">LO QUE COBRA VIDA AQUÍ</button></div></div><div class="hero-kpis"><div class="kpi-mini"><strong>365</strong><small>días para aprender</small></div><div class="kpi-mini"><strong>3</strong><small>pilares preventivos</small></div><div class="kpi-mini"><strong>1</strong><small>equipo que se cuida</small></div></div></div></section>${window.quick?.()||''}<section class="section" style="padding-top:10px;padding-bottom:36px"><div class="section-head"><div><span class="eyebrow" style="color:var(--green)">Nuestro compromiso</span><h2>Cultura preventiva en acción</h2></div><p>Personas seguras, operaciones responsables y un entorno cuidado.</p></div><div class="pillars"><article class="pillar"><span class="pillar-symbol">⬡</span><div><h3>SEGURIDAD</h3><p>Identificamos peligros, evaluamos riesgos y aplicamos controles en nuestras tareas.</p></div></article><article class="pillar"><span class="pillar-symbol">♡</span><div><h3>SALUD</h3><p>Promovemos espacios de trabajo saludables y protegemos a nuestros colaboradores.</p></div></article><article class="pillar"><span class="pillar-symbol">♧</span><div><h3>MEDIO AMBIENTE</h3><p>Cuidamos los recursos naturales y practicamos una gestión ambiental responsable.</p></div></article></div></section></main>`;
   window.aboutPage=()=>`<main class="about-route"><section id="nosotros"></section></main>`;
   window.activitiesPage=()=>`<main class="activities-page"><div class="page-bg activities-route-head"><div class="page-title-row"><div><a class="back-link" data-page="home">← Volver al inicio</a><span class="eyebrow" style="color:var(--green);margin-top:8px">Lo que cobra vida aquí</span><h1>Nuestras actividades en campo</h1><p>Servicios ambientales y labores de campo que devuelven vida al entorno con seguridad y cuidado ambiental.</p></div><button class="btn btn-primary" data-page="library">Charlas y guías en ECOGUÍA AL DÍA →</button></div></div><section class="activities" id="activities-catalog"><div class="activity-workflow" aria-label="Etapas del trabajo ambiental"><div><span>01</span><strong>Preparación</strong><small>Evaluación del terreno y organización de recursos.</small></div><div><span>02</span><strong>Implementación</strong><small>Siembra, habilitación y controles según la labor.</small></div><div><span>03</span><strong>Mantenimiento</strong><small>Riego, fertilización, poda y cuidado de las áreas.</small></div><div><span>04</span><strong>Seguimiento</strong><small>Monitoreo, reposición y registro de avances.</small></div></div><div class="activities-overview"><span class="eyebrow">Lo que cobra vida aquí</span><h2>Servicios que devuelven vida al entorno</h2><p>Experiencia que acompaña cada etapa: del establecimiento vegetal al mantenimiento y la recuperación.</p></div><div class="activity-grid">${routeActivities.map((a,i)=>`<article class="activity-card service-card"><div class="activity-photo">${a.comparison?`<div class="activity-photo-compare" aria-label="Comparación Antes y Después de rehabilitación ambiental">${a.comparison.map(([image,label,caption])=>`<div class="compare-half" data-zoom-src="./assets/photos/${image}" data-zoom-title="${label} · Rehabilitación Ambiental SGAE — ${caption}" data-zoom-download="${image}"><img src="./assets/photos/${image}" alt="${caption}" referrerpolicy="no-referrer"><span class="compare-badge ${label==='DESPUÉS'?'is-after':'is-before'}">${label}</span></div>`).join('')}</div>`:`<img src="./assets/photos/${a.image}" alt="${a.alt}" referrerpolicy="no-referrer">`}<span class="service-number">0${i+1}</span></div><div class="activity-card-body"><h3><span class="about-activity-icon">${a.icon}</span>${a.title}</h3><p>${a.summary}</p><details class="service-scope"><summary>Ver tareas que comprende</summary><ul>${a.tasks.map(task=>`<li>${task}</li>`).join('')}</ul></details><a class="text-link" data-page="library">Ver charlas y guías en ECOGUÍA AL DÍA →</a></div></article>`).join('')}</div></section></main>`;
   window.dynamicsPage=()=>`<main class="page-bg">${window.pageHead?.('Simulaciones preventivas','Practica decisiones de campo con situaciones de seguridad y cuidado ambiental.')||'<h1>Simulaciones preventivas</h1>'}<div id="simulation-root"></div></main>`;
@@ -454,11 +454,15 @@
     enhance();
   }
   const originalGo=window.go;
-  window.go=function(route){originalGo(route);renderRoute(route);};
+  window.go=function(route){
+    const allowed=typeof window.isSgaeRouteAllowed==='function'?window.isSgaeRouteAllowed(route):true;
+    originalGo(route);
+    if(allowed)renderRoute(route);
+  };
   document.addEventListener('click',event=>{
     const target=event.target instanceof Element?event.target:null;
     const footerBrand=target?.closest('.footer .brand');
-    if(footerBrand){event.preventDefault();event.stopImmediatePropagation();window.go('home');return;}
+    if(footerBrand){event.preventDefault();event.stopImmediatePropagation();window.go(window.getSgaeSession?.()?'home':'login');return;}
     const gamesTrigger=target?.closest('[data-open-games]');
     if(gamesTrigger){event.preventDefault();window.openSgaeGames?.();return;}
     const link=target?.closest('[data-page]');
@@ -510,68 +514,170 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    function drawHill(baseY, amp, freq, phase, color, terrace = false) {
+    function drawMountainRange(baseY, peaks, color, mistColor) {
       ctx.beginPath();
       ctx.moveTo(0, height);
-      for (let x = 0; x <= width; x += 18) {
-        const y = baseY + Math.sin(x * freq + phase) * amp + Math.cos(x * freq * 0.5 - phase * 0.5) * (amp * 0.45);
+      for (let i = 0; i < peaks.length; i++) {
+        const px = (i / (peaks.length - 1)) * width;
+        const py = baseY - peaks[i];
+        if (i === 0) ctx.lineTo(px, py);
+        else {
+          const prevX = ((i - 1) / (peaks.length - 1)) * width;
+          const prevY = baseY - peaks[i - 1];
+          ctx.quadraticCurveTo(prevX, prevY, (prevX + px) * 0.5, (prevY + py) * 0.5);
+        }
+      }
+      ctx.lineTo(width, baseY - peaks[peaks.length - 1]);
+      ctx.lineTo(width, height);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, baseY - 120, 0, height);
+      grad.addColorStop(0, color);
+      grad.addColorStop(1, mistColor);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+
+    function drawHill(baseY, amp, freq, phase, color, highlight = false) {
+      ctx.beginPath();
+      ctx.moveTo(0, height);
+      for (let x = 0; x <= width; x += 14) {
+        const y = baseY + Math.sin(x * freq + phase) * amp + Math.cos(x * freq * 0.52 - phase * 0.4) * (amp * 0.42);
         ctx.lineTo(x, y);
       }
       ctx.lineTo(width, height);
       ctx.closePath();
       ctx.fillStyle = color;
       ctx.fill();
-      if (terrace) {
-        ctx.strokeStyle = 'rgba(173, 233, 128, 0.14)';
-        ctx.lineWidth = 1.5;
+      if (highlight) {
+        ctx.strokeStyle = 'rgba(184, 240, 140, 0.16)';
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+      }
+    }
+
+    function drawRiver(t) {
+      const startX = width * 0.55;
+      const startY = height * 0.61;
+      const ctrl1X = width * 0.34;
+      const ctrl1Y = height * 0.72;
+      const ctrl2X = width * 0.68;
+      const ctrl2Y = height * 0.85;
+      const endX = width * 0.44;
+      const endY = height + 18;
+
+      const samples = 44;
+      const pts = [];
+      for (let i = 0; i <= samples; i++) {
+        const u = i / samples;
+        const inv = 1 - u;
+        const x = inv * inv * inv * startX + 3 * inv * inv * u * ctrl1X + 3 * inv * u * u * ctrl2X + u * u * u * endX;
+        const y = inv * inv * inv * startY + 3 * inv * inv * u * ctrl1Y + 3 * inv * u * u * ctrl2Y + u * u * u * endY;
+        const halfW = 6 + Math.pow(u, 1.35) * (width * 0.088);
+        pts.push({ x, y, halfW, u });
+      }
+
+      // Soft mossy stone riverbank
+      ctx.beginPath();
+      pts.forEach((p, idx) => (idx === 0 ? ctx.moveTo(p.x - p.halfW * 1.18, p.y) : ctx.lineTo(p.x - p.halfW * 1.18, p.y)));
+      for (let i = pts.length - 1; i >= 0; i--) ctx.lineTo(pts[i].x + pts[i].halfW * 1.18, pts[i].y);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(18, 72, 54, 0.78)';
+      ctx.fill();
+
+      // Celeste / Turquoise river water channel matching the SGAE water-drop logo
+      ctx.beginPath();
+      pts.forEach((p, idx) => (idx === 0 ? ctx.moveTo(p.x - p.halfW, p.y) : ctx.lineTo(p.x - p.halfW, p.y)));
+      for (let i = pts.length - 1; i >= 0; i--) ctx.lineTo(pts[i].x + pts[i].halfW, pts[i].y);
+      ctx.closePath();
+      const riverGrad = ctx.createLinearGradient(startX, startY, endX, endY);
+      riverGrad.addColorStop(0, '#0984c8');
+      riverGrad.addColorStop(0.45, '#1ebcf2');
+      riverGrad.addColorStop(0.82, '#5adfff');
+      riverGrad.addColorStop(1, '#129fe0');
+      ctx.fillStyle = riverGrad;
+      ctx.fill();
+
+      // Soft glowing sky/cyan shoreline reflection
+      ctx.strokeStyle = 'rgba(196, 247, 255, 0.42)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Animated flowing water currents & celeste sparkles
+      for (let k = 0; k < 26; k++) {
+        const flowU = ((k / 26) + (reduceMotion ? 0 : t * 0.14)) % 1;
+        const idx = Math.min(samples - 1, Math.floor(flowU * samples));
+        const p = pts[idx];
+        const laneOffset = Math.sin(k * 2.7 + t * 0.8) * p.halfW * 0.56;
+        const len = 8 + p.u * 26;
+        const rx = p.x + laneOffset;
+        const ry = p.y;
+        ctx.strokeStyle = k % 3 === 0 ? 'rgba(235, 252, 255, 0.68)' : 'rgba(138, 235, 255, 0.48)';
+        ctx.lineWidth = 1.1 + p.u * 1.6;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(rx - len * 0.4, ry);
+        ctx.quadraticCurveTo(rx, ry + 1.8 * Math.sin(t * 2 + k), rx + len * 0.55, ry + 1.2);
         ctx.stroke();
       }
     }
 
     function drawTree(tx, ty, growth, tree, t) {
       if (growth <= 0.02) return;
-      const sway = Math.sin(t * 1.4 + tree.swayOffset) * (3 + tree.layer * 1.5) + (mouse.active ? (mouse.x - 0.5) * 14 * (1 - tree.layer * 0.25) : 0);
-      const trunkH = (26 + tree.layer * 12) * tree.scale * growth;
+      const sway = Math.sin(t * 1.35 + tree.swayOffset) * (2.6 + tree.layer * 1.3) + (mouse.active ? (mouse.x - 0.5) * 12 * (1 - tree.layer * 0.22) : 0);
+      const trunkH = (26 + tree.layer * 13) * tree.scale * growth;
       ctx.save();
       ctx.translate(tx, ty);
 
-      // Trunk
+      // Subtle ground contact shadow
+      ctx.fillStyle = 'rgba(6, 28, 20, 0.34)';
       ctx.beginPath();
-      ctx.moveTo(-2.5 * tree.scale, 0);
-      ctx.quadraticCurveTo(sway * 0.35, -trunkH * 0.5, sway * 0.7, -trunkH);
-      ctx.lineWidth = Math.max(2, 4.4 * tree.scale * growth);
+      ctx.ellipse(0, 2, 13 * tree.scale * growth, 4 * tree.scale * growth, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Trunk with bark shading
+      ctx.beginPath();
+      ctx.moveTo(-2.8 * tree.scale, 0);
+      ctx.quadraticCurveTo(sway * 0.35, -trunkH * 0.5, sway * 0.65, -trunkH);
+      ctx.lineWidth = Math.max(2, 4.6 * tree.scale * growth);
       ctx.lineCap = 'round';
-      ctx.strokeStyle = '#5e432e';
+      ctx.strokeStyle = '#533a27';
       ctx.stroke();
 
-      // Foliage crown
-      const cx = sway * 0.75;
+      const cx = sway * 0.7;
       const cy = -trunkH;
-      const crownR = (18 + tree.layer * 6) * tree.scale * growth;
+      const crownR = (17 + tree.layer * 6.5) * tree.scale * growth;
 
       if (tree.foliage === 'pine') {
-        for (let tier = 0; tier < 3; tier++) {
-          const w = crownR * (1.25 - tier * 0.24);
-          const yOff = cy - tier * (crownR * 0.48);
+        const tierColors = ['#15633c', '#1f834e', '#32a866', '#7bd14e'];
+        for (let tier = 0; tier < 4; tier++) {
+          const w = crownR * (1.28 - tier * 0.22);
+          const yOff = cy - tier * (crownR * 0.38);
           ctx.beginPath();
-          ctx.moveTo(cx, yOff - crownR * 0.85);
-          ctx.lineTo(cx - w, yOff + crownR * 0.32);
-          ctx.lineTo(cx + w, yOff + crownR * 0.32);
+          ctx.moveTo(cx, yOff - crownR * 0.78);
+          ctx.lineTo(cx - w, yOff + crownR * 0.3);
+          ctx.quadraticCurveTo(cx, yOff + crownR * 0.44, cx + w, yOff + crownR * 0.3);
           ctx.closePath();
-          ctx.fillStyle = tier === 2 ? '#8ad64e' : (tier === 1 ? '#36a868' : '#1b7a4b');
+          ctx.fillStyle = tierColors[tier];
           ctx.fill();
         }
       } else {
-        ctx.fillStyle = tree.layer === 2 ? '#238252' : '#2ea669';
+        // Deep shaded base cluster
+        ctx.fillStyle = '#18633e';
         ctx.beginPath();
-        ctx.arc(cx, cy - crownR * 0.3, crownR * 0.82, 0, Math.PI * 2);
-        ctx.arc(cx - crownR * 0.48, cy + crownR * 0.05, crownR * 0.58, 0, Math.PI * 2);
-        ctx.arc(cx + crownR * 0.48, cy + crownR * 0.05, crownR * 0.58, 0, Math.PI * 2);
+        ctx.arc(cx, cy - crownR * 0.16, crownR * 0.88, 0, Math.PI * 2);
+        ctx.arc(cx - crownR * 0.54, cy + crownR * 0.12, crownR * 0.58, 0, Math.PI * 2);
+        ctx.arc(cx + crownR * 0.54, cy + crownR * 0.12, crownR * 0.58, 0, Math.PI * 2);
         ctx.fill();
-
+        // Mid foliage
+        ctx.fillStyle = tree.layer === 2 ? '#238452' : '#2ea869';
+        ctx.beginPath();
+        ctx.arc(cx - crownR * 0.1, cy - crownR * 0.32, crownR * 0.72, 0, Math.PI * 2);
+        ctx.arc(cx + crownR * 0.32, cy - crownR * 0.1, crownR * 0.52, 0, Math.PI * 2);
+        ctx.fill();
+        // Sunlit top highlight
         ctx.fillStyle = tree.hue;
         ctx.beginPath();
-        ctx.arc(cx - crownR * 0.12, cy - crownR * 0.48, crownR * 0.44, 0, Math.PI * 2);
+        ctx.arc(cx - crownR * 0.18, cy - crownR * 0.5, crownR * 0.42, 0, Math.PI * 2);
         ctx.fill();
       }
       ctx.restore();
@@ -580,58 +686,81 @@
     function drawFrame(now) {
       const t = reduceMotion ? 6.0 : now * 0.001;
       const sky = ctx.createLinearGradient(0, 0, 0, height);
-      sky.addColorStop(0, '#07241e');
-      sky.addColorStop(0.45, '#0d4133');
-      sky.addColorStop(0.85, '#155c44');
-      sky.addColorStop(1, '#0c3528');
+      sky.addColorStop(0, '#072424');
+      sky.addColorStop(0.36, '#0d4443');
+      sky.addColorStop(0.68, '#176653');
+      sky.addColorStop(1, '#0b3828');
       ctx.fillStyle = sky;
       ctx.fillRect(0, 0, width, height);
 
-      // Soft sun glow behind hills
+      // Morning sun glow & diagonal sunbeams
       const sunX = width * (0.28 + (mouse.x - 0.5) * 0.05);
-      const sunY = height * 0.25;
-      const glow = ctx.createRadialGradient(sunX, sunY, 12, sunX, sunY, width * 0.42);
-      glow.addColorStop(0, 'rgba(182, 232, 110, 0.24)');
-      glow.addColorStop(0.5, 'rgba(54, 178, 114, 0.10)');
+      const sunY = height * 0.22;
+      const glow = ctx.createRadialGradient(sunX, sunY, 12, sunX, sunY, width * 0.46);
+      glow.addColorStop(0, 'rgba(182, 240, 148, 0.26)');
+      glow.addColorStop(0.45, 'rgba(54, 198, 214, 0.12)');
       glow.addColorStop(1, 'rgba(12, 53, 40, 0)');
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, width, height);
 
-      // Layered terraced slopes
-      drawHill(height * 0.62, 26, 0.004, t * 0.08, '#0c3d30', false);
-      drawHill(height * 0.70, 22, 0.0055, 1.2 + t * 0.05, '#12533e', true);
-      drawHill(height * 0.79, 18, 0.0068, 2.5, '#1a6849', true);
+      // Distant hazy Andean mountain silhouettes
+      drawMountainRange(height * 0.54, [38, 92, 56, 124, 70, 108, 46, 86, 52], '#0c3b3a', '#114d46');
+      drawMountainRange(height * 0.60, [24, 62, 108, 42, 84, 34, 96, 48, 68], '#114f43', '#155c44');
 
-      // Foreground terraced rehabilitation contour
+      // Soft valley mist horizon
+      const mist = ctx.createLinearGradient(0, height * 0.48, 0, height * 0.68);
+      mist.addColorStop(0, 'rgba(176, 238, 232, 0)');
+      mist.addColorStop(0.5, 'rgba(164, 234, 214, 0.11)');
+      mist.addColorStop(1, 'rgba(16, 78, 56, 0)');
+      ctx.fillStyle = mist;
+      ctx.fillRect(0, height * 0.48, width, height * 0.2);
+
+      // Layered lush green revegetation slopes
+      const hill1 = ctx.createLinearGradient(0, height * 0.58, 0, height);
+      hill1.addColorStop(0, '#176143');
+      hill1.addColorStop(1, '#0e4430');
+      drawHill(height * 0.62, 24, 0.004, t * 0.05, hill1, false);
+
+      const hill2 = ctx.createLinearGradient(0, height * 0.66, 0, height);
+      hill2.addColorStop(0, '#1e784b');
+      hill2.addColorStop(1, '#125236');
+      drawHill(height * 0.70, 20, 0.0055, 1.2 + t * 0.04, hill2, true);
+
+      // Winding celeste river descending through the valley
+      drawRiver(t);
+
+      // Foreground lush green banks framing both sides of the river
       const fgGrad = ctx.createLinearGradient(0, height * 0.8, width, height);
-      fgGrad.addColorStop(0, '#4f4635');
-      fgGrad.addColorStop(0.35, '#2b613c');
-      fgGrad.addColorStop(1, '#196f49');
-      drawHill(height * 0.87, 14, 0.007, 4.1, fgGrad, true);
+      fgGrad.addColorStop(0, '#2a6c40');
+      fgGrad.addColorStop(0.5, '#1d7548');
+      fgGrad.addColorStop(1, '#145a3a');
+      drawHill(height * 0.90, 12, 0.007, 4.1, fgGrad, true);
 
-      // Swaying grass blades across the foreground ridge
-      ctx.strokeStyle = 'rgba(155, 220, 92, 0.45)';
+      // Natural grass tufts on foreground ridge (skipping river mouth center)
+      ctx.strokeStyle = 'rgba(164, 232, 102, 0.46)';
       ctx.lineWidth = 1.6;
-      for (let gx = 8; gx < width; gx += 16) {
-        const gy = height * 0.87 + Math.sin(gx * 0.007 + 4.1) * 14 + Math.cos(gx * 0.0035 - 2.05) * 6.3;
-        const lean = Math.sin(t * 2.1 + gx * 0.04) * 5;
+      for (let gx = 8; gx < width; gx += 14) {
+        if (gx > width * 0.36 && gx < width * 0.56) continue;
+        const gy = height * 0.90 + Math.sin(gx * 0.007 + 4.1) * 12 + Math.cos(gx * 0.0036 - 1.64) * 5.04;
+        const lean = Math.sin(t * 2.1 + gx * 0.04) * 4.5;
         ctx.beginPath();
         ctx.moveTo(gx, gy + 4);
-        ctx.quadraticCurveTo(gx + lean * 0.5, gy - 7, gx + lean, gy - 14);
+        ctx.quadraticCurveTo(gx + lean * 0.5, gy - 8, gx + lean, gy - 15);
         ctx.stroke();
       }
 
-      // Draw sprouting and mature trees
+      // Sprouting & mature trees positioned naturally around the river valley
       for (const tree of trees) {
-        const cycle = reduceMotion ? 1 : Math.min(1, Math.max(0.15, ((t * 0.52 - tree.delay * 0.25) % 8.5) / 1.4));
+        if (tree.layer >= 1 && tree.nx > 0.38 && tree.nx < 0.60) continue;
+        const cycle = reduceMotion ? 1 : Math.min(1, Math.max(0.25, ((t * 0.5 - tree.delay * 0.25) % 9.5) / 1.4));
         const eased = 1 - Math.pow(1 - Math.min(1, cycle), 3);
         const tx = tree.nx * width;
-        const baseY = tree.layer === 0 ? height * 0.68 : (tree.layer === 1 ? height * 0.78 : height * 0.88);
-        const ty = baseY + Math.sin(tx * 0.006 + tree.layer) * 14;
+        const baseY = tree.layer === 0 ? height * 0.66 : (tree.layer === 1 ? height * 0.77 : height * 0.89);
+        const ty = baseY + Math.sin(tx * 0.006 + tree.layer) * 12;
         drawTree(tx, ty, eased, tree, t);
       }
 
-      // Floating seeds, mist particles and sprouting leaves
+      // Floating seeds, mist particles and celeste/green reflections
       for (const p of seeds) {
         if (!reduceMotion) {
           p.x = (p.x + p.vx + Math.sin(t + p.phase) * 0.00018 + 1) % 1;
@@ -643,12 +772,12 @@
         ctx.translate(px, py);
         if (p.kind === 'leaf') {
           ctx.rotate(t * 0.9 + p.phase);
-          ctx.fillStyle = 'rgba(159, 232, 92, 0.58)';
+          ctx.fillStyle = 'rgba(159, 232, 92, 0.56)';
           ctx.beginPath();
-          ctx.ellipse(0, 0, p.r * 2.1, p.r * 0.95, 0, 0, Math.PI * 2);
+          ctx.ellipse(0, 0, p.r * 2.0, p.r * 0.9, 0, 0, Math.PI * 2);
           ctx.fill();
         } else {
-          ctx.fillStyle = 'rgba(218, 250, 172, 0.36)';
+          ctx.fillStyle = 'rgba(182, 246, 255, 0.36)';
           ctx.beginPath();
           ctx.arc(0, 0, p.r, 0, Math.PI * 2);
           ctx.fill();
@@ -686,6 +815,7 @@
     if(document.querySelector('.talk-detail'))enrichTalk();
     if(document.querySelector('#reforestCanvas'))initReforestationCanvas();
     else if(typeof window.__sgaeReforestCleanup==='function'){window.__sgaeReforestCleanup();window.__sgaeReforestCleanup=null;}
+    window.wireSgaeHomeCards?.();
     window.wireSgaeLightbox?.();
     window.sgaeRefreshTracker?.();
   }

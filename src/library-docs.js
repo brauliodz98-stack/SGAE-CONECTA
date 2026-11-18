@@ -1012,29 +1012,27 @@
       { n: '04', title: 'Triple lavado y cierre limpio', desc: 'Enjuaga 3 veces el envase vacío, perfóralo para evitar reuso y llévalo al acopio autorizado (cilindro rojo/especial).' }
     ];
 
-    const quickExamples = ['Glifosato', 'Cipermetrina', 'Mancozeb', 'Roundup', 'Clorpirifos'];
-
     return `<details class="library-folder management-folder chemicals-folder" id="chemicalsFolder">
       <summary class="library-folder-summary">
         <span class="library-folder-icon chem-icon" aria-hidden="true">⚗</span>
         <span class="library-folder-title">
           <strong>USO RESPONSABLE DE PRODUCTOS QUÍMICOS · PESTICIDAS Y HOJAS MSDS</strong>
-          <small>Guía práctica de fumigación segura + buscador de hojas MSDS por nombre, marca o fotografía</small>
+          <small>Guía práctica de fumigación segura + buscador exclusivo de hojas MSDS originales del proveedor</small>
         </span>
         <span class="library-folder-toggle" aria-hidden="true">⌄</span>
       </summary>
       <div class="library-folder-items">
         <div class="chemicals-panel">
           <div class="learning-hero chem-hero">
-            <span class="learning-kicker">CONTROL FITOSANITARIO Y FDS / MSDS</span>
+            <span class="learning-kicker">CONTROL FITOSANITARIO Y FDS / MSDS OFICIALES</span>
             <h3>Uso Correcto de Insumos y Pesticidas</h3>
-            <p>Aplica estos 4 pasos en campo y consulta al instante la Hoja de Seguridad (MSDS) oficial antes de dosificar o fumigar.</p>
+            <p>Consulta únicamente la Hoja de Seguridad (MSDS) entregada por el proveedor o ubicada en portales oficiales de fabricantes en Perú. Nunca trabajes con hojas genéricas o sin verificar el envase.</p>
           </div>
 
           <div class="chem-guide-split">
             <figure class="chem-illustration-card">
               <img src="${TOOL_VISUALS.quimicos}" alt="Operador con traje impermeable, respirador, gafas y guantes de nitrilo dosificando sobre bandeja antiderrame" referrerpolicy="no-referrer" loading="lazy">
-              <figcaption>Usa siempre bandeja de contención, EPP químico completo y mantente lejos de fuentes de agua.</figcaption>
+              <figcaption>Usa siempre bandeja de contención, EPP químico completo y verifica que el envase coincida con la hoja MSDS del proveedor.</figcaption>
             </figure>
             <div class="chem-steps-grid">
               ${safeSteps.map(s => `
@@ -1052,32 +1050,27 @@
           <section class="msds-search-box">
             <div class="msds-search-head">
               <div>
-                <span class="pas-section-kicker">Buscador Inteligente de Hojas de Seguridad</span>
-                <h4>Consulta tu hoja MSDS / FDS (Fuentes oficiales Perú y carpeta local)</h4>
-                <p>Escribe el nombre del producto, su nombre comercial o sube una fotografía de la etiqueta del envase. Buscamos primero en páginas oficiales peruanas (SENASA / fabricantes Perú) y, si no aparece, en las hojas PDF adjuntas de fumigación.</p>
+                <span class="pas-section-kicker">Buscador de Hojas MSDS Originales del Proveedor</span>
+                <h4>Consulta tu hoja MSDS / FDS (Carpeta del proveedor y portales oficiales Perú)</h4>
+                <p>Escribe el nombre exacto del insumo o sube una fotografía clara de la etiqueta. Mostramos primero las hojas MSDS originales subidas a <code>MSDS/</code> y portales oficiales del fabricante en Perú, junto a la imagen real del producto para evitar errores por nombres parecidos.</p>
               </div>
             </div>
 
             <form id="msdsSearchForm" class="msds-search-form">
               <div class="msds-input-row">
-                <input id="msdsQueryInput" class="field" type="text" placeholder="Ej. Glifosato, Roundup, Cipermetrina, Tordon, Mancozeb…">
+                <input id="msdsQueryInput" class="field" type="text" placeholder="Ej. Apresion 500, Glifosato, Cipermetrina, nombre comercial exacto…">
                 <label class="btn btn-outline msds-photo-btn" for="msdsPhotoInput">
-                  📷 Foto del producto
+                  📷 Foto del envase
                   <input id="msdsPhotoInput" type="file" accept="image/*" capture="environment" hidden>
                 </label>
-                <button type="submit" class="btn btn-primary" id="msdsSubmitBtn">Buscar hoja MSDS →</button>
-              </div>
-
-              <div class="msds-quick-chips">
-                <span>Consultas rápidas:</span>
-                ${quickExamples.map(ex => `<button type="button" class="msds-chip" data-msds-sample="${ex}">${ex}</button>`).join('')}
+                <button type="submit" class="btn btn-primary" id="msdsSubmitBtn">Buscar hoja del proveedor →</button>
               </div>
 
               <div id="msdsPhotoPreviewWrap" class="msds-photo-preview" hidden>
                 <img id="msdsPhotoPreviewImg" src="" alt="Vista previa del producto químico" referrerpolicy="no-referrer">
                 <div>
                   <strong id="msdsPhotoName">Imagen cargada</strong>
-                  <small>Lista para identificar nombre comercial e ingrediente activo.</small>
+                  <small>Se enviará para leer nombre comercial, fabricante y color de franja visible.</small>
                 </div>
                 <button type="button" class="btn btn-quiet" id="msdsPhotoClear">Quitar ✕</button>
               </div>
@@ -1087,27 +1080,16 @@
 
             <div class="msds-local-bank">
               <div class="msds-local-bank-head">
-                <strong>Carpeta de Hojas MSDS locales de fumigación (${localMsdsList.length})</strong>
-                <span>Respaldo directo offline en carpeta <code>MSDS/</code> o <code>assets/msds/</code></span>
-              </div>
-              ${localMsdsList.length ? `
-                <div class="msds-local-grid">
-                  ${localMsdsList.map(item => `
-                    <article class="msds-local-item">
-                      <div>
-                        <strong>${item.title}</strong>
-                        <small>${item.category || 'Fumigación'} · ${item.format || 'PDF'}</small>
-                      </div>
-                      <div class="msds-item-btns">
-                        <button type="button" class="btn btn-outline" data-open-pdf-url="${item.file}" data-pdf-title="${item.title}" data-pdf-download="${item.downloadName}">Abrir PDF 📄</button>
-                        <a class="btn btn-primary" href="${item.file}" download="${item.downloadName}" target="_blank" rel="noopener">Descargar ↓</a>
-                      </div>
-                    </article>
-                  `).join('')}
+                <div>
+                  <strong>Carpeta de Hojas MSDS del Proveedor (<span id="msdsLocalCount">${localMsdsList.length}</span>)</strong>
+                  <small style="display:block;color:var(--muted);font-size:11px">PDFs cargados en <code>MSDS/</code> / <code>assets/msds/</code> o adjuntados directamente en este dispositivo</small>
                 </div>
-              ` : `
-                <p class="msds-local-empty">Cuando subas tus archivos PDF a la carpeta <code>MSDS/</code> o <code>assets/msds/</code> del repositorio, aparecerán aquí automáticamente para lectura directa y descarga en PDF.</p>
-              `}
+                <label class="btn btn-outline" for="msdsUploadLocalPdf" style="cursor:pointer">
+                  + Adjuntar PDF del proveedor
+                  <input id="msdsUploadLocalPdf" type="file" accept="application/pdf,.pdf" hidden>
+                </label>
+              </div>
+              <div id="msdsLocalGridHost"></div>
             </div>
           </section>
         </div>
@@ -1148,23 +1130,78 @@
       .replaceAll('"', '&quot;');
   }
 
-  let lastMsdsResult = null;
   let lastUploadedPhotoDataUrl = '';
   let activePdfObjectUrl = null;
+  let customLocalMsdsDocs = [];
+
+  function openMsdsIdb() {
+    return new Promise((resolve, reject) => {
+      if (!('indexedDB' in window)) return reject(new Error('IndexedDB no disponible'));
+      const req = indexedDB.open('sgae-msds-vault', 1);
+      req.onupgradeneeded = () => {
+        const db = req.result;
+        if (!db.objectStoreNames.contains('pdfs')) db.createObjectStore('pdfs', { keyPath: 'id' });
+      };
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async function loadSavedSupplierPdfs() {
+    try {
+      const db = await openMsdsIdb();
+      return await new Promise(resolve => {
+        const tx = db.transaction('pdfs', 'readonly');
+        const req = tx.objectStore('pdfs').getAll();
+        req.onsuccess = () => {
+          const rows = Array.isArray(req.result) ? req.result : [];
+          customLocalMsdsDocs = rows.map(row => ({
+            ...row,
+            isBrowserSaved: true,
+            objectUrl: row.blob ? URL.createObjectURL(row.blob) : ''
+          }));
+          resolve(customLocalMsdsDocs);
+        };
+        req.onerror = () => resolve([]);
+      });
+    } catch {
+      return [];
+    }
+  }
+
+  async function saveSupplierPdfToIdb(entry) {
+    const db = await openMsdsIdb();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('pdfs', 'readwrite');
+      tx.objectStore('pdfs').put(entry);
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
+  async function deleteSupplierPdfFromIdb(id) {
+    const db = await openMsdsIdb();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('pdfs', 'readwrite');
+      tx.objectStore('pdfs').delete(id);
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  }
 
   function openMsdsPdfModal(pdfSrc, title, downloadName) {
     let modal = document.getElementById('msdsPdfViewerModal');
     if (!modal) {
       document.body.insertAdjacentHTML('beforeend', `
-        <div class="cartilla-lightbox msds-pdf-modal" id="msdsPdfViewerModal" hidden role="dialog" aria-modal="true" aria-label="Visor directo de Hoja MSDS en PDF">
+        <div class="cartilla-lightbox msds-pdf-modal" id="msdsPdfViewerModal" hidden role="dialog" aria-modal="true" aria-label="Visor directo de Hoja MSDS del proveedor">
           <div class="cartilla-lightbox-dialog msds-pdf-dialog">
             <div class="cartilla-lightbox-bar">
               <div>
-                <span class="pas-section-kicker" style="margin-bottom:2px">VISOR DIRECTO PDF · NORMATIVA PERÚ (16 ÍTEMS)</span>
+                <span class="pas-section-kicker" style="margin-bottom:2px">DOCUMENTO ORIGINAL DEL PROVEEDOR · PDF</span>
                 <strong id="msdsPdfModalTitle">Hoja MSDS en PDF</strong>
               </div>
               <div class="lightbox-actions">
-                <a class="btn btn-primary" id="msdsPdfModalDownload" href="" download="Hoja_MSDS.pdf">Descargar PDF ↓</a>
+                <a class="btn btn-primary" id="msdsPdfModalDownload" href="" download="Hoja_MSDS_Proveedor.pdf">Descargar PDF ↓</a>
                 <button type="button" class="btn btn-quiet" id="msdsPdfModalClose">Cerrar ✕</button>
               </div>
             </div>
@@ -1192,176 +1229,121 @@
     const titleEl = document.getElementById('msdsPdfModalTitle');
     const dlEl = document.getElementById('msdsPdfModalDownload');
     const frameEl = document.getElementById('msdsPdfIframe');
-    if (titleEl) titleEl.textContent = title || 'Hoja de Seguridad MSDS (PDF)';
+    if (titleEl) titleEl.textContent = title || 'Hoja de Seguridad MSDS del Proveedor (PDF)';
     if (dlEl) {
       dlEl.href = pdfSrc;
-      dlEl.download = downloadName || 'Hoja_MSDS_Peru.pdf';
+      dlEl.download = downloadName || 'Hoja_MSDS_Proveedor.pdf';
     }
     if (frameEl) frameEl.src = pdfSrc;
     modal.hidden = false;
   }
 
-  function renderSgaDiamond(kind) {
-    const map = {
-      toxic: { label: 'Toxicidad aguda', symbol: `<circle cx="18" cy="15" r="5" fill="#1b1f23"/><path d="M12 22l12 6M24 22l-12 6" stroke="#1b1f23" stroke-width="2" stroke-linecap="round"/>` },
-      env: { label: 'Riesgo acuático / ambiente', symbol: `<path d="M13 24c3-5 5-8 5-13M18 17l4-3M18 19l-4-2M12 26h12" stroke="#146b45" stroke-width="2" stroke-linecap="round"/>` },
-      irritant: { label: 'Irritación / Precaución', symbol: `<path d="M18 11v9M18 24v1" stroke="#b57c0e" stroke-width="2.6" stroke-linecap="round"/>` },
-      health: { label: 'Daño crónico a la salud', symbol: `<path d="M18 11l2.2 4.5 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7Z" fill="#b82520"/>` }
-    };
-    const cfg = map[kind] || map.irritant;
-    return `<div class="msds-sga-chip" title="${cfg.label}">
-      <svg viewBox="0 0 36 36" aria-hidden="true">
-        <polygon points="18,2 34,18 18,34 2,18" fill="#ffffff" stroke="#b82520" stroke-width="2.6"/>
-        ${cfg.symbol}
-      </svg>
-      <span>${cfg.label}</span>
-    </div>`;
+  function bandVisualMeta(toxicologicalBand = '') {
+    const low = String(toxicologicalBand || '').toLowerCase();
+    if (!low) return null;
+    if (/roj|altamente|extrem/.test(low)) return { color: '#b82520', label: toxicologicalBand, pct: 95 };
+    if (/amarill|moderad/.test(low)) return { color: '#b57c0e', label: toxicologicalBand, pct: 72 };
+    if (/azul|liger/.test(low)) return { color: '#1d56a5', label: toxicologicalBand, pct: 45 };
+    if (/verd|normalmente|precauc/.test(low)) return { color: '#176b39', label: toxicologicalBand, pct: 25 };
+    return null;
   }
 
-  function renderProductLabelVisual(data, bandColor, bandLabelText, uploadedImgUrl) {
+  function renderRealProductPhotoBox(data, uploadedImgUrl) {
     if (uploadedImgUrl) {
-      return `<div class="msds-visual-box">
-        <img src="${uploadedImgUrl}" alt="${escapeHtml(data.productName || 'Producto consultado')}" referrerpolicy="no-referrer">
-        <span class="msds-band-pill" style="background:${bandColor}">${escapeHtml(bandLabelText)}</span>
+      return `<div class="msds-real-photo-box">
+        <img src="${uploadedImgUrl}" alt="Fotografía capturada de ${escapeHtml(data.productName || 'producto')}" class="msds-uploaded-photo" referrerpolicy="no-referrer">
+        <small>Fotografía cargada en campo para verificar coincidencia con la hoja MSDS</small>
       </div>`;
     }
-    const shortTitle = String(data.productName || 'INSUMO').split('(')[0].trim().slice(0, 20);
-    return `<div class="msds-visual-box is-svg">
-      <svg viewBox="0 0 180 180" aria-label="Envase ilustrativo del insumo agrícola">
-        <rect width="180" height="180" rx="14" fill="#eef6f2"/>
-        <rect x="64" y="16" width="52" height="16" rx="4" fill="#174739"/>
-        <rect x="70" y="32" width="40" height="10" fill="#2c6352"/>
-        <path d="M52 46 Q52 42 58 42 L122 42 Q128 42 128 46 L134 66 L134 152 Q134 160 124 160 L56 160 Q46 160 46 152 L46 66 Z" fill="#ffffff" stroke="#b8cec2" stroke-width="2.5"/>
-        <rect x="52" y="68" width="76" height="58" rx="6" fill="#f7fbf9" stroke="#d5e4dc"/>
-        <text x="90" y="88" text-anchor="middle" font-size="9.5" font-weight="800" font-family="Manrope,sans-serif" fill="#174739">${escapeHtml(shortTitle)}</text>
-        <text x="90" y="102" text-anchor="middle" font-size="7.5" font-weight="700" font-family="Manrope,sans-serif" fill="#526b62">USO AGRÍCOLA · PERÚ</text>
-        <text x="90" y="116" text-anchor="middle" font-size="7" font-weight="700" font-family="Manrope,sans-serif" fill="#0b756c">MSDS 16 ÍTEMS</text>
-        <rect x="47" y="132" width="86" height="19" rx="3" fill="${bandColor}"/>
-        <text x="90" y="145" text-anchor="middle" font-size="7.8" font-weight="800" font-family="Manrope,sans-serif" fill="#ffffff">${escapeHtml(bandLabelText.slice(0, 22))}</text>
-      </svg>
+    if (data.productImageUrl) {
+      const proxiedImg = `/api/msds-pdf?mode=image&url=${encodeURIComponent(data.productImageUrl)}`;
+      return `<div class="msds-real-photo-box">
+        <img src="${proxiedImg}" alt="Imagen real del producto ${escapeHtml(data.productName || '')}" class="msds-uploaded-photo" referrerpolicy="no-referrer" onerror="this.closest('.msds-real-photo-box').innerHTML='<div class=\\'msds-no-photo\\'><strong>Sin imagen verificada del envase</strong><small>Compara el nombre comercial, ingrediente activo y franja del envase físico antes de aplicar.</small></div>'">
+        <small>Imagen real del producto en fuente oficial — confirma que coincida con tu envase físico</small>
+      </div>`;
+    }
+    return `<div class="msds-real-photo-box">
+      <div class="msds-no-photo">
+        <strong>Sin fotografía oficial disponible</strong>
+        <small>Verifica físicamente el nombre exacto, formulador y color de franja en la etiqueta del envase (o adjunta tu foto arriba).</small>
+      </div>
     </div>`;
   }
 
   function renderMsdsSearchResult(data) {
-    lastMsdsResult = data;
     const directPdfLinks = Array.isArray(data.directPdfLinks) ? data.directPdfLinks : [];
+    const supplierPortalLinks = Array.isArray(data.supplierPortalLinks) ? data.supplierPortalLinks : [];
     const localMatches = Array.isArray(data.localMatches) ? data.localMatches : [];
-    const sections16 = Array.isArray(data.sections16) ? data.sections16 : [];
-    const pictograms = Array.isArray(data.pictograms) && data.pictograms.length ? data.pictograms : ['irritant', 'env'];
-
-    const bandColor = /roj|prohib|crit/i.test(`${data.toxicologicalBand || ''} ${data.hazardLevel || ''}`) ? '#b82520'
-      : /amarill|alto/i.test(`${data.toxicologicalBand || ''} ${data.hazardLevel || ''}`) ? '#b57c0e'
-      : /azul|moderad/i.test(`${data.toxicologicalBand || ''} ${data.hazardLevel || ''}`) ? '#1d56a5'
-      : /verd|bajo/i.test(`${data.toxicologicalBand || ''} ${data.hazardLevel || ''}`) ? '#176b39'
-      : '#0b756c';
-
-    const hazardBadge = data.hazardLevelLabel || (
-      bandColor === '#b82520' ? 'PELIGRO CRÍTICO · BANDA ROJA SENASA'
-      : bandColor === '#b57c0e' ? 'PELIGROSO · BANDA AMARILLA SENASA'
-      : bandColor === '#1d56a5' ? 'PRECAUCIÓN · BANDA AZUL SENASA'
-      : bandColor === '#176b39' ? 'PRECAUCIÓN ESTÁNDAR · BANDA VERDE SENASA'
-      : 'VERIFICAR ETIQUETA SENASA PERÚ'
-    );
-
-    const shortBandTag = bandColor === '#b82520' ? 'BANDA ROJA · PELIGROSO'
-      : bandColor === '#b57c0e' ? 'BANDA AMARILLA · NOCIVO'
-      : bandColor === '#1d56a5' ? 'BANDA AZUL · CUIDADO'
-      : 'BANDA VERDE · PRECAUCIÓN';
-
-    const riskLevelPct = bandColor === '#b82520' ? 96
-      : bandColor === '#b57c0e' ? 74
-      : bandColor === '#1d56a5' ? 48
-      : 28;
-
-    const safeFileName = `MSDS_${String(data.productName || data.query || 'Insumo').replace(/[^\w\-]+/g, '_')}.pdf`;
+    const bandMeta = bandVisualMeta(data.toxicologicalBand || '');
+    const safeFileName = `MSDS_${String(data.productName || data.query || 'Proveedor').replace(/[^\w\-]+/g, '_')}.pdf`;
+    const hasDocs = localMatches.length > 0 || directPdfLinks.length > 0;
 
     return `<article class="msds-result-card">
       <div class="msds-showcase-grid">
-        ${renderProductLabelVisual(data, bandColor, shortBandTag, lastUploadedPhotoDataUrl)}
+        ${renderRealProductPhotoBox(data, lastUploadedPhotoDataUrl)}
         <div class="msds-showcase-info">
           <div class="msds-result-top">
             <div>
-              <span class="tool-meta-text" style="color:${bandColor}">
-                ${data.foundOfficialOnline ? 'PDF OFICIAL PERÚ ENCONTRADO' : localMatches.length ? 'RESPALDO EN CARPETA LOCAL MSDS' : 'HOJA MSDS 16 ÍTEMS · NORMATIVA PERÚ'}
+              <span class="tool-meta-text" style="color:${bandMeta ? bandMeta.color : '#0b756c'}">
+                ${localMatches.length ? '✓ HOJA MSDS EN CARPETA DEL PROVEEDOR' : directPdfLinks.length ? '✓ HOJA MSDS OFICIAL DE FABRICANTE / PROVEEDOR PERÚ' : '⚠ SIN DOCUMENTO DEL PROVEEDOR ENCONTRADO'}
               </span>
               <h5>${escapeHtml(data.productName || data.query || 'Producto consultado')}</h5>
               <div class="msds-meta-chips">
                 ${data.activeIngredient ? `<span class="msds-meta-chip"><b>Ingrediente activo:</b> ${escapeHtml(data.activeIngredient)}</span>` : ''}
+                ${data.manufacturer ? `<span class="msds-meta-chip"><b>Proveedor / Fabricante:</b> ${escapeHtml(data.manufacturer)}</span>` : ''}
                 ${data.chemicalGroup ? `<span class="msds-meta-chip"><b>Clase:</b> ${escapeHtml(data.chemicalGroup)}</span>` : ''}
               </div>
             </div>
-            <div class="msds-primary-pdf-action">
-              <div class="msds-item-btns">
-                <button type="button" class="btn btn-primary" id="msdsOpenDirectPdfBtn" data-msds-filename="${escapeHtml(safeFileName)}">
-                  Abrir PDF (16 Ítems) 📄
-                </button>
-                <button type="button" class="btn btn-outline" id="msdsDownloadPdfBtn" data-msds-filename="${escapeHtml(safeFileName)}">
-                  Descargar PDF ↓
-                </button>
-              </div>
-              <small>Cumple normativa nacional peruana (SENASA / Ley N° 29783 / NTP 900.058)</small>
-            </div>
           </div>
 
-          <div class="msds-hazard-gauge" style="--hz-color:${bandColor}">
-            <div class="msds-hazard-head">
-              <strong>¿Es peligroso este producto?</strong>
-              <span class="msds-hazard-pill" style="background:${bandColor}">${escapeHtml(hazardBadge)}</span>
+          ${bandMeta ? `
+            <div class="msds-hazard-gauge" style="--hz-color:${bandMeta.color}">
+              <div class="msds-hazard-head">
+                <strong>Clasificación toxicológica declarada por el proveedor</strong>
+                <span class="msds-hazard-pill" style="background:${bandMeta.color}">${escapeHtml(bandMeta.label)}</span>
+              </div>
+              <div class="msds-hazard-bar" role="progressbar" aria-valuenow="${bandMeta.pct}" aria-valuemin="0" aria-valuemax="100">
+                <span style="width:${bandMeta.pct}%;background:${bandMeta.color}"></span>
+              </div>
             </div>
-            <div class="msds-hazard-bar" role="progressbar" aria-valuenow="${riskLevelPct}" aria-valuemin="0" aria-valuemax="100">
-              <span style="width:${riskLevelPct}%;background:${bandColor}"></span>
+          ` : `
+            <div class="msds-unverified-band">
+              <strong>Banda toxicológica:</strong> Abrir la hoja MSDS del proveedor adjunta o revisar la franja impresa al pie de la etiqueta del envase (Roja, Amarilla, Azul o Verde). <em>No estimamos ni inventamos categorías sin respaldo oficial.</em>
             </div>
-            <div class="msds-sga-row">
-              ${pictograms.map(renderSgaDiamond).join('')}
-            </div>
-          </div>
+          `}
         </div>
       </div>
-
-      ${data.regulatoryNote ? `<div class="msds-reg-alert"><strong>⚠ Normativa vigente en Perú (SENASA / MINAGRI):</strong> ${escapeHtml(data.regulatoryNote)}</div>` : ''}
-
-      ${data.usageDescription ? `
-        <div class="msds-usage-box">
-          <strong>Descripción del insumo y uso agrícola</strong>
-          <p>${escapeHtml(data.usageDescription)}</p>
-        </div>
-      ` : ''}
 
       ${data.summary ? `<p class="msds-summary-text">${escapeHtml(data.summary)}</p>` : ''}
 
-      <div class="msds-safety-mini-grid">
-        ${data.ppeRequired ? `<div><b>EPP obligatorio (Perú)</b><p>${escapeHtml(data.ppeRequired)}</p></div>` : ''}
-        ${data.firstAid ? `<div><b>Primeros auxilios</b><p>${escapeHtml(data.firstAid)}</p></div>` : ''}
-        ${data.spillControl ? `<div><b>Derrames y triple lavado</b><p>${escapeHtml(data.spillControl)}</p></div>` : ''}
-      </div>
-
       <div class="msds-links-section">
-        <h6>1. Hojas MSDS en PDF para abrir o descargar directamente (Carpeta local y PDFs oficiales)</h6>
-        ${(localMatches.length || directPdfLinks.length) ? `
+        <h6>Hojas MSDS originales en PDF (Netamente del proveedor / fabricante oficial en Perú)</h6>
+        ${hasDocs ? `
           <div class="msds-local-grid">
-            ${localMatches.map(item => `
-              <article class="msds-local-item is-highlighted">
+            ${localMatches.map(item => {
+              const fileHref = item.objectUrl || item.file;
+              return `<article class="msds-local-item is-highlighted">
                 <div>
                   <strong>${escapeHtml(item.title)}</strong>
-                  <small>${escapeHtml(item.category || 'Carpeta local MSDS')} · Archivo PDF en repositorio</small>
+                  <small>${escapeHtml(item.category || 'Carpeta del proveedor MSDS/')} ${item.detectedBand ? `· ${escapeHtml(item.detectedBand)}` : ''} · PDF original del proveedor</small>
                 </div>
                 <div class="msds-item-btns">
-                  <button type="button" class="btn btn-outline" data-open-pdf-url="${escapeHtml(item.file)}" data-pdf-title="${escapeHtml(item.title)}" data-pdf-download="${escapeHtml(item.downloadName)}">Abrir PDF 📄</button>
-                  <a class="btn btn-primary" href="${escapeHtml(item.file)}" download="${escapeHtml(item.downloadName)}" target="_blank" rel="noopener">Descargar ↓</a>
+                  <button type="button" class="btn btn-outline" data-open-pdf-url="${escapeHtml(fileHref)}" data-pdf-title="${escapeHtml(item.title)}" data-pdf-download="${escapeHtml(item.downloadName || `${item.title}.pdf`)}">Abrir PDF 📄</button>
+                  <a class="btn btn-primary" href="${escapeHtml(fileHref)}" download="${escapeHtml(item.downloadName || `${item.title}.pdf`)}" target="_blank" rel="noopener">Descargar ↓</a>
                 </div>
-              </article>
-            `).join('')}
+              </article>`;
+            }).join('')}
             ${directPdfLinks.map(link => {
               const inlineProxy = `/api/msds-pdf?mode=proxy&disposition=inline&url=${encodeURIComponent(link.uri)}&name=${encodeURIComponent(safeFileName)}`;
               const dlProxy = `/api/msds-pdf?mode=proxy&url=${encodeURIComponent(link.uri)}&name=${encodeURIComponent(safeFileName)}`;
               return `
                 <article class="msds-local-item is-highlighted">
                   <div>
-                    <strong>${escapeHtml(link.title || 'Hoja MSDS Oficial (PDF)')}</strong>
-                    <small>Archivo PDF oficial verificado (Perú)</small>
+                    <strong>${escapeHtml(link.title || 'Hoja MSDS Oficial del Proveedor (PDF)')}</strong>
+                    <small>Fuente verificada Perú (${escapeHtml(new URL(link.uri).hostname)})</small>
                   </div>
                   <div class="msds-item-btns">
-                    <button type="button" class="btn btn-outline" data-open-pdf-url="${escapeHtml(inlineProxy)}" data-pdf-title="${escapeHtml(link.title || 'Hoja MSDS Oficial')}" data-pdf-download="${escapeHtml(safeFileName)}">Abrir PDF 📄</button>
+                    <button type="button" class="btn btn-outline" data-open-pdf-url="${escapeHtml(inlineProxy)}" data-pdf-title="${escapeHtml(link.title || 'Hoja MSDS del Proveedor')}" data-pdf-download="${escapeHtml(safeFileName)}">Abrir PDF 📄</button>
                     <a class="btn btn-primary" href="${dlProxy}" download="${escapeHtml(safeFileName)}">Descargar ↓</a>
                   </div>
                 </article>
@@ -1369,107 +1351,80 @@
             }).join('')}
           </div>
         ` : `
-          <p class="msds-fallback-note">No hay un PDF suelto en <code>MSDS/</code> o <code>assets/msds/</code> para "${escapeHtml(data.productName || data.query)}". Abre o descarga arriba la <b>Hoja MSDS completa de 16 Ítems en PDF</b> generada bajo normativa peruana, o agrega tu PDF original en la carpeta <code>MSDS/</code>.</p>
-        `}
-      </div>
-
-      ${sections16.length ? `
-        <details class="msds-16-accordion">
-          <summary>📋 Ver los 16 Ítems obligatorios de la Hoja MSDS en pantalla (Normativa Perú)</summary>
-          <div class="msds-16-grid">
-            ${sections16.map(sec => `
-              <article class="msds-16-item">
-                <strong>${escapeHtml(sec.title)}</strong>
-                <p>${escapeHtml(sec.body)}</p>
-              </article>
-            `).join('')}
+          <div class="msds-reg-alert" style="margin-top:8px">
+            <strong>⛔ Hoja MSDS del proveedor no encontrada para "${escapeHtml(data.productName || data.query)}"</strong>
+            <p style="margin:6px 0 0;font-size:12px">Por seguridad operacional en SGAE S.A.C. <b>no generamos ni inventamos hojas MSDS</b>. Solicita el PDF original entregado por tu proveedor o adjúntalo abajo en <b>"+ Adjuntar PDF del proveedor"</b> (o colócalo en la carpeta <code>MSDS/</code>) antes de dosificar o aplicar este insumo.</p>
           </div>
-        </details>
-      ` : ''}
+        `}
+
+        ${supplierPortalLinks.length ? `
+          <div style="margin-top:10px">
+            <small style="display:block;font-weight:700;color:var(--muted);margin-bottom:6px">Fichas técnicas relacionadas en páginas oficiales del fabricante en Perú:</small>
+            <div class="msds-local-grid">
+              ${supplierPortalLinks.map(l => `
+                <article class="msds-local-item">
+                  <div><strong>${escapeHtml(l.title)}</strong><small>${escapeHtml(new URL(l.uri).hostname)}</small></div>
+                  <a class="btn btn-outline" href="${escapeHtml(l.uri)}" target="_blank" rel="noopener noreferrer">Ver en web del fabricante ↗</a>
+                </article>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+      </div>
     </article>`;
   }
 
-  function wireMsdsPdfButton(resultsBox, scopeRoot = document) {
-    const dlBtn = resultsBox?.querySelector('#msdsDownloadPdfBtn');
-    const openBtn = resultsBox?.querySelector('#msdsOpenDirectPdfBtn');
-
-    if (dlBtn && lastMsdsResult) {
-      dlBtn.addEventListener('click', async () => {
-        const originalText = dlBtn.textContent;
-        dlBtn.disabled = true;
-        dlBtn.textContent = 'Generando PDF…';
-        try {
-          const res = await fetch('/api/msds-pdf', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(lastMsdsResult)
-          });
-          if (!res.ok) throw new Error('No se pudo generar el archivo PDF.');
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = dlBtn.dataset.msdsFilename || 'Ficha_MSDS_SGAE.pdf';
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          setTimeout(() => URL.revokeObjectURL(url), 1500);
-          window.sgaeTrackAction?.('msds', lastMsdsResult.productName || lastMsdsResult.query || 'MSDS PDF');
-        } catch {
-          dlBtn.textContent = 'Error al descargar';
-          setTimeout(() => { dlBtn.textContent = originalText; }, 2200);
-        } finally {
-          dlBtn.disabled = false;
-          if (dlBtn.textContent === 'Generando PDF…') dlBtn.textContent = originalText;
-        }
-      });
-    }
-
-    if (openBtn && lastMsdsResult) {
-      openBtn.addEventListener('click', async () => {
-        const originalText = openBtn.textContent;
-        openBtn.disabled = true;
-        openBtn.textContent = 'Abriendo PDF…';
-        try {
-          const res = await fetch('/api/msds-pdf?disposition=inline', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...lastMsdsResult, disposition: 'inline' })
-          });
-          if (!res.ok) throw new Error('No se pudo abrir el PDF.');
-          const blob = await res.blob();
-          if (activePdfObjectUrl) URL.revokeObjectURL(activePdfObjectUrl);
-          activePdfObjectUrl = URL.createObjectURL(blob);
-          openMsdsPdfModal(
-            activePdfObjectUrl,
-            `Hoja MSDS (16 Ítems Perú) · ${lastMsdsResult.productName || 'Insumo'}`,
-            openBtn.dataset.msdsFilename || 'Ficha_MSDS_Peru.pdf'
-          );
-          window.sgaeTrackAction?.('msds', lastMsdsResult.productName || lastMsdsResult.query || 'MSDS PDF');
-        } catch {
-          openBtn.textContent = 'Error al abrir';
-          setTimeout(() => { openBtn.textContent = originalText; }, 2200);
-        } finally {
-          openBtn.disabled = false;
-          if (openBtn.textContent === 'Abriendo PDF…') openBtn.textContent = originalText;
-        }
-      });
-    }
-
+  function wireMsdsPdfButtons(scopeRoot = document) {
     (scopeRoot || document).querySelectorAll('[data-open-pdf-url]').forEach(btn => {
       if (btn.dataset.pdfBound === '1') return;
       btn.dataset.pdfBound = '1';
       btn.addEventListener('click', () => {
         openMsdsPdfModal(
           btn.dataset.openPdfUrl,
-          btn.dataset.pdfTitle || 'Hoja MSDS en PDF',
-          btn.dataset.pdfDownload || 'Hoja_MSDS.pdf'
+          btn.dataset.pdfTitle || 'Hoja MSDS del Proveedor',
+          btn.dataset.pdfDownload || 'Hoja_MSDS_Proveedor.pdf'
         );
       });
     });
   }
 
-  function wireChemicalsFolder(folder, localMsdsList = []) {
+  function renderLocalBankList(folder, repoList = []) {
+    const host = folder.querySelector('#msdsLocalGridHost');
+    const countEl = folder.querySelector('#msdsLocalCount');
+    const merged = [...customLocalMsdsDocs, ...repoList];
+    if (countEl) countEl.textContent = String(merged.length);
+    if (!host) return;
+    if (!merged.length) {
+      host.innerHTML = '<p class="msds-local-empty">Sube tus archivos PDF reales entregados por el proveedor en la carpeta <code>MSDS/</code> del repositorio o usa el botón <b>"+ Adjuntar PDF del proveedor"</b> para tenerlos disponibles aquí.</p>';
+      return;
+    }
+    host.innerHTML = `<div class="msds-local-grid">
+      ${merged.map(item => {
+        const href = item.objectUrl || item.file;
+        return `<article class="msds-local-item">
+          <div>
+            <strong>${escapeHtml(item.title)}</strong>
+            <small>${escapeHtml(item.category || 'Fumigación')} · PDF del proveedor${item.isBrowserSaved ? ' · Guardado en este dispositivo' : ''}</small>
+          </div>
+          <div class="msds-item-btns">
+            <button type="button" class="btn btn-outline" data-open-pdf-url="${escapeHtml(href)}" data-pdf-title="${escapeHtml(item.title)}" data-pdf-download="${escapeHtml(item.downloadName)}">Abrir PDF 📄</button>
+            <a class="btn btn-primary" href="${escapeHtml(href)}" download="${escapeHtml(item.downloadName)}" target="_blank" rel="noopener">Descargar ↓</a>
+            ${item.isBrowserSaved ? `<button type="button" class="btn btn-quiet" data-remove-idb-msds="${escapeHtml(item.id)}" title="Quitar archivo guardado localmente">✕</button>` : ''}
+          </div>
+        </article>`;
+      }).join('')}
+    </div>`;
+    wireMsdsPdfButtons(host);
+    host.querySelectorAll('[data-remove-idb-msds]').forEach(delBtn => {
+      delBtn.addEventListener('click', async () => {
+        await deleteSupplierPdfFromIdb(delBtn.dataset.removeIdbMsds);
+        await loadSavedSupplierPdfs();
+        renderLocalBankList(folder, repoList);
+      });
+    });
+  }
+
+  async function wireChemicalsFolder(folder, localMsdsList = []) {
     if (!folder) return;
     const form = folder.querySelector('#msdsSearchForm');
     const queryInput = folder.querySelector('#msdsQueryInput');
@@ -1480,16 +1435,31 @@
     const clearPhotoBtn = folder.querySelector('#msdsPhotoClear');
     const submitBtn = folder.querySelector('#msdsSubmitBtn');
     const resultsBox = folder.querySelector('#msdsResultsContainer');
+    const uploadPdfInput = folder.querySelector('#msdsUploadLocalPdf');
+
+    await loadSavedSupplierPdfs();
+    renderLocalBankList(folder, localMsdsList);
+
+    uploadPdfInput?.addEventListener('change', async () => {
+      const file = uploadPdfInput.files?.[0];
+      if (!file) return;
+      const cleanTitle = file.name.replace(/\.pdf$/i, '').replace(/[_-]+/g, ' ').trim();
+      const id = `msds-${Date.now()}`;
+      await saveSupplierPdfToIdb({
+        id,
+        title: cleanTitle,
+        product: cleanTitle,
+        downloadName: file.name,
+        category: 'Hoja MSDS Proveedor (Local)',
+        format: 'PDF',
+        blob: file
+      });
+      await loadSavedSupplierPdfs();
+      renderLocalBankList(folder, localMsdsList);
+      uploadPdfInput.value = '';
+    });
 
     let pendingPhoto = null;
-    wireMsdsPdfButton(resultsBox, folder);
-
-    folder.querySelectorAll('[data-msds-sample]').forEach(chip => {
-      chip.addEventListener('click', () => {
-        if (queryInput) queryInput.value = chip.dataset.msdsSample;
-        form?.requestSubmit();
-      });
-    });
 
     photoInput?.addEventListener('change', async () => {
       const file = photoInput.files?.[0];
@@ -1520,18 +1490,23 @@
       const q = (queryInput?.value || '').trim();
       if (!q && !pendingPhoto) {
         if (resultsBox) {
-          resultsBox.innerHTML = '<div class="empty-folder-card"><strong>Ingresa un nombre o sube una foto</strong><p>Escribe el nombre del pesticida o adjunta la fotografía del envase para buscar su hoja MSDS.</p></div>';
+          resultsBox.innerHTML = '<div class="empty-folder-card"><strong>Ingresa un nombre o sube una foto</strong><p>Escribe el nombre exacto del insumo o adjunta la fotografía del envase para buscar su hoja MSDS del proveedor.</p></div>';
         }
         return;
       }
 
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Buscando PDF y 16 ítems…';
+        submitBtn.textContent = 'Buscando PDF del proveedor…';
       }
       if (resultsBox) {
-        resultsBox.innerHTML = '<div class="msds-loading">Consultando PDFs oficiales bajo normativa del Perú (SENASA / Ley N° 29783) y revisando tu carpeta local de MSDS…</div>';
+        resultsBox.innerHTML = '<div class="msds-loading">Revisando hojas MSDS reales en carpeta del proveedor y portales oficiales del Perú…</div>';
       }
+
+      const normTerms = q.toLowerCase().split(/\s+/).filter(w => w.length >= 2);
+      const idbMatches = customLocalMsdsDocs.filter(doc =>
+        normTerms.some(w => `${doc.title} ${doc.downloadName}`.toLowerCase().includes(w))
+      );
 
       try {
         const res = await fetch('/api/msds-search', {
@@ -1545,42 +1520,31 @@
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data?.error || 'Error en la consulta');
+        const combinedLocal = [...idbMatches, ...(data.localMatches || [])];
         if (resultsBox) {
-          resultsBox.innerHTML = renderMsdsSearchResult(data);
-          wireMsdsPdfButton(resultsBox, resultsBox);
+          resultsBox.innerHTML = renderMsdsSearchResult({ ...data, localMatches: combinedLocal });
+          wireMsdsPdfButtons(resultsBox);
         }
         window.sgaeTrackAction?.('msds', data.productName || q || 'MSDS');
-      } catch (err) {
-        const normQ = q.toLowerCase();
-        const fallbackMatches = localMsdsList.filter(item =>
-          `${item.title} ${item.product || ''} ${item.downloadName}`.toLowerCase().includes(normQ)
+      } catch {
+        const repoFallback = localMsdsList.filter(item =>
+          normTerms.some(w => `${item.title} ${item.product || ''} ${item.downloadName}`.toLowerCase().includes(w))
         );
+        const combinedLocal = [...idbMatches, ...repoFallback];
         if (resultsBox) {
           resultsBox.innerHTML = renderMsdsSearchResult({
             query: q,
             productName: q || 'Consulta local',
-            activeIngredient: 'Verificar ingrediente activo en etiqueta SENASA del envase',
-            chemicalGroup: 'Insumo agrícola / fitosanitario',
-            toxicologicalBand: 'Verificar banda toxicológica en etiqueta (Roja/Amarilla/Azul/Verde)',
-            hazardLevelLabel: 'REVISAR ETIQUETA Y FOLLETO SENASA',
-            pictograms: ['irritant', 'env'],
-            usageDescription: 'Insumo fitosanitario consultado en modo respaldo local. Verifica etiqueta del fabricante, banda toxicológica y dosis autorizada antes de preparar la mezcla.',
-            summary: 'Usa siempre bandeja antiderrame, EPP químico completo y respeta la dirección del viento.',
-            ppeRequired: 'Respirador con cartucho para vapores orgánicos, lentes herméticos, guantes de nitrilo, traje impermeable y botas de jebe.',
-            firstAid: 'Retirar al aire fresco, lavar piel y ojos con abundante agua 15 min y acudir al centro médico con la etiqueta.',
-            spillControl: 'Contener con kit antiderrames en bandeja, segregar en Cilindro Rojo (NTP 900.058) y aplicar triple lavado al envase vacío.',
-            foundOfficialOnline: false,
-            localMatches: fallbackMatches,
+            localMatches: combinedLocal,
             directPdfLinks: [],
-            officialLinks: [],
-            aiNotice: err.message
+            supplierPortalLinks: []
           });
-          wireMsdsPdfButton(resultsBox, resultsBox);
+          wireMsdsPdfButtons(resultsBox);
         }
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Buscar hoja MSDS →';
+          submitBtn.textContent = 'Buscar hoja del proveedor →';
         }
       }
     });

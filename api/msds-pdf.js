@@ -1,90 +1,86 @@
-import { buildMsdsSummaryPdf } from '../scripts/pdf-builder.mjs';
-
 function sanitizeFilename(name) {
-  return String(name || 'Ficha_MSDS_SGAE')
+  return String(name || 'MSDS_Proveedor')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-zA-Z0-9_-]+/g, '_')
     .replace(/^_+|_+$/g, '')
-    .slice(0, 60) || 'Ficha_MSDS_SGAE';
+    .slice(0, 60) || 'MSDS_Proveedor';
 }
 
 export default async function handler(req, res) {
   try {
     const reqUrl = new URL(req.url, 'http://localhost');
+    const mode = reqUrl.searchParams.get('mode') || '';
+    const targetUrl = reqUrl.searchParams.get('url') || '';
     const dispParam = reqUrl.searchParams.get('disposition') || '';
+    const disp = dispParam === 'inline' ? 'inline' : 'attachment';
 
-    if (req.method === 'GET') {
-      const mode = reqUrl.searchParams.get('mode') || '';
-      const targetUrl = reqUrl.searchParams.get('url') || '';
-      const name = sanitizeFilename(reqUrl.searchParams.get('name') || 'MSDS_Oficial');
-      const disp = dispParam === 'inline' ? 'inline' : 'attachment';
+    if (req.method !== 'GET') {
+      res.statusCode = 405;
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.end(JSON.stringify({ error: 'Solo se permite descarga o visualización directa de archivos reales del proveedor.' }));
+      return;
+    }
 
-      if (mode === 'proxy' && /^https?:\/\//i.test(targetUrl)) {
-        const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 8000);
-        const upstream = await fetch(targetUrl, { redirect: 'follow', signal: controller.signal });
-        clearTimeout(timer);
-        const contentType = (upstream.headers.get('content-type') || '').toLowerCase();
-        if (upstream.ok && (contentType.includes('pdf') || /\.pdf($|\?)/i.test(targetUrl))) {
-          const arrBuf = await upstream.arrayBuffer();
-          const buf = Buffer.from(arrBuf);
-          res.statusCode = 200;
-          res.setHeader('Content-Type', 'application/pdf');
-          res.setHeader('Content-Disposition', `${disp}; filename="${name}.pdf"`);
-          res.end(buf);
-          return;
-        }
-        res.statusCode = 422;
-        res.setHeader('Content-Type', 'application/json; charset=utf-8');
-        res.end(JSON.stringify({ error: 'El enlace externo no entregó un binario PDF directo.' }));
+    if (mode === 'proxy' && /^https?:\/\//i.test(targetUrl)) {
+      const name = sanitizeFilename(reqUrl.searchParams.get('name') || 'MSDS_Proveedor');
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 9000);
+      const upstream = await fetch(targetUrl, {
+        redirect: 'follow',
+        signal: controller.signal,
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; ConectaSGAE/1.0)' }
+      });
+      clearTimeout(timer);
+
+      const contentType = (upstream.headers.get('content-type') || '').toLowerCase();
+      if (upstream.ok && (contentType.includes('pdf') || /\.pdf($|\?)/i.test(targetUrl))) {
+        const buf = Buffer.from(await upstream.arrayBuffer());
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `${disp}; filename="${name}.pdf"`);
+        res.end(buf);
         return;
       }
 
-      const fallbackPdf = buildMsdsSummaryPdf({
-        productName: reqUrl.searchParams.get('productName') || 'Producto Químico',
-        activeIngredient: reqUrl.searchParams.get('activeIngredient') || '',
-        toxicologicalBand: reqUrl.searchParams.get('toxicologicalBand') || '',
-        hazardLevelLabel: reqUrl.searchParams.get('hazardLevelLabel') || '',
-        usageDescription: reqUrl.searchParams.get('usageDescription') || '',
-        summary: reqUrl.searchParams.get('summary') || '',
-        ppeRequired: reqUrl.searchParams.get('ppeRequired') || '',
-        firstAid: reqUrl.searchParams.get('firstAid') || '',
-        spillControl: reqUrl.searchParams.get('spillControl') || '',
-        regulatoryNote: reqUrl.searchParams.get('regulatoryNote') || ''
+      res.statusCode = 422;
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.end(JSON.stringify({ error: 'El enlace del proveedor no entregó un archivo PDF directo válido.' }));
+      return;
+    }
+
+    if (mode === 'image' && /^https?:\/\//i.test(targetUrl)) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 6000);
+      const upstream = await fetch(targetUrl, {
+        redirect: 'follow',
+        signal: controller.signal,
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; ConectaSGAE/1.0)' }
       });
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `${disp}; filename="MSDS_${name}.pdf"`);
-      res.end(fallbackPdf);
-      return;
-    }
+      clearTimeout(timer);
 
-    if (req.method === 'POST') {
-      let body = req.body;
-      if (typeof body === 'string') {
-        body = JSON.parse(body || '{}');
-      } else if (!body) {
-        const chunks = [];
-        for await (const chunk of req) chunks.push(chunk);
-        body = JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}');
+      const contentType = (upstream.headers.get('content-type') || '').toLowerCase();
+      if (upstream.ok && contentType.startsWith('image/')) {
+        const buf = Buffer.from(await upstream.arrayBuffer());
+        if (buf.length > 0 && buf.length <= 5 * 1024 * 1024) {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', contentType.split(';')[0]);
+          res.setHeader('Cache-Control', 'public, max-age=3600');
+          res.end(buf);
+          return;
+        }
       }
-      const disp = (dispParam === 'inline' || body?.disposition === 'inline') ? 'inline' : 'attachment';
-      const filename = sanitizeFilename(body?.productName || 'Ficha_MSDS');
-      const pdfBuf = buildMsdsSummaryPdf(body || {});
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `${disp}; filename="MSDS_${filename}.pdf"`);
-      res.end(pdfBuf);
+      res.statusCode = 404;
+      res.end();
       return;
     }
 
-    res.statusCode = 405;
+    res.statusCode = 400;
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
-    res.end(JSON.stringify({ error: 'Método no permitido' }));
+    res.end(JSON.stringify({ error: 'Solicitud no válida: solo se entregan documentos e imágenes auténticas del proveedor.' }));
   } catch (err) {
     res.statusCode = 500;
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
-    res.end(JSON.stringify({ error: err?.message || 'Error al generar el PDF MSDS.' }));
+    res.end(JSON.stringify({ error: err?.message || 'Error al obtener el recurso del proveedor.' }));
   }
 }

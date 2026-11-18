@@ -107,13 +107,16 @@ function getSession(){
   const rawName=localStorage.getItem('sgae-user');
   const stored=read('session',null);
   if(!rawName&&!stored?.name)return null;
+  const name=(stored?.name||rawName||'').trim();
+  const code=(stored?.code||'').trim();
+  const sede=(stored?.sede||'').trim();
+  if(!name||!code||!sede)return null;
   const role=normalizeRole(stored?.role||localStorage.getItem('sgae-role')||'Trabajador');
-  const name=stored?.name||rawName;
-  return {name,role,sede:stored?.sede||'Santa María',code:stored?.code||'',loggedAt:stored?.loggedAt||''};
+  return {name,role,sede,code,loggedAt:stored?.loggedAt||''};
 }
 function setSession(data){
   const role=normalizeRole(data.role);
-  const session={name:data.name.trim(),role,sede:data.sede||'Santa María',code:(data.code||'').trim(),loggedAt:new Date().toLocaleString('es-PE')};
+  const session={name:(data.name||'').trim(),role,sede:(data.sede||'Santa María').trim(),code:(data.code||'').trim(),loggedAt:new Date().toLocaleString('es-PE')};
   localStorage.setItem('sgae-user',session.name);
   localStorage.setItem('sgae-role',session.role);
   save('session',session);
@@ -131,13 +134,59 @@ function canDo(perm){
   if(!s)return false;
   return Boolean(ROLE_META[s.role]?.can?.[perm]);
 }
+const GUEST_ROUTES=['login','about','activities','dynamics'];
+function isRouteAllowed(route){
+  if(getSession())return true;
+  return GUEST_ROUTES.includes(route);
+}
 window.getSgaeSession=getSession;
 window.sgaeCan=canDo;
 window.sgaeRead=read;
 window.sgaeSave=save;
+window.isSgaeRouteAllowed=isRouteAllowed;
 const user=()=>getSession()?.name||null;
 function escHtml(s){return String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');}
-function logo(){return '<img src="./assets/logo-sgae-transparent.png" alt="Logo SGAE">'}
+function dropletSvg(){
+  return `<svg class="sgae-droplet-svg" viewBox="0 0 64 64" width="32" height="32" aria-hidden="true">
+    <defs>
+      <linearGradient id="sgaeDropWater" x1="20%" y1="6%" x2="78%" y2="92%">
+        <stop offset="0%" stop-color="#69e2ff"/>
+        <stop offset="52%" stop-color="#119fe0"/>
+        <stop offset="100%" stop-color="#056db3"/>
+      </linearGradient>
+      <linearGradient id="sgaeDropLeaf" x1="15%" y1="20%" x2="88%" y2="88%">
+        <stop offset="0%" stop-color="#87dc43"/>
+        <stop offset="100%" stop-color="#168644"/>
+      </linearGradient>
+    </defs>
+    <path d="M32 4C22 18 12 29.5 12 40.8C12 52 21 60 32 60C43 60 52 52 52 40.8C52 29.5 42 18 32 4Z" fill="url(#sgaeDropWater)"/>
+    <path d="M23.5 23.5C18.5 30 16.5 36.5 17.5 42.5C18.3 46.8 20.8 49.5 23 50.8C20.5 44.8 20.6 35.8 23.5 23.5Z" fill="#d9f7ff" opacity=".78"/>
+    <path d="M29 56.5C37.5 55.2 46.5 48.2 49.6 36.8C49.9 35.7 48.5 35.2 47.7 36C41.5 42.3 33.4 45.2 26.8 46.4C29.8 49.8 30.8 53.3 29 56.5Z" fill="url(#sgaeDropLeaf)"/>
+    <path d="M27.6 52.8C34.2 48.5 40.6 44 46.4 38.4" stroke="#e4fbba" stroke-width="1.6" stroke-linecap="round" fill="none" opacity=".82"/>
+  </svg>`;
+}
+function logo(){
+  return `<svg class="sgae-logo-svg" viewBox="0 0 76 76" width="52" height="52" role="img" aria-label="Logo SGAE">
+    <defs>
+      <linearGradient id="sgaeLogoWater" x1="20%" y1="6%" x2="78%" y2="92%">
+        <stop offset="0%" stop-color="#69e2ff"/>
+        <stop offset="52%" stop-color="#119fe0"/>
+        <stop offset="100%" stop-color="#056db3"/>
+      </linearGradient>
+      <linearGradient id="sgaeLogoLeaf" x1="15%" y1="20%" x2="88%" y2="88%">
+        <stop offset="0%" stop-color="#87dc43"/>
+        <stop offset="100%" stop-color="#168644"/>
+      </linearGradient>
+    </defs>
+    <path d="M38 4C28.6 17.4 19.5 28 19.5 38.2C19.5 48.6 27.8 56 38 56C48.2 56 56.5 48.6 56.5 38.2C56.5 28 47.4 17.4 38 4Z" fill="url(#sgaeLogoWater)"/>
+    <path d="M30 22.4C25.6 28.4 23.8 34.4 24.6 40C25.3 43.8 27.4 46.3 29.4 47.5C27.2 42 27.3 33.8 30 22.4Z" fill="#d9f7ff" opacity=".8"/>
+    <path d="M34.8 52.8C42.6 51.6 51.2 45 54.1 34.4C54.4 33.4 53.1 32.9 52.3 33.7C46.4 39.6 38.8 42.3 32.8 43.4C35.6 46.5 36.5 49.8 34.8 52.8Z" fill="url(#sgaeLogoLeaf)"/>
+    <path d="M33.6 49.3C39.8 45.4 45.8 41.2 51.1 35.9" stroke="#e4fbba" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".84"/>
+    <text class="sgae-logo-word" x="38" y="71.5" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="14.5" letter-spacing="1.4" fill="#5b7f1e">SGAE</text>
+  </svg>`;
+}
+window.sgaeDropletSvg=dropletSvg;
+window.sgaeLogoSvg=logo;
 function gerenciaBanner(){
   const n=read('gerencia-notice',null);
   if(!n?.text)return '';
@@ -147,12 +196,103 @@ function header(){
   const s=getSession();
   const ecoActive=page==='library'||page==='calendar'||page==='talk';
   const roleShort=s?(s.role==='Gerente General'?'Gerente':s.role):'';
-  return `<div class="topline"><span><i class="status-dot"></i> Plataforma de aprendizaje y prevención</span><span>SERVICIOS DE GESTIÓN AMBIENTAL EIZAGUIRRE</span></div>${gerenciaBanner()}<header class="navbar"><a class="brand" href="#inicio" data-page="home">${logo()}<span class="brand-name">Conecta SGAE<small>Información que conecta,<br>prevención que protege</small></span></a><nav class="navlinks ${mobileOpen?'open':''}"><a class="nav-item ${page==='home'?'is-active':''}" ${page==='home'?'aria-current="page"':''} href="#inicio" data-page="home">Inicio</a><a class="nav-item ${page==='about'?'is-active':''}" ${page==='about'?'aria-current="page"':''} href="#nosotros" data-page="about">Quiénes somos</a><a class="nav-item ${page==='activities'?'is-active':''}" ${page==='activities'?'aria-current="page"':''} href="#actividades" data-page="activities">Nuestras actividades</a><a class="nav-item ${ecoActive?'is-active':''}" ${ecoActive?'aria-current="page"':''} href="#ecoguia" data-page="library">ECOGUÍA AL DÍA</a></nav><div class="nav-actions"><button class="btn btn-primary" data-page="${s?'dashboard':'login'}">${s?`Mi espacio (${escHtml(roleShort)})`:'Acceso usuarios'} <span>↗</span></button><button class="mobile-toggle" aria-label="Abrir menú">☰</button></div></header>`;
+  const navMarkup=s
+    ?`<a class="nav-item ${page==='home'?'is-active':''}" ${page==='home'?'aria-current="page"':''} href="#inicio" data-page="home">Inicio</a>
+      <a class="nav-item ${page==='about'?'is-active':''}" ${page==='about'?'aria-current="page"':''} href="#nosotros" data-page="about">Quiénes somos</a>
+      <a class="nav-item ${page==='activities'?'is-active':''}" ${page==='activities'?'aria-current="page"':''} href="#actividades" data-page="activities">Nuestras actividades</a>
+      <a class="nav-item ${ecoActive?'is-active':''}" ${ecoActive?'aria-current="page"':''} href="#ecoguia" data-page="library">ECOGUÍA AL DÍA</a>`
+    :`<a class="nav-item is-locked" href="#acceso" data-page="home" title="Requiere registro de personal SGAE S.A.C.">🔒 Inicio</a>
+      <a class="nav-item ${page==='about'?'is-active':''}" ${page==='about'?'aria-current="page"':''} href="#nosotros" data-page="about">Quiénes somos</a>
+      <a class="nav-item ${page==='activities'?'is-active':''}" ${page==='activities'?'aria-current="page"':''} href="#actividades" data-page="activities">Nuestras actividades</a>
+      <a class="nav-item ${page==='dynamics'?'is-active':''}" ${page==='dynamics'?'aria-current="page"':''} href="#dinamicas" data-page="dynamics">Retos y Juegos</a>
+      <a class="nav-item is-locked" href="#acceso" data-page="library" title="Requiere registro de personal SGAE S.A.C.">🔒 ECOGUÍA AL DÍA</a>`;
+  return `<div class="topline"><span><i class="status-dot"></i> Plataforma de aprendizaje y prevención</span><span>SERVICIOS DE GESTIÓN AMBIENTAL EIZAGUIRRE S.A.C.</span></div>${gerenciaBanner()}<header class="navbar"><a class="brand" href="#inicio" data-page="${s?'home':'login'}">${logo()}<span class="brand-name">Conecta SGAE<small>Información que conecta,<br>prevención que protege</small></span></a><nav class="navlinks ${mobileOpen?'open':''}">${navMarkup}</nav><div class="nav-actions"><button class="btn btn-primary" data-page="${s?'dashboard':'login'}">${s?`Mi espacio (${escHtml(roleShort)})`:'Acceso usuarios'} <span>↗</span></button><button class="mobile-toggle" aria-label="Abrir menú">☰</button></div></header>`;
 }
-function footer(){return `<footer class="footer"><div class="footer-inner"><div><a class="brand" href="#inicio">${logo()}<span class="brand-name">Conecta SGAE<small>Información que conecta,<br>prevención que protege</small></span></a><p>Plataforma educativa para la prevención ambiental.</p></div><nav class="footer-links"><a href="#inicio" data-page="home">Inicio</a><a href="#nosotros" data-page="about">Quiénes somos</a><a href="#actividades" data-page="activities">Lo que cobra vida aquí</a><a href="#ecoguia" data-page="library">ECOGUÍA AL DÍA</a></nav></div><div class="divider"></div><p class="copyright">© 2026 SERVICIOS DE GESTIÓN AMBIENTAL EIZAGUIRRE · Plataforma de apoyo para la cultura preventiva.</p><p class="footer-credit">Diseñado por Ing. Braulio Diaz</p></footer>`}
-function quick(){return `<div class="section" style="padding-top:18px;padding-bottom:30px"><div class="quick-grid">${[['▣','CHARLA DEL DÍA','Tema diario para iniciar la jornada.','talk'],['▦','CHARLAS DIARIAS 365','Agenda preventiva en ECOGUÍA AL DÍA.','calendar'],['⚑','REPORTAR PELIGROS','Ayúdanos a prevenir en campo.','report'],['▤','ECOGUÍA AL DÍA','Estándares, PETS, PAS, COLPA, residuos y MSDS.','library']].map(x=>`<a class="quick-card" data-page="${x[3]}"><span class="quick-icon">${x[0]}</span><span><strong>${x[1]}</strong><small>${x[2]}</small></span></a>`).join('')}</div></div>`}
-function home(){return `<main><section class="hero"><div class="hero-card"><div class="hero-content"><span class="eyebrow">Nuestra cultura preventiva</span><h1>SEGURIDAD,<br>SALUD Y MEDIO<br>AMBIENTE</h1><p>365 días aprendiendo, previniendo y cuidando nuestro entorno. Una plataforma para fortalecer una cultura preventiva en cada actividad que realizamos.</p><div class="hero-ctas"><button class="btn btn-white" data-page="about">CONOCER SGAE <b>→</b></button><button class="btn btn-outline" data-page="activities">LO QUE COBRA VIDA AQUÍ</button></div></div><div class="hero-kpis"><div class="kpi-mini"><strong>365</strong><small>días para aprender</small></div><div class="kpi-mini"><strong>3</strong><small>pilares preventivos</small></div><div class="kpi-mini"><strong>1</strong><small>equipo que se cuida</small></div></div></div></section>${quick()}<section class="section" id="nosotros"><div class="section-head"><div><span class="eyebrow" style="color:var(--green)">Nuestro compromiso</span><h2>Cultura preventiva en acción</h2></div><p>Personas seguras, operaciones responsables y un entorno cuidado.</p></div><div class="pillars"><article class="pillar"><span class="pillar-symbol">⬡</span><div><h3>SEGURIDAD</h3><p>Identificamos peligros, evaluamos riesgos y aplicamos controles en nuestras tareas.</p></div></article><article class="pillar"><span class="pillar-symbol">♡</span><div><h3>SALUD</h3><p>Promovemos espacios de trabajo saludables y protegemos a nuestros colaboradores.</p></div></article><article class="pillar"><span class="pillar-symbol">♧</span><div><h3>MEDIO AMBIENTE</h3><p>Cuidamos los recursos naturales y practicamos una gestión ambiental responsable.</p></div></article></div></section><section class="section" style="padding-top:5px"><div class="talk-feature"><div class="talk-copy"><span class="eyebrow">Charla diaria en ECOGUÍA AL DÍA · 6 min</span><h2>${talks[0].title}</h2><p>Una conversación práctica para preparar el trabajo, anticipar riesgos y cuidar a todo el equipo.</p><button class="btn btn-white" data-page="talk">ABRIR CHARLA <b>→</b></button></div><div class="talk-image"></div></div></section></main>`}
-function pageHead(title,desc,action=''){return `<div class="page-title-row"><div><a class="back-link" data-page="home">← Volver al inicio</a><h1>${title}</h1><p>${desc}</p></div>${action}</div>`}
+function footer(){
+  const s=getSession();
+  return `<footer class="footer"><div class="footer-inner"><div><a class="brand" href="#inicio" data-page="${s?'home':'login'}">${logo()}<span class="brand-name">Conecta SGAE<small>Información que conecta,<br>prevención que protege</small></span></a><p>Plataforma educativa para la prevención ambiental.</p></div><nav class="footer-links"><a href="#inicio" data-page="${s?'home':'login'}">${s?'Inicio':'Acceso usuarios'}</a><a href="#nosotros" data-page="about">Quiénes somos</a><a href="#actividades" data-page="activities">Lo que cobra vida aquí</a><a href="#ecoguia" data-page="library">${s?'ECOGUÍA AL DÍA':'🔒 ECOGUÍA AL DÍA'}</a></nav></div><div class="divider"></div><p class="copyright">© 2026 SERVICIOS DE GESTIÓN AMBIENTAL EIZAGUIRRE S.A.C. · Plataforma de apoyo para la cultura preventiva.</p><p class="footer-credit">Diseñado por Ing. Braulio Diaz</p></footer>`;
+}
+
+const DEFAULT_CSST={
+  period:'Comité Paritario de Seguridad y Salud en el Trabajo · SGAE S.A.C.',
+  summary:'Vela por el cumplimiento del RISSO, participa en inspecciones de campo, analiza reportes de peligros y promueve condiciones seguras en cada frente.',
+  nextMeeting:'Reunión ordinaria mensual · Verificación de planes de acción e IPERC en campo',
+  members:[
+    {role:'Presidente CSST (Empleador)',name:'Gerencia General SGAE S.A.C.',sede:'Sede Central'},
+    {role:'Secretario(a) / Coordinación SSOMAC',name:'Coordinación SSOMAC',sede:'Supervisión Operativa'},
+    {role:'Representante de Trabajadores (Titular)',name:'Delegado de Operaciones Campo 01',sede:'Santa María / Vijus'},
+    {role:'Representante de Trabajadores (Titular)',name:'Delegado de Operaciones Campo 02',sede:'Paraíso / Hualanga'}
+  ]
+};
+const DEFAULT_SAFE_WORKER={
+  month:'Mes vigente 2026',
+  name:'Por asignar (Gerencia / Supervisión)',
+  role:'Trabajador / Supervisor de Campo',
+  sede:'Santa María',
+  citation:'Por su compromiso ejemplar con el autocuidado, cumplimiento riguroso de PETS e IPERC, orden COLPA y protección del entorno durante el mes.',
+  photo:''
+};
+const DEFAULT_CUSTOM_CARD={
+  tag:'CAMPAÑA / INICIATIVA SGAE',
+  icon:'✦',
+  title:'ESPACIO DISPONIBLE · GESTIÓN SGAE',
+  subtitle:'Módulo flexible para campañas, metas o avisos gerenciales.',
+  body:'Este espacio está reservado para campañas especiales de seguridad, metas mensuales de reforestación, reconocimientos adicionales o lineamientos definidos por Supervisión o Gerencia General.'
+};
+function getCsstData(){
+  const saved=read('csst',null);
+  return saved&&Array.isArray(saved.members)?saved:DEFAULT_CSST;
+}
+function getSafeWorkerData(){
+  const saved=read('safe-worker',null);
+  return saved&&saved.name?saved:DEFAULT_SAFE_WORKER;
+}
+function getCustomCardData(){
+  const saved=read('custom-card',null);
+  return saved&&saved.title?saved:DEFAULT_CUSTOM_CARD;
+}
+
+function quick(){
+  const sw=getSafeWorkerData();
+  const cc=getCustomCardData();
+  const swAvatar=sw.photo
+    ?`<img src="${sw.photo}" alt="${escHtml(sw.name)}" class="quick-worker-thumb">`
+    :`<span class="quick-icon">🏆</span>`;
+  return `<div class="section" style="padding-top:18px;padding-bottom:30px">
+    <div class="quick-grid">
+      <button type="button" class="quick-card" data-open-csst>
+        <span class="quick-icon">🛡</span>
+        <span>
+          <strong>COMITÉ DE SEGURIDAD Y SALUD (CSST)</strong>
+          <small>Integrantes, funciones y actas del comité paritario.</small>
+        </span>
+      </button>
+      <button type="button" class="quick-card quick-card-safeworker" data-open-safeworker>
+        ${swAvatar}
+        <span>
+          <strong>TRABAJADOR MÁS SEGURO DEL MES</strong>
+          <small><b>${escHtml(sw.name)}</b> · ${escHtml(sw.sede)} · Diploma Virtual 🎓</small>
+        </span>
+      </button>
+      <a class="quick-card" href="#reportar" data-page="report">
+        <span class="quick-icon">⚑</span>
+        <span>
+          <strong>REPORTAR PELIGROS Y OBSERVACIONES</strong>
+          <small>Registra actos, condiciones subestándar o ambiente en campo.</small>
+        </span>
+      </a>
+      <button type="button" class="quick-card" data-open-customcard>
+        <span class="quick-icon">${escHtml(cc.icon||'✦')}</span>
+        <span>
+          <strong>${escHtml(cc.title)}</strong>
+          <small>${escHtml(cc.subtitle)}</small>
+        </span>
+      </button>
+    </div>
+  </div>`;
+}
+function home(){return `<main><section class="hero"><div class="hero-card"><div class="hero-content"><span class="eyebrow">Nuestra cultura preventiva</span><h1>SEGURIDAD,<br>SALUD Y MEDIO<br>AMBIENTE</h1><p>Aprendiendo, previniendo y cuidando nuestro entorno en cada jornada. Una plataforma operativa de Servicios de Gestión Ambiental Eizaguirre S.A.C.</p><div class="hero-ctas"><button class="btn btn-white" data-page="about">CONOCER SGAE <b>→</b></button><button class="btn btn-outline" data-page="activities">LO QUE COBRA VIDA AQUÍ</button></div></div><div class="hero-kpis"><div class="kpi-mini"><strong>365</strong><small>días para aprender</small></div><div class="kpi-mini"><strong>3</strong><small>pilares preventivos</small></div><div class="kpi-mini"><strong>1</strong><small>equipo que se cuida</small></div></div></div></section>${quick()}<section class="section" id="nosotros"><div class="section-head"><div><span class="eyebrow" style="color:var(--green)">Nuestro compromiso</span><h2>Cultura preventiva en acción</h2></div><p>Personas seguras, operaciones responsables y un entorno cuidado.</p></div><div class="pillars"><article class="pillar"><span class="pillar-symbol">⬡</span><div><h3>SEGURIDAD</h3><p>Identificamos peligros, evaluamos riesgos y aplicamos controles en nuestras tareas.</p></div></article><article class="pillar"><span class="pillar-symbol">♡</span><div><h3>SALUD</h3><p>Promovemos espacios de trabajo saludables y protegemos a nuestros colaboradores.</p></div></article><article class="pillar"><span class="pillar-symbol">♧</span><div><h3>MEDIO AMBIENTE</h3><p>Cuidamos los recursos naturales y practicamos una gestión ambiental responsable.</p></div></article></div></section><section class="section" style="padding-top:5px"><div class="talk-feature"><div class="talk-copy"><span class="eyebrow">Charla diaria en ECOGUÍA AL DÍA · 6 min</span><h2>${talks[0].title}</h2><p>Una conversación práctica para preparar el trabajo, anticipar riesgos y cuidar a todo el equipo.</p><button class="btn btn-white" data-page="talk">ABRIR CHARLA <b>→</b></button></div><div class="talk-image"></div></div></section></main>`}
+function pageHead(title,desc,action=''){return `<div class="page-title-row"><div><a class="back-link" data-page="${getSession()?'home':'login'}">← Volver al ${getSession()?'inicio':'acceso'}</a><h1>${title}</h1><p>${desc}</p></div>${action}</div>`}
 function dashboard(){
   const s=getSession();
   if(!s){return login();}
@@ -167,7 +307,7 @@ function dashboard(){
 
   const gerenciaPanel=canDo('executiveDashboard')?`<section class="panel executive-panel" style="grid-column:1/-1"><div class="panel-title"><h2>Consola ejecutiva · Gerencia General</h2><span class="tag">Control integral SGAE</span></div><div class="stat-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px"><div class="stat-card"><span>Tasa de cierre SSOMA</span><strong>${closurePct}%</strong><small>${verifiedCount} de ${hazards.length} verificadas</small></div><div class="stat-card"><span>Prioridad Alta abierta</span><strong>${highPending}</strong><small>Requieren seguimiento</small></div><div class="stat-card"><span>Charlas revisadas</span><strong>${att.length}</strong><small>Meta anual 365 días</small></div><div class="stat-card"><span>Sede activa</span><strong style="font-size:16px">${escHtml(s.sede)}</strong><small>Unidad consultada</small></div></div><form id="gerenciaNoticeForm" class="gerencia-notice-form"><label for="gerenciaNoticeText"><b>Publicar comunicado preventivo institucional</b> (visible en la barra superior para Trabajadores y Supervisores)</label><div class="gerencia-notice-row"><input id="gerenciaNoticeText" name="noticeText" class="field" placeholder="Ej. Hoy viernes: reforzar inspección trimestral cinta ROJA y pausas de hidratación…" value="${escHtml(activeNotice?.text||'')}"><button type="submit" class="btn btn-primary">Publicar comunicado →</button>${activeNotice?.text?'<button type="button" class="btn btn-outline" data-action="clear-notice">Retirar</button>':''}</div></form><div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="btn btn-outline" data-action="export">Exportar reporte gerencial CSV ↓</button><button type="button" class="btn btn-quiet" data-page="indicators">Ver tablero de indicadores →</button></div></section>`:'';
 
-  return `<main class="page-bg">${pageHead(`Mi espacio · ${escHtml(s.role)}`,`Sesión activa para ${escHtml(s.name)} (${escHtml(s.sede)})${s.code?` · Código ${escHtml(s.code)}`:''}.`,`<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-outline" data-page="login">Cambiar puesto</button><button class="btn btn-quiet" data-action="logout">Cerrar sesión</button></div>`)}<div class="dashboard-grid"><section class="panel"><div class="panel-title"><h2>Permisos habilitados para ${escHtml(s.role)}</h2><span class="role-badge role-${meta.tone}">${meta.badge}</span></div><ul class="permission-list is-allowed">${meta.permissions.map(p=>`<li><span>✓</span>${p}</li>`).join('')}</ul><h3 style="font:700 12px Manrope;color:var(--muted);margin:14px 0 8px">Alcance restringido en este puesto</h3><ul class="permission-list is-locked">${meta.restrictions.map(r=>`<li><span>•</span>${r}</li>`).join('')}</ul></section><section class="panel"><div class="panel-title"><h2>Tu actividad y accesos</h2><span class="tag">${escHtml(s.sede)}</span></div><div class="stat-grid" style="margin-bottom:14px"><div class="stat-card"><span>Charlas revisadas</span><strong>${att.length}</strong><small>Registro local</small></div><div class="stat-card"><span>Reportes enviados</span><strong>${hazards.length}</strong><small>${verifiedCount} verificados</small></div></div><div class="list">${[['ECOGUÍA AL DÍA','Charlas diarias, herramientas, PAS, COLPA, residuos y MSDS','library'],['Charla diaria de hoy',talks[0].title,'talk'],['Reportar un peligro','Registra actos, condiciones o aspectos ambientales','report'],['Indicadores SSOMA','Consulta avance y exportaciones autorizadas','indicators']].map(x=>`<div class="list-row"><div><strong>${x[0]}</strong><small>${x[1]}</small></div><button class="btn btn-quiet" data-page="${x[2]}">Abrir →</button></div>`).join('')}</div></section><div id="engagementTrackerPanel" style="grid-column:1/-1"></div>${supervisorPanel}${gerenciaPanel}</div></main>`;
+  return `<main class="page-bg">${pageHead(`Mi espacio · ${escHtml(s.role)}`,`Sesión activa para ${escHtml(s.name)} (${escHtml(s.sede)}) · Código ${escHtml(s.code)}.`,`<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-outline" data-page="login">Cambiar puesto</button><button class="btn btn-quiet" data-action="logout">Cerrar sesión</button></div>`)}<div class="dashboard-grid"><section class="panel"><div class="panel-title"><h2>Permisos habilitados para ${escHtml(s.role)}</h2><span class="role-badge role-${meta.tone}">${meta.badge}</span></div><ul class="permission-list is-allowed">${meta.permissions.map(p=>`<li><span>✓</span>${p}</li>`).join('')}</ul><h3 style="font:700 12px Manrope;color:var(--muted);margin:14px 0 8px">Alcance restringido en este puesto</h3><ul class="permission-list is-locked">${meta.restrictions.map(r=>`<li><span>•</span>${r}</li>`).join('')}</ul></section><section class="panel"><div class="panel-title"><h2>Tu actividad y accesos</h2><span class="tag">${escHtml(s.sede)}</span></div><div class="stat-grid" style="margin-bottom:14px"><div class="stat-card"><span>Charlas revisadas</span><strong>${att.length}</strong><small>Registro local</small></div><div class="stat-card"><span>Reportes enviados</span><strong>${hazards.length}</strong><small>${verifiedCount} verificados</small></div></div><div class="list">${[['ECOGUÍA AL DÍA','Charlas diarias, herramientas, PAS, COLPA, residuos y MSDS','library'],['Charla diaria de hoy',talks[0].title,'talk'],['Reportar un peligro','Registra actos, condiciones o aspectos ambientales','report'],['Indicadores SSOMA','Consulta avance y exportaciones autorizadas','indicators']].map(x=>`<div class="list-row"><div><strong>${x[0]}</strong><small>${x[1]}</small></div><button class="btn btn-quiet" data-page="${x[2]}">Abrir →</button></div>`).join('')}</div></section><div id="engagementTrackerPanel" style="grid-column:1/-1"></div>${supervisorPanel}${gerenciaPanel}</div></main>`;
 }
 function talkPage(){
   const t=selectedTalk,done=read('attended').includes(t.day),canExpose=canDo('exposeTalk'),s=getSession();
@@ -198,7 +338,7 @@ function hazardsRefresh(){
   }).join('');
 }
 function dynamics(){return `<main class="page-bg">${pageHead('Dinámica preventiva','Conversen en equipo, identifiquen el riesgo y acuerden una respuesta segura.')}<div class="dashboard-grid"><section class="panel"><span class="tag">¿QUÉ HARÍAS TÚ?</span><h2 style="font:800 22px Manrope;margin:16px 0">El terreno alrededor de una zona de plantación está húmedo y una persona va a trasladar herramientas.</h2><p style="font-size:13px;color:var(--muted)">Comenten: ¿qué peligros observan?, ¿qué controles aplicarían antes de trasladar el equipo?</p><div class="quiz-option" data-dyn="1">Continuar rápidamente para terminar antes de que llueva.</div><div class="quiz-option" data-dyn="2">Revisar la ruta, asegurar una superficie estable y trasladar la carga de forma controlada.</div><div class="quiz-option" data-dyn="3">Pedir a una sola persona que lleve todas las herramientas.</div><div id="dynamicFeedback" class="notice" style="display:none"></div></section><section class="panel"><div class="panel-title"><h2>Reto ambiental del equipo</h2></div><p style="font-size:13px;line-height:1.7;color:var(--muted)">Al terminar la jornada, identifiquen una oportunidad para evitar desperdicio de agua en el sistema de riego y acuerden una acción comprobable.</p><button class="btn btn-primary" data-action="challenge">Registrar reto completado ✓</button></section></div></main>`}
-function library(){return `<main class="page-bg">${pageHead('ECOGUÍA AL DÍA','Charlas diarias 365, herramientas de gestión de seguridad, PMA, respuesta ante emergencias PAS, COLPA, residuos, MSDS y observación ambiental.')}<div class="filters"><input class="field" id="docSearch" placeholder="Buscar charla, estándar, PETS, reglamento, PMA, COLPA, residuo, MSDS, sede…"><select class="field" id="docFilter"><option value="">Todas las categorías</option><option>Charlas diarias SSOMA</option><option>Herramientas de gestión</option><option>Gestión ambiental (PMA)</option><option>Respuesta ante emergencias</option><option>COLPA · Orden y limpieza</option><option>Residuos en campo</option><option>Productos químicos · MSDS</option><option>Formatos operativos</option><option>Observación ambiental</option></select></div><div id="documents" class="library-folders-host" hidden></div><div id="libraryEmptyMsg" class="empty-folder-card" hidden><strong>Sin coincidencias en ECOGUÍA AL DÍA</strong><p>Prueba otra palabra clave o selecciona "Todas las categorías" para ver todos los módulos disponibles.</p></div><div class="notice">Revisa el resumen visual de cada documento y confirma tu comprensión antes de descargar documentos oficiales vigentes.</div></main>`}
+function library(){return `<main class="page-bg">${pageHead('ECOGUÍA AL DÍA','Charlas diarias, herramientas de gestión de seguridad, PMA, respuesta ante emergencias PAS, COLPA, residuos, MSDS y observación ambiental.')}<div class="filters"><input class="field" id="docSearch" placeholder="Buscar charla, estándar, PETS, reglamento, PMA, COLPA, residuo, MSDS, sede…"><select class="field" id="docFilter"><option value="">Todas las categorías</option><option>Charlas diarias SSOMA</option><option>Herramientas de gestión</option><option>Gestión ambiental (PMA)</option><option>Respuesta ante emergencias</option><option>COLPA · Orden y limpieza</option><option>Residuos en campo</option><option>Productos químicos · MSDS</option><option>Formatos operativos</option><option>Observación ambiental</option></select></div><div id="documents" class="library-folders-host" hidden></div><div id="libraryEmptyMsg" class="empty-folder-card" hidden><strong>Sin coincidencias en ECOGUÍA AL DÍA</strong><p>Prueba otra palabra clave o selecciona "Todas las categorías" para ver todos los módulos disponibles.</p></div><div class="notice">Revisa el resumen visual de cada documento y confirma tu comprensión antes de descargar documentos oficiales vigentes.</div></main>`}
 function indicators(){
   let h=read('hazards'),a=read('attended');
   const s=getSession(),canExport=canDo('exportCsv'),isExec=canDo('executiveDashboard');
@@ -208,10 +348,394 @@ function login(){
   const s=getSession();
   const initialRole=s?.role||'Trabajador';
   const meta=ROLE_META[initialRole]||ROLE_META['Trabajador'];
-  return `<main class="login-hero-stage"><canvas id="reforestCanvas" aria-hidden="true"></canvas><div class="login-hero-overlay" aria-hidden="true"></div><div class="login-hero-grid"><section class="login-brand-copy"><div class="login-brand-pill">${logo()}<span>CONECTA SGAE · GESTIÓN AMBIENTAL Y SSOMA 365</span></div><h1>Sembrando vida,<br><span>protegiendo cada paso</span></h1><p>Plataforma operativa de <strong>Servicios de Gestión Ambiental Eizaguirre</strong>. Revisa charlas diarias, estándares, PETS, hojas MSDS peruanas y retos preventivos desde campo o gerencia.</p><div class="reforest-stages-strip" aria-label="Ciclo vivo de recuperación ambiental"><div class="reforest-stage-chip"><strong>01 · Suelo vivo</strong><small>Preparación y estabilización de ladera</small></div><div class="reforest-stage-chip"><strong>02 · Siembra nativa</strong><small>Plantones forestales y cobertura vegetal</small></div><div class="reforest-stage-chip"><strong>03 · Cuidado 365</strong><small>Cero incidentes y monitoreo en campo</small></div></div><div class="login-guest-actions"><button type="button" class="btn btn-outline-light" data-page="home">Explorar portal como visitante →</button><button type="button" class="btn btn-ghost-light" data-page="activities">Ver nuestras actividades</button></div></section><section class="panel login-glass-panel"><div class="login-form-head">${logo()}<div><h1>Acceso usuarios SGAE</h1><p>Selecciona tu cargo para habilitar tus herramientas y permisos</p></div></div><form id="loginForm"><div class="form-grid" style="margin-top:14px"><div class="form-field full"><label>Nombre y apellido</label><input name="name" required placeholder="Ej. Juan Pérez" autocomplete="name" value="${escHtml(s?.name||'')}"></div><div class="form-field"><label>Cargo / Puesto autorizado</label><select name="role" id="loginRoleSelect">${ROLES.map(r=>`<option value="${r}" ${r===initialRole?'selected':''}>${r}</option>`).join('')}</select></div><div class="form-field"><label>Sede / Unidad minera</label><select name="sede">${['Santa María','Paraíso (Papagayo)','Vijus','Hualanga','Vivero / Sede Central'].map(u=>`<option ${u===(s?.sede||'Santa María')?'selected':''}>${u}</option>`).join('')}</select></div><div class="form-field full"><label>Código de trabajador / DNI (opcional)</label><input name="code" placeholder="Ej. SGAE-042" value="${escHtml(s?.code||'')}"></div></div><div id="rolePermissionsPreview" class="role-preview-box"><strong>Permisos que se habilitarán para ${initialRole}:</strong><ul>${meta.permissions.map(p=>`<li>✓ ${p}</li>`).join('')}</ul></div><button class="btn btn-primary" style="width:100%;margin-top:14px">Ingresar con este cargo →</button></form></section></div></main>`;
+  return `<main class="login-hero-stage"><canvas id="reforestCanvas" aria-hidden="true"></canvas><div class="login-hero-overlay" aria-hidden="true"></div><div class="login-hero-grid"><section class="login-brand-copy"><div class="login-brand-pill"><span class="login-pill-drop" aria-hidden="true">${dropletSvg()}</span><span>CONECTA SGAE · GESTIÓN AMBIENTAL</span></div><h1>Sembrando vida,<br><span>protegiendo cada paso</span></h1><p>Plataforma operativa de <strong>Servicios de Gestión Ambiental Eizaguirre S.A.C.</strong>. Regístrate con todos tus datos para acceder a <b>ECOGUÍA AL DÍA</b>, hojas MSDS de proveedores, herramientas SSOMA y reportes de campo. Como visitante puedes conocer nuestra empresa, nuestras actividades y participar en retos y juegos.</p><div class="login-guest-actions">${s?`<button type="button" class="btn btn-outline-light" data-page="home">Ir al inicio del portal →</button><button type="button" class="btn btn-ghost-light" data-page="activities">Nuestras actividades</button>`:`<button type="button" class="btn btn-outline-light" data-page="about">Explorar como visitante (Quiénes somos) →</button><button type="button" class="btn btn-ghost-light" data-page="activities">Nuestras actividades</button><button type="button" class="btn btn-ghost-light" data-open-games>SGAE GAME 🎮</button>`}</div></section><section class="panel login-glass-panel"><div class="login-form-head"><div class="login-logo-lockup">${logo()}</div><div><h1>Acceso usuarios SGAE</h1><p>Ingresa todos tus datos obligatorios para habilitar la plataforma</p></div></div><form id="loginForm"><div class="form-grid" style="margin-top:14px"><div class="form-field full"><label>Nombre y apellido *</label><input name="name" required placeholder="Ej. Juan Pérez" autocomplete="name" value="${escHtml(s?.name||'')}"></div><div class="form-field"><label>Cargo / Puesto autorizado *</label><select name="role" id="loginRoleSelect" required>${ROLES.map(r=>`<option value="${r}" ${r===initialRole?'selected':''}>${r}</option>`).join('')}</select></div><div class="form-field"><label>Sede / Unidad minera *</label><select name="sede" required>${['Santa María','Paraíso (Papagayo)','Vijus','Hualanga','Vivero / Sede Central'].map(u=>`<option value="${u}" ${u===(s?.sede||'Santa María')?'selected':''}>${u}</option>`).join('')}</select></div><div class="form-field full"><label>Código de trabajador / DNI *</label><input name="code" required minlength="4" placeholder="Ej. SGAE-042 o 71234567" value="${escHtml(s?.code||'')}"></div></div><div id="rolePermissionsPreview" class="role-preview-box"><strong>Permisos que se habilitarán para ${initialRole}:</strong><ul>${meta.permissions.map(p=>`<li>✓ ${p}</li>`).join('')}</ul></div><button class="btn btn-primary" style="width:100%;margin-top:14px">Ingresar con este cargo →</button></form></section></div></main>`;
 }
-function render(){let content={home,dashboard,talk:talkPage,calendar,report,dynamics,library,indicators,login}[page]?.()||home();app.innerHTML=`<div class="shell">${header()}${content}${footer()}</div>`;if(page==='calendar'){renderTalks();document.querySelector('#searchTalk').addEventListener('input',renderTalks);document.querySelector('#categoryFilter').addEventListener('change',renderTalks);document.querySelector('#monthFilter').addEventListener('change',renderTalks)}if(page==='report')hazardsRefresh();bind();window.sgaeRefreshTracker?.();}
-function go(p){page=p;mobileOpen=false;window.scrollTo(0,0);render()}
+
+function closeHomeModal(){
+  document.getElementById('sgaeHomeModal')?.remove();
+}
+function resizePhotoFile(file,maxSide=420){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onerror=()=>reject(new Error('No se pudo leer la foto.'));
+    reader.onload=()=>{
+      const img=new Image();
+      img.onerror=()=>reject(new Error('Formato de imagen inválido.'));
+      img.onload=()=>{
+        const scale=Math.min(1,maxSide/Math.max(img.width||1,img.height||1));
+        const canvas=document.createElement('canvas');
+        canvas.width=Math.max(1,Math.round(img.width*scale));
+        canvas.height=Math.max(1,Math.round(img.height*scale));
+        canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+        resolve(canvas.toDataURL('image/jpeg',0.85));
+      };
+      img.src=String(reader.result||'');
+    };
+    reader.readAsDataURL(file);
+  });
+}
+function openCsstModal(){
+  closeHomeModal();
+  const data=getCsstData();
+  const canEdit=canDo('verifyHazards');
+  const html=`<div class="sgae-home-modal" id="sgaeHomeModal" role="dialog" aria-modal="true" aria-label="Comité de Seguridad y Salud en el Trabajo">
+    <div class="sgae-home-dialog">
+      <div class="sgae-home-head">
+        <div>
+          <span class="sgae-home-kicker">ÓRGANO PARITARIO · LEY N° 29783</span>
+          <h2>Comité de Seguridad y Salud en el Trabajo (CSST)</h2>
+        </div>
+        <button type="button" class="btn btn-quiet" data-close-home-modal>Cerrar ✕</button>
+      </div>
+      <div class="sgae-home-body">
+        <p class="sgae-home-lead"><strong>${escHtml(data.period)}</strong></p>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6">${escHtml(data.summary)}</p>
+        <div class="csst-members-grid">
+          ${data.members.map((m,i)=>`<article class="csst-member-card">
+            <span class="csst-member-num">0${i+1}</span>
+            <div>
+              <small>${escHtml(m.role)}</small>
+              <strong>${escHtml(m.name)}</strong>
+              <span>${escHtml(m.sede)}</span>
+            </div>
+          </article>`).join('')}
+        </div>
+        <div class="notice"><strong>Próxima agenda del Comité:</strong> ${escHtml(data.nextMeeting)}</div>
+        ${canEdit?`<details class="home-edit-drawer"><summary>✎ Actualizar integrantes y agenda del CSST (Supervisor / Gerencia)</summary>
+          <form id="csstEditForm" class="home-edit-form">
+            <div class="form-grid">
+              <div class="form-field full"><label>Resumen / Periodo</label><input name="period" class="field" required value="${escHtml(data.period)}"></div>
+              <div class="form-field full"><label>Agenda / Próxima reunión</label><input name="nextMeeting" class="field" required value="${escHtml(data.nextMeeting)}"></div>
+              ${data.members.map((m,i)=>`<div class="form-field"><label>${escHtml(m.role)}</label><input name="mName${i}" class="field" required value="${escHtml(m.name)}"></div><div class="form-field"><label>Sede / Área</label><input name="mSede${i}" class="field" required value="${escHtml(m.sede)}"></div>`).join('')}
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top:10px">Guardar integrantes del CSST ✓</button>
+          </form>
+        </details>`:''}
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html);
+  const modal=document.getElementById('sgaeHomeModal');
+  modal.querySelector('[data-close-home-modal]')?.addEventListener('click',closeHomeModal);
+  modal.addEventListener('click',ev=>{if(ev.target===modal)closeHomeModal();});
+  modal.querySelector('#csstEditForm')?.addEventListener('submit',ev=>{
+    ev.preventDefault();
+    const fd=new FormData(ev.currentTarget);
+    const updated={
+      period:String(fd.get('period')||DEFAULT_CSST.period).trim(),
+      summary:data.summary,
+      nextMeeting:String(fd.get('nextMeeting')||DEFAULT_CSST.nextMeeting).trim(),
+      members:data.members.map((m,i)=>({role:m.role,name:String(fd.get(`mName${i}`)||m.name).trim(),sede:String(fd.get(`mSede${i}`)||m.sede).trim()}))
+    };
+    save('csst',updated);
+    toast('Información del CSST actualizada ✓');
+    openCsstModal();
+    render();
+  });
+}
+
+async function downloadDiplomaPng(sw){
+  const w=1400,h=980;
+  const c=document.createElement('canvas');
+  c.width=w;c.height=h;
+  const ctx=c.getContext('2d');
+  // Paper cream background
+  const bg=ctx.createLinearGradient(0,0,w,h);
+  bg.addColorStop(0,'#fcfdf9');
+  bg.addColorStop(0.5,'#ffffff');
+  bg.addColorStop(1,'#f2f9f4');
+  ctx.fillStyle=bg;
+  ctx.fillRect(0,0,w,h);
+  // Outer deep forest border & gold inner trim
+  ctx.strokeStyle='#114c3b';
+  ctx.lineWidth=22;
+  ctx.strokeRect(36,36,w-72,h-72);
+  ctx.strokeStyle='#c9a33d';
+  ctx.lineWidth=4;
+  ctx.strokeRect(62,62,w-124,h-124);
+  ctx.strokeStyle='#0d9fe0';
+  ctx.lineWidth=2;
+  ctx.strokeRect(72,72,w-144,h-144);
+  // Header ribbon
+  ctx.fillStyle='#114c3b';
+  ctx.font='800 22px Manrope, sans-serif';
+  ctx.textAlign='center';
+  ctx.fillText('SERVICIOS DE GESTIÓN AMBIENTAL EIZAGUIRRE S.A.C.',w/2,148);
+  ctx.fillStyle='#0d86c7';
+  ctx.font='700 18px Manrope, sans-serif';
+  ctx.fillText('SISTEMA DE GESTIÓN EN SEGURIDAD, SALUD OCUPACIONAL Y MEDIO AMBIENTE',w/2,182);
+  ctx.fillStyle='#c9a33d';
+  ctx.fillRect(w/2-180,202,360,3);
+  ctx.fillStyle='#0e4736';
+  ctx.font='800 54px Manrope, sans-serif';
+  ctx.fillText('DIPLOMA DE RECONOCIMIENTO',w/2,276);
+  ctx.fillStyle='#177354';
+  ctx.font='800 26px Manrope, sans-serif';
+  ctx.fillText('TRABAJADOR MÁS SEGURO DEL MES · '+String(sw.month||'').toUpperCase(),w/2,322);
+  // Optional photo
+  if(sw.photo){
+    await new Promise(res=>{
+      const im=new Image();
+      im.onload=()=>{
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(w/2,440,86,0,Math.PI*2);
+        ctx.closePath();
+        ctx.clip();
+        ctx.drawImage(im,w/2-86,354,172,172);
+        ctx.restore();
+        ctx.strokeStyle='#c9a33d';
+        ctx.lineWidth=5;
+        ctx.beginPath();
+        ctx.arc(w/2,440,88,0,Math.PI*2);
+        ctx.stroke();
+        res();
+      };
+      im.onerror=res;
+      im.src=sw.photo;
+    });
+  }else{
+    ctx.fillStyle='#e8f6ee';
+    ctx.beginPath();
+    ctx.arc(w/2,440,74,0,Math.PI*2);
+    ctx.fill();
+    ctx.strokeStyle='#c9a33d';
+    ctx.lineWidth=4;
+    ctx.stroke();
+    ctx.fillStyle='#145c44';
+    ctx.font='800 44px Manrope, sans-serif';
+    ctx.fillText('SGAE',w/2,455);
+  }
+  ctx.fillStyle='#4a6158';
+  ctx.font='600 22px sans-serif';
+  ctx.fillText('Se otorga el presente diploma de honor a:',w/2,566);
+  ctx.fillStyle='#0f3d30';
+  ctx.font='800 48px Manrope, sans-serif';
+  ctx.fillText(sw.name,w/2,626);
+  ctx.fillStyle='#177354';
+  ctx.font='700 24px Manrope, sans-serif';
+  ctx.fillText(`${sw.role} · Sede ${sw.sede}`,w/2,668);
+  // Wrap citation text
+  ctx.fillStyle='#344a42';
+  ctx.font='500 21px sans-serif';
+  const words=String(sw.citation||'').split(/\s+/);
+  let line='',y=720;
+  for(const word of words){
+    const test=line?`${line} ${word}`:word;
+    if(ctx.measureText(test).width>980){ctx.fillText(line,w/2,y);line=word;y+=30;}
+    else line=test;
+  }
+  if(line)ctx.fillText(line,w/2,y);
+  // Signatures
+  ctx.strokeStyle='#88a296';
+  ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(260,842);ctx.lineTo(540,842);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(860,842);ctx.lineTo(1140,842);ctx.stroke();
+  ctx.fillStyle='#173d32';
+  ctx.font='700 18px Manrope, sans-serif';
+  ctx.fillText('GERENCIA GENERAL',400,872);
+  ctx.fillText('COORDINACIÓN SSOMAC',1000,872);
+  ctx.fillStyle='#5c756c';
+  ctx.font='500 15px sans-serif';
+  ctx.fillText('Servicios de Gestión Ambiental Eizaguirre S.A.C.',400,896);
+  ctx.fillText('Comité de Seguridad y Salud en el Trabajo',1000,896);
+  const link=document.createElement('a');
+  link.href=c.toDataURL('image/png');
+  link.download=`Diploma_Trabajador_Seguro_${String(sw.name||'SGAE').replace(/[^\w\-]+/g,'_')}.png`;
+  link.click();
+}
+
+function openSafeWorkerModal(){
+  closeHomeModal();
+  const sw=getSafeWorkerData();
+  const canEdit=canDo('verifyHazards');
+  let pendingPhoto=sw.photo||'';
+  const photoHtml=sw.photo
+    ?`<img src="${sw.photo}" alt="${escHtml(sw.name)}" class="diploma-photo-frame">`
+    :`<div class="diploma-photo-placeholder"><span>🏆</span><small>SGAE S.A.C.</small></div>`;
+  const html=`<div class="sgae-home-modal" id="sgaeHomeModal" role="dialog" aria-modal="true" aria-label="Trabajador Más Seguro del Mes y Diploma Virtual">
+    <div class="sgae-home-dialog is-wide">
+      <div class="sgae-home-head">
+        <div>
+          <span class="sgae-home-kicker">CULTURA PREVENTIVA · RECONOCIMIENTO MENSUAL</span>
+          <h2>Trabajador Más Seguro del Mes · Diploma Virtual</h2>
+        </div>
+        <button type="button" class="btn btn-quiet" data-close-home-modal>Cerrar ✕</button>
+      </div>
+      <div class="sgae-home-body">
+        <div class="sgae-diploma-sheet" id="sgaeDiplomaSheet">
+          <div class="sgae-diploma-inner">
+            <div class="diploma-top-brand">
+              ${dropletSvg()}
+              <div>
+                <strong>SERVICIOS DE GESTIÓN AMBIENTAL EIZAGUIRRE S.A.C.</strong>
+                <small>Sistema de Gestión en Seguridad, Salud Ocupacional y Medio Ambiente</small>
+              </div>
+            </div>
+            <h3 class="diploma-heading">DIPLOMA DE RECONOCIMIENTO</h3>
+            <span class="diploma-subpill">TRABAJADOR MÁS SEGURO DEL MES · ${escHtml(sw.month)}</span>
+            <div class="diploma-person-row">
+              ${photoHtml}
+              <div class="diploma-person-copy">
+                <span class="diploma-grant-label">Otorgado con orgullo a:</span>
+                <h4>${escHtml(sw.name)}</h4>
+                <p class="diploma-role-line">${escHtml(sw.role)} · Sede ${escHtml(sw.sede)}</p>
+                <p class="diploma-citation">${escHtml(sw.citation)}</p>
+              </div>
+            </div>
+            <div class="diploma-sign-row">
+              <div><span></span><strong>GERENCIA GENERAL</strong><small>SGAE S.A.C.</small></div>
+              <div class="diploma-seal-badge">★ SSOMA ★<small>Cero Incidentes</small></div>
+              <div><span></span><strong>COORDINACIÓN SSOMAC</strong><small>CSST SGAE S.A.C.</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="diploma-actions-bar">
+          <button type="button" class="btn btn-primary" id="btnDownloadDiploma">Descargar Diploma (Imagen PNG) ↓</button>
+          <button type="button" class="btn btn-outline" id="btnPrintDiploma">Imprimir Diploma 🖨️</button>
+        </div>
+        ${canEdit?`<details class="home-edit-drawer"><summary>✎ Designar / Actualizar Trabajador del Mes y fotografía (Supervisor / Gerencia)</summary>
+          <form id="safeWorkerEditForm" class="home-edit-form">
+            <div class="form-grid">
+              <div class="form-field"><label>Nombre completo del colaborador</label><input name="name" class="field" required value="${escHtml(sw.name)}"></div>
+              <div class="form-field"><label>Mes y año</label><input name="month" class="field" required value="${escHtml(sw.month)}"></div>
+              <div class="form-field"><label>Cargo / Especialidad</label><input name="role" class="field" required value="${escHtml(sw.role)}"></div>
+              <div class="form-field"><label>Sede / Unidad minera</label><select name="sede" class="field">${['Santa María','Paraíso (Papagayo)','Vijus','Hualanga','Vivero / Sede Central'].map(u=>`<option ${u===sw.sede?'selected':''}>${u}</option>`).join('')}</select></div>
+              <div class="form-field full"><label>Motivo del reconocimiento</label><textarea name="citation" class="field" required>${escHtml(sw.citation)}</textarea></div>
+              <div class="form-field full"><label>Fotografía del colaborador (opcional)</label><input id="swPhotoInput" type="file" accept="image/*" class="field"></div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+              <button type="submit" class="btn btn-primary">Guardar y emitir Diploma Virtual ✓</button>
+              ${sw.photo?'<button type="button" class="btn btn-outline" id="btnClearSwPhoto">Quitar foto</button>':''}
+            </div>
+          </form>
+        </details>`:''}
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html);
+  const modal=document.getElementById('sgaeHomeModal');
+  modal.querySelector('[data-close-home-modal]')?.addEventListener('click',closeHomeModal);
+  modal.addEventListener('click',ev=>{if(ev.target===modal)closeHomeModal();});
+  modal.querySelector('#btnDownloadDiploma')?.addEventListener('click',()=>{downloadDiplomaPng(sw);toast('Diploma Virtual descargado ✓');});
+  modal.querySelector('#btnPrintDiploma')?.addEventListener('click',()=>window.print());
+  modal.querySelector('#swPhotoInput')?.addEventListener('change',async ev=>{
+    const file=ev.target.files?.[0];
+    if(!file)return;
+    try{pendingPhoto=await resizePhotoFile(file,420);toast('Fotografía lista para guardar en el diploma');}
+    catch(err){toast(err.message||'No se pudo procesar la foto');}
+  });
+  modal.querySelector('#btnClearSwPhoto')?.addEventListener('click',()=>{
+    pendingPhoto='';
+    save('safe-worker',{...sw,photo:''});
+    toast('Fotografía removida');
+    openSafeWorkerModal();
+    render();
+  });
+  modal.querySelector('#safeWorkerEditForm')?.addEventListener('submit',ev=>{
+    ev.preventDefault();
+    const fd=new FormData(ev.currentTarget);
+    const updated={
+      name:String(fd.get('name')||sw.name).trim(),
+      month:String(fd.get('month')||sw.month).trim(),
+      role:String(fd.get('role')||sw.role).trim(),
+      sede:String(fd.get('sede')||sw.sede).trim(),
+      citation:String(fd.get('citation')||sw.citation).trim(),
+      photo:pendingPhoto
+    };
+    save('safe-worker',updated);
+    toast('Trabajador Más Seguro del Mes actualizado ✓');
+    openSafeWorkerModal();
+    render();
+  });
+}
+
+function openCustomCardModal(){
+  closeHomeModal();
+  const cc=getCustomCardData();
+  const canEdit=canDo('verifyHazards');
+  const html=`<div class="sgae-home-modal" id="sgaeHomeModal" role="dialog" aria-modal="true" aria-label="${escHtml(cc.title)}">
+    <div class="sgae-home-dialog">
+      <div class="sgae-home-head">
+        <div>
+          <span class="sgae-home-kicker">${escHtml(cc.tag)}</span>
+          <h2>${escHtml(cc.icon)} ${escHtml(cc.title)}</h2>
+        </div>
+        <button type="button" class="btn btn-quiet" data-close-home-modal>Cerrar ✕</button>
+      </div>
+      <div class="sgae-home-body">
+        <p class="sgae-home-lead">${escHtml(cc.subtitle)}</p>
+        <div class="custom-card-body-box">${escHtml(cc.body)}</div>
+        ${canEdit?`<details class="home-edit-drawer"><summary>✎ Configurar este espacio (Supervisor / Gerencia)</summary>
+          <form id="customCardEditForm" class="home-edit-form">
+            <div class="form-grid">
+              <div class="form-field"><label>Etiqueta superior</label><input name="tag" class="field" required value="${escHtml(cc.tag)}"></div>
+              <div class="form-field"><label>Ícono / Símbolo</label><input name="icon" class="field" maxlength="4" value="${escHtml(cc.icon)}"></div>
+              <div class="form-field full"><label>Título del módulo</label><input name="title" class="field" required value="${escHtml(cc.title)}"></div>
+              <div class="form-field full"><label>Subtítulo corto de tarjeta</label><input name="subtitle" class="field" required value="${escHtml(cc.subtitle)}"></div>
+              <div class="form-field full"><label>Contenido / Aviso detallado</label><textarea name="body" class="field" required>${escHtml(cc.body)}</textarea></div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top:10px">Guardar configuración ✓</button>
+          </form>
+        </details>`:'<div class="notice">Espacio informativo administrado por Supervisión y Gerencia General SGAE S.A.C.</div>'}
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html);
+  const modal=document.getElementById('sgaeHomeModal');
+  modal.querySelector('[data-close-home-modal]')?.addEventListener('click',closeHomeModal);
+  modal.addEventListener('click',ev=>{if(ev.target===modal)closeHomeModal();});
+  modal.querySelector('#customCardEditForm')?.addEventListener('submit',ev=>{
+    ev.preventDefault();
+    const fd=new FormData(ev.currentTarget);
+    save('custom-card',{
+      tag:String(fd.get('tag')||DEFAULT_CUSTOM_CARD.tag).trim(),
+      icon:String(fd.get('icon')||'✦').trim()||'✦',
+      title:String(fd.get('title')||DEFAULT_CUSTOM_CARD.title).trim(),
+      subtitle:String(fd.get('subtitle')||DEFAULT_CUSTOM_CARD.subtitle).trim(),
+      body:String(fd.get('body')||DEFAULT_CUSTOM_CARD.body).trim()
+    });
+    toast('Módulo configurado ✓');
+    openCustomCardModal();
+    render();
+  });
+}
+
+function wireHomeCards(){
+  document.querySelectorAll('[data-open-csst]').forEach(el=>{
+    if(el.dataset.wired)return;
+    el.dataset.wired='1';
+    el.addEventListener('click',openCsstModal);
+  });
+  document.querySelectorAll('[data-open-safeworker]').forEach(el=>{
+    if(el.dataset.wired)return;
+    el.dataset.wired='1';
+    el.addEventListener('click',openSafeWorkerModal);
+  });
+  document.querySelectorAll('[data-open-customcard]').forEach(el=>{
+    if(el.dataset.wired)return;
+    el.dataset.wired='1';
+    el.addEventListener('click',openCustomCardModal);
+  });
+}
+window.wireSgaeHomeCards=wireHomeCards;
+
+function render(){
+  if(!isRouteAllowed(page))page='login';
+  let content={home,dashboard,talk:talkPage,calendar,report,dynamics,library,indicators,login}[page]?.()||login();
+  app.innerHTML=`<div class="shell">${header()}${content}${footer()}</div>`;
+  if(page==='calendar'){renderTalks();document.querySelector('#searchTalk').addEventListener('input',renderTalks);document.querySelector('#categoryFilter').addEventListener('change',renderTalks);document.querySelector('#monthFilter').addEventListener('change',renderTalks)}
+  if(page==='report')hazardsRefresh();
+  bind();
+  window.sgaeRefreshTracker?.();
+}
+function go(p){
+  if(!isRouteAllowed(p)){
+    toast('Acceso exclusivo para personal registrado de SGAE S.A.C. Completa tus datos para ingresar.');
+    p='login';
+  }
+  page=p;mobileOpen=false;window.scrollTo(0,0);render();
+}
 function toast(s){let e=document.createElement('div');e.className='toast';e.textContent=s;document.body.append(e);setTimeout(()=>e.remove(),2600)}
 function updateRolePreview(role){
   const box=document.querySelector('#rolePermissionsPreview');
@@ -221,15 +745,26 @@ function updateRolePreview(role){
 function bind(){
   document.querySelectorAll('[data-page]').forEach(e=>e.addEventListener('click',ev=>{ev.preventDefault();if(e.dataset.page==='talk')lastTalkSource=page==='talk'?lastTalkSource:page;go(e.dataset.page)}));
   document.querySelectorAll('[data-action="go-back-talk"]').forEach(e=>e.addEventListener('click',ev=>{ev.preventDefault();window.goBackFromTalk();}));
-  document.querySelectorAll('[data-scroll]').forEach(e=>e.addEventListener('click',ev=>{ev.preventDefault();if(page!=='home')go('home');setTimeout(()=>document.getElementById(e.dataset.scroll)?.scrollIntoView({behavior:'smooth'}),80)}));
+  document.querySelectorAll('[data-scroll]').forEach(e=>e.addEventListener('click',ev=>{ev.preventDefault();if(!getSession()){go('login');return;}if(page!=='home')go('home');setTimeout(()=>document.getElementById(e.dataset.scroll)?.scrollIntoView({behavior:'smooth'}),80)}));
   document.querySelector('.mobile-toggle')?.addEventListener('click',()=>{mobileOpen=!mobileOpen;document.querySelector('.navlinks').classList.toggle('open',mobileOpen)});
-  document.querySelectorAll('[data-talk]').forEach(e=>e.addEventListener('click',()=>{lastTalkSource=page==='talk'?lastTalkSource:page;selectedTalk=talks[Number(e.dataset.talk)-1];expositor=false;go('talk')}));
+  document.querySelectorAll('[data-talk]').forEach(e=>e.addEventListener('click',()=>{if(!isRouteAllowed('talk')){go('login');return;}lastTalkSource=page==='talk'?lastTalkSource:page;selectedTalk=talks[Number(e.dataset.talk)-1];expositor=false;go('talk')}));
   document.querySelectorAll('[data-favorite]').forEach(e=>e.addEventListener('click',ev=>{ev.stopPropagation();let f=read('favorites'),n=+e.dataset.favorite;save('favorites',f.includes(n)?f.filter(x=>x!==n):[...f,n]);renderTalks()}));
   document.querySelectorAll('[data-answer]').forEach(e=>e.addEventListener('click',()=>{document.querySelector('#quizFeedback').textContent=e.dataset.answer==='good'?'Correcto. Retirar la herramienta y comunicarlo ayuda a evitar una lesión.':'Revisa la condición del equipo antes de usarlo. Una herramienta deteriorada debe retirarse de servicio.'}));
   document.querySelectorAll('[data-dyn]').forEach(e=>e.addEventListener('click',()=>{let f=document.querySelector('#dynamicFeedback');f.style.display='block';f.textContent=e.dataset.dyn==='2'?'Buena decisión. Revisar la ruta y mover la carga de manera controlada reduce la posibilidad de resbalones y sobreesfuerzos.':'Revisen la ruta antes de iniciar. Apurar la tarea o sobrecargar a una persona aumenta la exposición al riesgo.'}));
   document.querySelector('#hazardForm')?.addEventListener('submit',ev=>{ev.preventDefault();const s=getSession();let d=Object.fromEntries(new FormData(ev.currentTarget));d.when=new Date().toLocaleString('es-PE');d.status=navigator.onLine?'Registrado':'Pendiente de sincronización';d.reporter=s?`${s.name} (${s.role})`:'Colaborador en campo';let h=read('hazards');h.push(d);save('hazards',h);window.sgaeTrackAction?.('report',d.type);ev.currentTarget.reset();hazardsRefresh();toast('Observación guardada en este dispositivo')});
   document.querySelector('#loginRoleSelect')?.addEventListener('change',ev=>updateRolePreview(ev.target.value));
-  document.querySelector('#loginForm')?.addEventListener('submit',ev=>{ev.preventDefault();let d=Object.fromEntries(new FormData(ev.currentTarget));const session=setSession(d);window.sgaeTrackAction?.('login',session.role);toast(`Acceso habilitado: ${session.name} (${session.role})`);go('home')});
+  document.querySelector('#loginForm')?.addEventListener('submit',ev=>{
+    ev.preventDefault();
+    const d=Object.fromEntries(new FormData(ev.currentTarget));
+    if(!String(d.name||'').trim()||!String(d.role||'').trim()||!String(d.sede||'').trim()||String(d.code||'').trim().length<4){
+      toast('Completa nombre, cargo, sede y código/DNI (mínimo 4 caracteres) para ingresar.');
+      return;
+    }
+    const session=setSession(d);
+    window.sgaeTrackAction?.('login',session.role);
+    toast(`Acceso habilitado: ${session.name} (${session.role})`);
+    go('home');
+  });
   document.querySelector('[data-action="logout"]')?.addEventListener('click',()=>{clearSession();toast('Sesión cerrada');go('login')});
   document.querySelectorAll('[data-hazard-status]').forEach(btn=>btn.addEventListener('click',()=>{
     if(!canDo('verifyHazards')){toast('Requiere acceso de Supervisor o Gerente General');return;}
@@ -268,6 +803,7 @@ function bind(){
   document.querySelectorAll('[data-open-ambiental]').forEach(e=>e.addEventListener('click',ev=>{ev.preventDefault();go('report');setTimeout(()=>{const sel=document.querySelector('#hazardForm select[name="type"]');if(sel)sel.value='Aspecto ambiental';},50);}));
   document.querySelector('#docSearch')?.addEventListener('input',filterDocs);
   document.querySelector('#docFilter')?.addEventListener('change',filterDocs);
+  wireHomeCards();
 }
 function filterDocs(){let q=(document.querySelector('#docSearch')?.value||'').toLowerCase(),cat=document.querySelector('#docFilter')?.value||'';document.querySelectorAll('#documents .doc-item').forEach(e=>e.style.display=(e.dataset.doc.includes(q)&&(!cat||e.dataset.category===cat))?'flex':'none')}
 window.addEventListener('online',()=>toast('Conexión disponible. Los datos siguen guardados en este dispositivo.'));window.addEventListener('offline',()=>toast('Sin conexión. Los datos se guardan localmente.'));
